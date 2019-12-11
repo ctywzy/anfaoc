@@ -15,7 +15,6 @@ target/
 
 ### IntelliJ IDEA ###
 .idea
-.m2
 *.iws
 *.iml
 *.ipr
@@ -35,7 +34,6 @@ build/
 
 # IntelliJ project files
 .idea
-.m2
 *.iml
 out
 gen
