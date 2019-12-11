@@ -1,4 +1,0 @@
-#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
-#Mon Dec 09 14:56:45 CST 2019
-http\://maven.aliyun.com/nexus/content/groups/public/.error=Could not transfer artifact wzy.graduate.project.anfaoc\:anfaoc\:pom\:${anfaoc.version} from/to alimaven (http\://maven.aliyun.com/nexus/content/groups/public/)\: TransferFailedException
-@default-alimaven-http\://maven.aliyun.com/nexus/content/groups/public/.lastUpdated=1575874605278

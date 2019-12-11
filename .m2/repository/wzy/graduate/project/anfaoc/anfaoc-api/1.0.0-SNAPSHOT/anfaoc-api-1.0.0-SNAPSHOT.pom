@@ -5,8 +5,14 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>wzy.graduate.project.anfaoc</groupId>
+
     <artifactId>anfaoc-api</artifactId>
     <version>1.0.0-SNAPSHOT</version>
+    <parent>
+        <groupId>wzy.graduate.project.anfaoc</groupId>
+        <artifactId>anfaoc</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
     <dependencies>
         <dependency>
             <groupId>wzy.graduate.project.anfaoc</groupId>
@@ -19,6 +25,17 @@
             <artifactId>swagger-annotations</artifactId>
             <version>1.5.13</version>
             <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+            <version>${swagger.version}</version>
+        </dependency>
+        <!-- swagger2 ui -->
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+            <version>${swagger.version}</version>
         </dependency>
     </dependencies>
 </project>
