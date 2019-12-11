@@ -1,6 +1,7 @@
 package wzy.graduate.project.anfaoc.service.facade;
 
 import com.alibaba.dubbo.config.annotation.Service;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import wzy.graduate.project.anfaoc.api.facade.UserDetailFacade;
 import wzy.graduate.project.anfaoc.api.model.UserDetail;
@@ -15,6 +16,7 @@ import java.util.List;
  * @Date  2019/12/10
  **/
 
+@Slf4j
 @Service
 public class UserDetailFacadeImpl implements UserDetailFacade {
 
@@ -29,6 +31,7 @@ public class UserDetailFacadeImpl implements UserDetailFacade {
 //        userDetail.setPhoneNumber(123L);
 //        userDetail.setUserName("小王");
 //        list.add(userDetail);
+        log.info("facade：显示");
         return userDetailService.getAllUserDetail();
     }
 }
