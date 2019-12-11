@@ -15,6 +15,7 @@ target/
 
 ### IntelliJ IDEA ###
 .idea
+.m2
 *.iws
 *.iml
 *.ipr
@@ -29,3 +30,14 @@ build/
 
 ### VS Code ###
 .vscode/
+### Example user template template
+### Example user template
+
+# IntelliJ project files
+.idea
+.m2
+*.iml
+out
+gen
+### Example user template template
+### Example user template
