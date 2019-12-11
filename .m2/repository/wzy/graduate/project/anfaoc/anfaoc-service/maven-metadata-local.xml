@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>wzy.graduate.project.anfaoc</groupId>
+  <artifactId>anfaoc-service</artifactId>
+  <versioning>
+    <versions>
+      <version>1.0.0-SNAPSHOT</version>
+    </versions>
+    <lastUpdated>20191211032855</lastUpdated>
+  </versioning>
+</metadata>
