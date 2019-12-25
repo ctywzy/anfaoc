@@ -24,7 +24,7 @@ public class SwaggerAutoConfig {
                 .apiInfo(apiInfo())
                 .enable(true)
                 .select()
-                .apis(RequestHandlerSelectors.withMethodAnnotation(ApiOperation.class))
+                .apis(RequestHandlerSelectors.basePackage("wzy.graduate.project.anfaoc.web"))
                 .paths(PathSelectors.any())
                 .build();
     }
