@@ -1,6 +1,7 @@
 package wzy.graduate.project.anfaoc.api.facade;
 
 import wzy.graduate.project.anfaoc.api.model.UserDetail;
+import wzy.graduate.project.anfaoc.common.model.Response;
 
 import java.util.List;
 
@@ -18,5 +19,13 @@ public interface UserDetailFacade {
      * @Param
      * @return
      **/
-    List<UserDetail> getAllUserDetail();
+    Response<List<UserDetail>> getAllUserDetail();
+
+    /**
+     * @Description 用户注册
+     * @Date  2019/12/26
+     * @Param
+     * @return
+     **/
+    Response<Boolean> register(UserDetail userDetail);
 }

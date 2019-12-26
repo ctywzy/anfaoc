@@ -25,6 +25,9 @@
 		<java.version>1.8</java.version>
 		<anfaoc.version>1.0.0-SNAPSHOT</anfaoc.version>
 		<swagger.version>2.9.2</swagger.version>
+		<guava.version>20.0</guava.version>
+		<zhenzi.version>1.0.4</zhenzi.version>
+
 	</properties>
 
 	<dependencies>
@@ -106,6 +109,16 @@
 			<artifactId>mysql-connector-java</artifactId>
 			<version>5.1.39</version>
             <scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>${guava.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.zhenzikj</groupId>
+			<artifactId>zhenzisms</artifactId>
+			<version>${zhenzi.version}</version>
 		</dependency>
 	</dependencies>
 
