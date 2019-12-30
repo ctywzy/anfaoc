@@ -8,7 +8,7 @@ dubbo:
   application:
     name: anfaoc-service
   registries:
-    timeout: 40000
+    timeout: 4000
   registry:
     address: zookeeper://127.0.0.1:2181
   protocol:

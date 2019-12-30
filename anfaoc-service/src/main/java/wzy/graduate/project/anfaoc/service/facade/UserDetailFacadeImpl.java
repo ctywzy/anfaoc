@@ -9,8 +9,7 @@ import wzy.graduate.project.anfaoc.api.service.UserDetailService;
 import wzy.graduate.project.anfaoc.common.exception.ServiceException;
 import wzy.graduate.project.anfaoc.common.model.Response;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 /**
  * @Description //TODO
@@ -40,10 +39,26 @@ public class UserDetailFacadeImpl implements UserDetailFacade {
     @Override
     public Response<Boolean> register(UserDetail userDetail) {
         try{
-
+            //HashMap<String,Object> criteria = userDetail.toMap();
+            //return Response.ok(userDetailService.register(criteria));
         }catch (ServiceException e){
             return Response.fail(e.getMessage());
         }
-        return null;
+        return Response.ok();
+    }
+
+    @Override
+    public Response<Boolean> findUserByPhoneNumber(String phoneNumber) {
+        Integer count;
+        try{
+            count = userDetailService.findUserByPhoneNumber(phoneNumber);
+        }catch (Exception e){
+            return Response.fail(e.getMessage());
+        }
+        if(count==1){
+            return Response.ok();
+        }else{
+            return Response.fail("没查到该用户");
+        }
     }
 }

@@ -7,6 +7,7 @@ import wzy.graduate.project.anfaoc.api.model.UserDetail;
 import wzy.graduate.project.anfaoc.api.service.UserDetailService;
 import wzy.graduate.project.anfaoc.service.dao.UserDetailDao;
 
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -26,5 +27,15 @@ public class UserDetailServiceImpl implements UserDetailService {
     public List<UserDetail> getAllUserDetail() {
         log.info("service:显示");
         return userDetailDao.findAllUser();
+    }
+
+    @Override
+    public boolean register(HashMap<String, Object> criteria) {
+        return false;
+    }
+
+    @Override
+    public Integer findUserByPhoneNumber(String phoneNumber) {
+        return userDetailDao.findUserByPhoneNumber(phoneNumber);
     }
 }

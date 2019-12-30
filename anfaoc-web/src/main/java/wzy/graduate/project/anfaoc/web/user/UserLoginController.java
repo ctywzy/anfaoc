@@ -8,8 +8,10 @@ import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import net.bytebuddy.implementation.bytecode.Throw;
 import org.springframework.web.bind.annotation.*;
+import wzy.graduate.project.anfaoc.api.facade.NewsDetailFacade;
 import wzy.graduate.project.anfaoc.api.facade.UserDetailFacade;
 import wzy.graduate.project.anfaoc.api.model.UserDetail;
+import wzy.graduate.project.anfaoc.api.redis.RedisHelper;
 import wzy.graduate.project.anfaoc.common.exception.RestException;
 import wzy.graduate.project.anfaoc.common.model.Response;
 import wzy.graduate.project.anfaoc.common.model.ZhenziSMS;
@@ -32,6 +34,23 @@ public class UserLoginController {
 
     @Reference
     private UserDetailFacade userDetailFacade;
+
+    @Reference
+    private RedisHelper redisHelper;
+
+    @ApiOperation("进行redis缓存")
+    @GetMapping("/submitCache")
+    public void submitCache() throws InterruptedException {
+        redisHelper.valuePut("abc","123");
+        Thread.sleep(500);
+    }
+
+    @ApiOperation("获取redis缓存")
+    @GetMapping("/getCache")
+    public String getCache(){
+        String abc = (String) redisHelper.getValue("abc");
+        return abc;
+    }
 
     @ApiOperation("用户注册")
     @PostMapping("/register")
@@ -67,22 +86,21 @@ public class UserLoginController {
     }
 
     @ApiOperation("用户登陆校验-短信验证码方式")
-    @GetMapping(value = "/userLogin")
+    @GetMapping(value = "/userLogin/verityCode")
     public Boolean userLoginMsg(@RequestParam String phoneNumber
             ,@RequestParam String verityCode){
         //查询该手机号用户是否存在
-        /**Boolean result = userDetailFacade.
+        Response<Boolean> response = userDetailFacade.findUserByPhoneNumber(phoneNumber);
 
-        if(verityCode.equals()){
+        if(verityCode.equals("abc")){
             return Boolean.TRUE;
         }else{
-            return false;
-        }**/
-        return Boolean.TRUE;
+            return Boolean.FALSE;
+        }
     }
 
     @ApiOperation("管理员-获取剩余可用短信额度")
-    @GetMapping(value = "remainingSMSCredit")
+    @GetMapping(value = "/remainingSMSCredit")
     public String remainingSMSCredit()  {
         ZhenziSmsClient client = new ZhenziSmsClient(ZhenziSMS.APIURL,ZhenziSMS.APPID,ZhenziSMS.APPSECRET);
         String remaining = new String();

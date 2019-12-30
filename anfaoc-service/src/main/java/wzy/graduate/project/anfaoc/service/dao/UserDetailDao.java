@@ -15,4 +15,6 @@ import java.util.List;
 public interface UserDetailDao {
 
     List<UserDetail> findAllUser();
+
+    Integer findUserByPhoneNumber(String phoneNumber);
 }

@@ -2,6 +2,7 @@ package wzy.graduate.project.anfaoc.api.service;
 
 import wzy.graduate.project.anfaoc.api.model.UserDetail;
 
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -12,6 +13,8 @@ import java.util.List;
 
 public interface UserDetailService {
 
+
+
     /**
      * @Description 查询所有的用户信息
      * @Date  2019/12/10
@@ -19,4 +22,20 @@ public interface UserDetailService {
      * @return
      **/
     List<UserDetail> getAllUserDetail();
+
+    /**
+     * @Description 注册用户
+     * @Date  2019/12/26
+     * @Param
+     * @return
+     **/
+    boolean register(HashMap<String, Object> criteria);
+
+    /**
+     * @Description 根据电话号码查询用户
+     * @Date  2019/12/26
+     * @Param
+     * @return
+     **/
+    Integer findUserByPhoneNumber(String phoneNumber);
 }

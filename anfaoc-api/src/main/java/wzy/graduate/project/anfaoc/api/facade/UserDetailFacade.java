@@ -28,4 +28,12 @@ public interface UserDetailFacade {
      * @return
      **/
     Response<Boolean> register(UserDetail userDetail);
+
+    /**
+     * @Description 根据电话号码查询用户是否存在
+     * @Date  2019/12/26
+     * @Param
+     * @return
+     **/
+    Response<Boolean> findUserByPhoneNumber(String phoneNumber);
 }

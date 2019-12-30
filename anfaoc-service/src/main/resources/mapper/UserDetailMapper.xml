@@ -8,7 +8,7 @@
         <result property="userPassword" column="user_password"/>
         <result property="userAge" column="user_age"/>
         <result property="userAuthority" column="user_authority"/>
-        <result property="phoneNumber" column="phong_number"/>
+        <result property="phoneNumber" column="phone_number"/>
     </resultMap>
 
     <sql id="table_name">
@@ -17,8 +17,14 @@
 
     <select id="findAllUser" resultMap="userDetailMap">
         SELECT *
-        FROM <include refid="table_name"></include>
+        FROM <include refid="table_name"/>
         ORDER BY `id` DESC;
+    </select>
+
+    <select id="findUserByPhoneNumber" parameterType="string" resultType="int">
+        SELECT count(1)
+        FROM <include refid="table_name"/>
+        WHERE `phone_number` = #{phoneNumber}
     </select>
 
 </mapper>
