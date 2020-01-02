@@ -25,5 +25,18 @@ redis:
     #默认是索引为0的数据库
     database: 0
 
+thymeleaf:
+  #资源路径
+  prefix: classpath:/templates/
+  #后缀
+  suffix: .html
+  servlet:
+    content-type: text/html
+  enabled: true
+  encoding: UTF-8
+  mode: HTML5
+  #支持热部署
+  cache: false
+
 server:
   port: 8005

@@ -6,15 +6,16 @@ import com.zhenzi.sms.ZhenziSmsClient;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
-import net.bytebuddy.implementation.bytecode.Throw;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import wzy.graduate.project.anfaoc.api.facade.NewsDetailFacade;
+import org.springframework.web.servlet.ModelAndView;
 import wzy.graduate.project.anfaoc.api.facade.UserDetailFacade;
-import wzy.graduate.project.anfaoc.api.model.UserDetail;
+import wzy.graduate.project.anfaoc.api.domain.UserDetail;
 import wzy.graduate.project.anfaoc.api.redis.RedisHelper;
 import wzy.graduate.project.anfaoc.common.exception.RestException;
 import wzy.graduate.project.anfaoc.common.model.Response;
 import wzy.graduate.project.anfaoc.common.model.ZhenziSMS;
+import wzy.graduate.project.anfaoc.web.context.UserContext;
 
 import java.util.List;
 import java.util.Map;
@@ -38,18 +39,11 @@ public class UserLoginController {
     @Reference
     private RedisHelper redisHelper;
 
-    @ApiOperation("进行redis缓存")
-    @GetMapping("/submitCache")
-    public void submitCache() throws InterruptedException {
-        redisHelper.valuePut("abc","123");
-        Thread.sleep(500);
-    }
-
-    @ApiOperation("获取redis缓存")
-    @GetMapping("/getCache")
-    public String getCache(){
-        String abc = (String) redisHelper.getValue("abc");
-        return abc;
+    @GetMapping("/login")
+    public ModelAndView login(String error){
+        ModelAndView modelAndView = new ModelAndView("/login");
+        modelAndView.addObject("error", error);
+        return modelAndView;
     }
 
     @ApiOperation("用户注册")
@@ -64,7 +58,17 @@ public class UserLoginController {
     @GetMapping(value = "/getAllUser")
     public List<UserDetail> getAllUser(){
         Response<List<UserDetail>> response = userDetailFacade.getAllUserDetail();
+        UserContext.setUserLocal(response.getResult().get(0));
+        log.info("线程名:{}",Thread.currentThread().getId());
         return response.getResult();
+    }
+
+    @ApiOperation("ThreadLocal效果查看")
+    @GetMapping("/getUserLocal")
+    public UserDetail getUserLocal(){
+        log.info("线程名:{}",Thread.currentThread().getId());
+
+        return UserContext.getUserLocal();
     }
 
     @ApiOperation("请求发送验证码")

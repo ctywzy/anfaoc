@@ -1,4 +1,4 @@
-package wzy.graduate.project.anfaoc.api.dto;
+package wzy.graduate.project.anfaoc.api.domain.dto;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;

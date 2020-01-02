@@ -3,7 +3,7 @@ package wzy.graduate.project.anfaoc.service.service;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import wzy.graduate.project.anfaoc.api.model.UserDetail;
+import wzy.graduate.project.anfaoc.api.domain.UserDetail;
 import wzy.graduate.project.anfaoc.api.service.UserDetailService;
 import wzy.graduate.project.anfaoc.service.dao.UserDetailDao;
 

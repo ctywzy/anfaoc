@@ -1,4 +1,4 @@
-package wzy.graduate.project.anfaoc.api.model;
+package wzy.graduate.project.anfaoc.api.domain;
 
 import lombok.Data;
 import wzy.graduate.project.anfaoc.common.enums.AuthorityType;

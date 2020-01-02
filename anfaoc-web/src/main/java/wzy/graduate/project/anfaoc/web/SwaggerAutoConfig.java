@@ -14,6 +14,10 @@ import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
+/**
+ * @author wangzy
+ * @Description swagger配置文件
+ */
 @EnableSwagger2
 @Configuration
 public class SwaggerAutoConfig {
@@ -31,7 +35,7 @@ public class SwaggerAutoConfig {
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title(String.format("%s 在线接口文档", "王祖瑀的毕业设计"))
+                .title(String.format("%s 在线接口文档", "****"))
                 .version("1.0").build();
     }
 

@@ -1,3 +1,4 @@
+import io.swagger.annotations.ApiOperation;
 import jdk.nashorn.internal.ir.annotations.Reference;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -9,6 +10,7 @@ import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.web.bind.annotation.GetMapping;
 import wzy.graduate.project.anfaoc.api.redis.RedisHelper;
 
 @RunWith(SpringRunner.class)
@@ -40,5 +42,17 @@ public class RedisTest {
         operations.set("abc","abc");
         Thread.sleep(500);
         System.out.println(redisTemplate.opsForValue().get("abc"));
+    }
+
+    @GetMapping("/submitCache")
+    public void submitCacheTest() throws InterruptedException {
+        redisHelper.valuePut("abc","123");
+        Thread.sleep(500);
+    }
+
+    @GetMapping("/getCache")
+    public String getCacheTest(){
+        String abc = (String) redisHelper.getValue("abc");
+        return abc;
     }
 }

@@ -4,7 +4,7 @@ import com.alibaba.dubbo.config.annotation.Service;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import wzy.graduate.project.anfaoc.api.facade.UserDetailFacade;
-import wzy.graduate.project.anfaoc.api.model.UserDetail;
+import wzy.graduate.project.anfaoc.api.domain.UserDetail;
 import wzy.graduate.project.anfaoc.api.service.UserDetailService;
 import wzy.graduate.project.anfaoc.common.exception.ServiceException;
 import wzy.graduate.project.anfaoc.common.model.Response;
@@ -50,6 +50,7 @@ public class UserDetailFacadeImpl implements UserDetailFacade {
     @Override
     public Response<Boolean> findUserByPhoneNumber(String phoneNumber) {
         Integer count;
+
         try{
             count = userDetailService.findUserByPhoneNumber(phoneNumber);
         }catch (Exception e){

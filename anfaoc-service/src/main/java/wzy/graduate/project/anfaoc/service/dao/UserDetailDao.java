@@ -1,7 +1,7 @@
 package wzy.graduate.project.anfaoc.service.dao;
 
 import org.apache.ibatis.annotations.Mapper;
-import wzy.graduate.project.anfaoc.api.model.UserDetail;
+import wzy.graduate.project.anfaoc.api.domain.UserDetail;
 
 import java.util.List;
 
