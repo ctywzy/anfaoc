@@ -37,5 +37,5 @@ public interface UserDetailService {
      * @Param
      * @return
      **/
-    Integer findUserByPhoneNumber(String phoneNumber);
+    UserDetail findUserByPhoneNumber(String phoneNumber);
 }

@@ -44,7 +44,8 @@ public class AuthConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
             .authorizeRequests()
-                .antMatchers("/", "/ordinary/*").permitAll()
+                //规则配置
+                .antMatchers("/api/anfaoc/user/**").permitAll()
                 .antMatchers("/admin/**").access("hasRole('ADMIN')")
                 .anyRequest().authenticated()
             .and()

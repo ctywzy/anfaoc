@@ -21,8 +21,8 @@
         ORDER BY `id` DESC;
     </select>
 
-    <select id="findUserByPhoneNumber" parameterType="string" resultType="int">
-        SELECT count(1)
+    <select id="findUserByPhoneNumber" parameterType="string" resultMap="userDetailMap">
+        SELECT *
         FROM <include refid="table_name"/>
         WHERE `phone_number` = #{phoneNumber}
     </select>

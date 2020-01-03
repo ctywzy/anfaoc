@@ -9,6 +9,7 @@ import wzy.graduate.project.anfaoc.api.service.UserDetailService;
 import wzy.graduate.project.anfaoc.common.exception.ServiceException;
 import wzy.graduate.project.anfaoc.common.model.Response;
 
+import javax.swing.text.html.Option;
 import java.util.*;
 
 /**
@@ -49,17 +50,37 @@ public class UserDetailFacadeImpl implements UserDetailFacade {
 
     @Override
     public Response<Boolean> findUserByPhoneNumber(String phoneNumber) {
-        Integer count;
+        UserDetail userDetail = null;
 
         try{
-            count = userDetailService.findUserByPhoneNumber(phoneNumber);
+            userDetail = userDetailService.findUserByPhoneNumber(phoneNumber);
         }catch (Exception e){
             return Response.fail(e.getMessage());
         }
-        if(count==1){
-            return Response.ok();
-        }else{
-            return Response.fail("没查到该用户");
+        Response<Boolean> response = Response.ok(Boolean.TRUE);
+        if(Objects.isNull(userDetail)){
+            response = Response.fail("用户不存在");
         }
+        return response;
+    }
+
+    @Override
+    public Response<Boolean> loginByPhoneNumber(String phoneNumber, String password) {
+
+        UserDetail userDetail = null;
+        try{
+            userDetail = userDetailService.findUserByPhoneNumber(phoneNumber);
+        }catch (Exception e){
+            return Response.fail(e.getMessage());
+        }
+        Response<Boolean> response = Response.ok(Boolean.TRUE);
+        if(Objects.isNull(userDetail)){
+            response = Response.fail("用户不存在")
+        }else{
+            if(!password.equals(userDetail.getUserPassword())){
+                response = Response.fail("用户名或密码错误");
+            }
+        }
+        return response;
     }
 }

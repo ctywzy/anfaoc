@@ -36,4 +36,12 @@ public interface UserDetailFacade {
      * @return
      **/
     Response<Boolean> findUserByPhoneNumber(String phoneNumber);
+
+    /**
+     * @Description 根据电话好号码和密码判断登陆是否成功
+     * @Date  2020/1/3
+     * @Param
+     * @return
+     **/
+    Response<Boolean> loginByPhoneNumber(String phoneNumber, String password);
 }

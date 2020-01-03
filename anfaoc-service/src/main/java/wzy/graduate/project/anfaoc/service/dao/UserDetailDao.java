@@ -14,7 +14,19 @@ import java.util.List;
 @Mapper
 public interface UserDetailDao {
 
+    /**
+     * @Description 获取所有用户信息
+     * @Date  2020/1/3
+     * @Param
+     * @return
+     **/
     List<UserDetail> findAllUser();
 
-    Integer findUserByPhoneNumber(String phoneNumber);
+    /**
+     * @Description 获取该电话对应的用户信息
+     * @Date  2020/1/3
+     * @Param
+     * @return
+     **/
+    UserDetail findUserByPhoneNumber(String phoneNumber);
 }
