@@ -4,6 +4,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -45,16 +46,29 @@ public class AuthConfig extends WebSecurityConfigurerAdapter {
         http
             .authorizeRequests()
                 //规则配置
-                .antMatchers("/api/anfaoc/user/**").permitAll()
-                .antMatchers("/admin/**").access("hasRole('ADMIN')")
+                //这条说明普通页面大家都可以访问
+                .antMatchers("/api/anfaoc/user/ordinary/**").permitAll()
+                .antMatchers("/api/anfaoc/user/admin/**").permitAll()
                 .anyRequest().authenticated()
             .and()
                 .formLogin()
                 .loginPage("/home")
+                .defaultSuccessUrl("/success")
+                //这个需和提交表单的action内容一致
+                .loginProcessingUrl("/login")
                 .permitAll()
             .and()
                 .logout()
                 .permitAll();
         http.csrf().disable();
     }
+
+    /** 某些网页不拦截 **/
+//    @Override
+//    public void configure(WebSecurity web) throws Exception {
+//        web
+//            //这个配置是忽略某些api不进行验证么
+//            .ignoring()
+//            .antMatchers("/api/anfaoc/user/ordinary/**");
+//    }
 }

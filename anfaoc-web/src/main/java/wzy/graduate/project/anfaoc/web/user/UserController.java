@@ -13,9 +13,6 @@ import wzy.graduate.project.anfaoc.api.redis.RedisHelper;
 import wzy.graduate.project.anfaoc.common.exception.RestException;
 import wzy.graduate.project.anfaoc.common.model.Response;
 import wzy.graduate.project.anfaoc.common.model.ZhenziSMS;
-import wzy.graduate.project.anfaoc.web.context.UserContext;
-
-import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
@@ -76,12 +73,12 @@ public class UserController {
     }
 
     @ApiOperation("用户登陆校验-密码和名称方式")
-    @GetMapping(value = "/userLogin/password")
-    public Boolean userLoginPass(@RequestParam String phoneNumber,@RequestParam String password){
+    @PostMapping(value = "/userLogin/password")
+    public Response<Boolean> userLoginPass(@RequestParam String phoneNumber,@RequestParam String password){
 
         Response<Boolean> response = userDetailFacade.loginByPhoneNumber(phoneNumber,password);
-        Boolean result = response.getResult();
-        return
+
+        return response;
     }
 
 }

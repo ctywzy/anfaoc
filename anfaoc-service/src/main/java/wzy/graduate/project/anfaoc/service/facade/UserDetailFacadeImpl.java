@@ -75,7 +75,7 @@ public class UserDetailFacadeImpl implements UserDetailFacade {
         }
         Response<Boolean> response = Response.ok(Boolean.TRUE);
         if(Objects.isNull(userDetail)){
-            response = Response.fail("用户不存在")
+            response = Response.fail("用户不存在");
         }else{
             if(!password.equals(userDetail.getUserPassword())){
                 response = Response.fail("用户名或密码错误");

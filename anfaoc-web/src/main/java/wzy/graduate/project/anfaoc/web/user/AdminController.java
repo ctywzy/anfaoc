@@ -21,10 +21,10 @@ import java.util.List;
  * @author wangzy
  */
 
-@RestController("/api/anfaoc/user/admin")
+@RestController
 @Api(tags = "用户信息管理--管理员")
 @Slf4j
-@RequestMapping()
+@RequestMapping("/api/anfaoc/user/admin")
 public class AdminController {
 
     @Reference
