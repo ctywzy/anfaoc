@@ -3,7 +3,7 @@ package wzy.graduate.project.anfaoc.service.service;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import wzy.graduate.project.anfaoc.api.domain.UserDetail;
+import wzy.graduate.project.anfaoc.api.domain.entity.UserDetail;
 import wzy.graduate.project.anfaoc.api.service.UserDetailService;
 import wzy.graduate.project.anfaoc.service.dao.UserDetailDao;
 
@@ -18,7 +18,7 @@ import java.util.List;
 
 @Slf4j
 @Service
-public class UserDetailServiceImpl implements UserDetailService {
+public class UserDetailServiceImpl implements UserDetailService{
 
     @Autowired
     private UserDetailDao userDetailDao;

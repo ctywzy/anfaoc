@@ -53,6 +53,7 @@
             <artifactId>zkclient</artifactId>
             <version>0.10</version>
             <!-- 解决引入zk后的  SLF4J: Class path contains multiple SLF4J bindings.问题-->
+            <!-- 由于zk内置日志系统，会与项目冲突 -->
             <exclusions>
                 <exclusion>
                     <groupId>org.slf4j</groupId>

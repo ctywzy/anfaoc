@@ -1,6 +1,6 @@
 package wzy.graduate.project.anfaoc.web.context;
 
-import wzy.graduate.project.anfaoc.api.domain.UserDetail;
+import wzy.graduate.project.anfaoc.api.domain.entity.UserDetail;
 
 /**
  * @author wangzy

@@ -1,6 +1,6 @@
 package wzy.graduate.project.anfaoc.api.facade;
 
-import wzy.graduate.project.anfaoc.api.domain.UserDetail;
+import wzy.graduate.project.anfaoc.api.domain.entity.UserDetail;
 import wzy.graduate.project.anfaoc.common.model.Response;
 
 import java.util.List;

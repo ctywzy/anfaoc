@@ -25,7 +25,7 @@ public class HomeController {
     }
 
     @ApiOperation("成功")
-    @GetMapping("success")
+    @GetMapping("homepage")
     public String successPage(){
         return "index";
     }

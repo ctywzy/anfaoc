@@ -1,6 +1,6 @@
 package wzy.graduate.project.anfaoc.api.service;
 
-import wzy.graduate.project.anfaoc.api.domain.UserDetail;
+import wzy.graduate.project.anfaoc.api.domain.entity.UserDetail;
 
 import java.util.HashMap;
 import java.util.List;

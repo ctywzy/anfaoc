@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="wzy.graduate.project.anfaoc.service.dao.UserDetailDao">
 
-    <resultMap id="userDetailMap" type="wzy.graduate.project.anfaoc.api.domain.UserDetail">
+    <resultMap id="userDetailMap" type="wzy.graduate.project.anfaoc.api.domain.entity.UserDetail">
         <id property="id" column="id"/>
         <result property="userName" column="user_name"/>
         <result property="userPassword" column="user_password"/>

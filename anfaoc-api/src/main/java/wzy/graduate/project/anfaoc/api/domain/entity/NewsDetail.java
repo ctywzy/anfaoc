@@ -1,4 +1,4 @@
-package wzy.graduate.project.anfaoc.api.domain;
+package wzy.graduate.project.anfaoc.api.domain.entity;
 
 import java.io.Serializable;
 
