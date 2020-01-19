@@ -36,4 +36,12 @@ public class JsoupStringUtil {
         }
         return labels;
     }
+
+    /**
+     * @Description 获取图片地址
+     * @Date  2020/1/19
+     **/
+    public static String getPicsLink(String str) {
+        return str.substring(10,str.length()-2);
+    }
 }

@@ -1,6 +1,8 @@
 package wzy.graduate.project.anfaoc.common.model.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import wzy.graduate.project.anfaoc.common.enums.ParaType;
 
 /**
@@ -9,6 +11,8 @@ import wzy.graduate.project.anfaoc.common.enums.ParaType;
  */
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class ParaEntity {
 
     /** 文段类型 **/
