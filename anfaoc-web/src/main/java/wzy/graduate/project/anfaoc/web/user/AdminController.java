@@ -34,8 +34,6 @@ public class AdminController {
     @GetMapping(value = "/getAllUser")
     public List<UserDetail> getAllUser(){
         Response<List<UserDetail>> response = userDetailFacade.getAllUserDetail();
-        UserContext.setUserLocal(response.getResult().get(0));
-        log.info("线程名:{}",Thread.currentThread().getId());
         return response.getResult();
     }
 

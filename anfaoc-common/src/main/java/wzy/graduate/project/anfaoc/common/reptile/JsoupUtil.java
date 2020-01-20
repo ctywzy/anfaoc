@@ -9,6 +9,7 @@ import wzy.graduate.project.anfaoc.common.enums.ParaType;
 import wzy.graduate.project.anfaoc.common.model.entity.NewsDetail;
 import wzy.graduate.project.anfaoc.common.model.entity.ParaEntity;
 
+import javax.print.Doc;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +20,8 @@ import java.util.Optional;
  */
 
 public class JsoupUtil {
+
+    private static final String homePageUrl = "http://www.ifeng.com/";
 
     /**
      * @Description 根据一条url保存下一篇新闻相关的内容
@@ -92,4 +95,36 @@ public class JsoupUtil {
         return paras;
     }
 
+    /**
+     * @Description 定时任务中用来更新新闻库的方法
+     * @Date  2020/1/20
+     **/
+    public static List<String> updateNewsLibrary() {
+        Connection conn = Jsoup.connect(homePageUrl);
+        List<String> urlList = new ArrayList<>();
+        try{
+            Document doc = conn.get();
+            urlList = getHomePageNewsUrl(doc);
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+        return urlList;
+    }
+
+    /**
+     * @Description 根据主页地址来获取所有的url
+     * @Date  2020/1/20
+     **/
+    private static List<String> getHomePageNewsUrl(Document doc) {
+        Elements elements = doc.getElementsByTag("a");
+        List<String> urlList = new ArrayList<>();
+        for(Element element : elements){
+            String str = element.toString();
+            if(str.contains("/c/7")){
+                int index = str.indexOf("href");
+                urlList.add(JsoupStringUtil.getNewsUrlFromHref(index,element));
+            }
+        }
+        return urlList;
+    }
 }

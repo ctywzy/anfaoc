@@ -5,9 +5,11 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 @EnableDubbo
 @SpringBootApplication
+@EnableScheduling
 public class AnfaocServiceStarterApp {
     public static void main(String[] args) {
         SpringApplication application = new SpringApplication(AnfaocServiceStarterApp.class);

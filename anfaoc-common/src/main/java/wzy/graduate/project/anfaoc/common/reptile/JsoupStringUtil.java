@@ -1,5 +1,7 @@
 package wzy.graduate.project.anfaoc.common.reptile;
 
+import org.jsoup.nodes.Element;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,5 +45,23 @@ public class JsoupStringUtil {
      **/
     public static String getPicsLink(String str) {
         return str.substring(10,str.length()-2);
+    }
+
+    /**
+     * @Description 从主页的文章标签中获取
+     * @Date  2020/1/20
+     * @param index href字符串的下标
+     **/
+    public static String getNewsUrlFromHref(int index, Element element){
+
+        String originUrl = element.toString();
+        int finalindex = 0;
+        for(int i=index+6 ; i<originUrl.length(); i++){
+            if(originUrl.charAt(i)=='"'){
+                finalindex = i;
+                break;
+            }
+        }
+        return originUrl.substring(index+6,finalindex);
     }
 }
