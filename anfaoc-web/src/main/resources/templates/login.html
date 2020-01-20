@@ -1,0 +1,19 @@
+<!DOCTYPE HTML>
+<!-- thymeleaf模板必须引入 -->
+<!DOCTYPE HTML>
+<!-- thymeleaf模板必须引入 -->
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>SpringBoot模版渲染</title>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+</head>
+<body>
+<form th:action="@{/login}" method="post" >
+    <input th:text="用户名" type="text" name="username" />
+    <input th:text="密码" type="password" name="password" />
+    <button type="submit" >提交</button>
+    <!-- ${session?.SPRING_SECURITY_LAST_EXCEPTION?.message} security自带的错误提示信息 -->
+    <p th:if="${param.error}" th:text="${session?.SPRING_SECURITY_LAST_EXCEPTION?.message}" ></p>
+</form>
+</body>
+</html>

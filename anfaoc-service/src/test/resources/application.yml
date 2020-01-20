@@ -1,0 +1,30 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/mysql?useUnicode=true&characterEncoding=utf-8&useSSL=false
+    username: root
+    password: 123456
+dubbo:
+  application:
+    name: anfaoc-service
+  registries:
+    timeout: 4000
+  registry:
+    address: zookeeper://127.0.0.1:2181
+  protocol:
+    name: dubbo
+    port: 20880
+
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true #开启驼峰命名（数据库d_id匹配实体类dId）
+  mapper-locations: classpath:mapper/*Mapper.xml #扫描mapper文件
+  typeAliasesPackage: wzy.graduate.project.anfaoc.service.dao
+logging:
+  level:
+    cn.zyzpp.xxxx.mapper: debug #打印SQL日志
+
+
+
+server:
+  port: 8006
