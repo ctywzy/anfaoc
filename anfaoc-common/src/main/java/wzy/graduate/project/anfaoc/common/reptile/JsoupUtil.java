@@ -99,16 +99,20 @@ public class JsoupUtil {
      * @Description 定时任务中用来更新新闻库的方法
      * @Date  2020/1/20
      **/
-    public static List<String> updateNewsLibrary() {
+    public static List<NewsDetail> updateNewsLibrary() {
         Connection conn = Jsoup.connect(homePageUrl);
-        List<String> urlList = new ArrayList<>();
+        List<NewsDetail> newsList = new ArrayList<>();
+        List<String> urlList;
         try{
             Document doc = conn.get();
             urlList = getHomePageNewsUrl(doc);
+            for(String url : urlList){
+                newsList.add(getNewsDetailEntity(url));
+            }
         } catch (IOException e){
             e.printStackTrace();
         }
-        return urlList;
+        return newsList;
     }
 
     /**
