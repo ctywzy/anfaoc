@@ -62,6 +62,6 @@ public class JsoupStringUtil {
                 break;
             }
         }
-        return originUrl.substring(index+6,finalindex);
+        return originUrl.substring(index+6,finalindex).trim();
     }
 }

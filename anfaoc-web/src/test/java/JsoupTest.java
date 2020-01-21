@@ -15,14 +15,14 @@ public class JsoupTest {
 
     @Test
     public void getNews() {
-        String url = "https://news.ifeng.com/c/7tKqDXucgf2";
+        String url = "https://fashion.ifeng.com/c/7tNrrTviv7Q";
         try{
             NewsDetail newsDetail = JsoupUtil.getNewsDetailEntity(url);
             System.out.println(newsDetail.getLabels());
             System.out.println(newsDetail.getParas());
             System.out.println(newsDetail.getTitle());
-        }catch (Exception ex){
-            ex.printStackTrace();
+        }catch (Exception e){
+            e.printStackTrace();
         }
 
     }

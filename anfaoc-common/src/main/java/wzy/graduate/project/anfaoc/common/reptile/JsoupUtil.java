@@ -1,11 +1,13 @@
 package wzy.graduate.project.anfaoc.common.reptile;
 
+import lombok.extern.slf4j.Slf4j;
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import wzy.graduate.project.anfaoc.common.enums.ParaType;
+import wzy.graduate.project.anfaoc.common.exception.ServiceException;
 import wzy.graduate.project.anfaoc.common.model.entity.NewsDetail;
 import wzy.graduate.project.anfaoc.common.model.entity.ParaEntity;
 
@@ -19,6 +21,7 @@ import java.util.Optional;
  * @author wangzy
  */
 
+@Slf4j
 public class JsoupUtil {
 
     private static final String homePageUrl = "http://www.ifeng.com/";
@@ -29,9 +32,18 @@ public class JsoupUtil {
      * @Param
      * @return
      **/
-    public static NewsDetail getNewsDetailEntity(String url) throws IOException {
+    public static NewsDetail getNewsDetailEntity(String url) {
+        
         Connection conn = Jsoup.connect(url);
-        Document doc = conn.get();
+        Document doc = null;
+        try{
+            doc = conn.get();
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+        if(doc.title().contains("404-页面不存在")){
+            throw new ServiceException("404-页面不存在");
+        }
         NewsDetail newsDetail = NewsDetail.builder()
                 .title(getTitle(doc))
                 .labels(getLabels(doc))
@@ -79,9 +91,11 @@ public class JsoupUtil {
             Element element = originElements.get(i);
             str = element.toString().trim();
             if(str.contains("detailPic")){
-                paras.add(new ParaEntity(
-                    ParaType.PICTURE,JsoupStringUtil.getPicsLink(element.html())
-                ));
+                if(element.html().length()>12){
+                    paras.add(new ParaEntity(
+                            ParaType.PICTURE,JsoupStringUtil.getPicsLink(element.html())
+                    ));
+                }
             }else if(str.contains("picIntro")){
                 paras.add(new ParaEntity(
                     ParaType.DESCRIPTION,element.html()
@@ -102,15 +116,21 @@ public class JsoupUtil {
     public static List<NewsDetail> updateNewsLibrary() {
         Connection conn = Jsoup.connect(homePageUrl);
         List<NewsDetail> newsList = new ArrayList<>();
-        List<String> urlList;
+        List<String> urlList = null;
         try{
             Document doc = conn.get();
             urlList = getHomePageNewsUrl(doc);
-            for(String url : urlList){
-                newsList.add(getNewsDetailEntity(url));
-            }
-        } catch (IOException e){
+        } catch (Exception e){
             e.printStackTrace();
+        }
+        for(String url : urlList){
+            System.out.println(url);
+            try{
+                newsList.add(getNewsDetailEntity(url));
+            }catch (Exception e){
+                log.error("===>页面不存在,错误的url地址:{}",url);
+            }
+
         }
         return newsList;
     }
@@ -126,7 +146,16 @@ public class JsoupUtil {
             String str = element.toString();
             if(str.contains("/c/7")){
                 int index = str.indexOf("href");
-                urlList.add(JsoupStringUtil.getNewsUrlFromHref(index,element));
+                String url = JsoupStringUtil.getNewsUrlFromHref(index,element);
+                if(url.contains("//feng") || url.contains("v.ifeng.")
+                    || url.contains("auto.ifeng")){
+                    continue;
+                }else{
+                    if(!url.contains("https:")){
+                        url = "https:" + url;
+                    }
+                    urlList.add(url);
+                }
             }
         }
         return urlList;
