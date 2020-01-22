@@ -4,7 +4,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-import wzy.graduate.project.anfaoc.common.model.entity.NewsDetail;
+import wzy.graduate.project.anfaoc.api.domain.entity.NewsDetail;
+import wzy.graduate.project.anfaoc.common.model.dto.NewsDetailDTO;
 import wzy.graduate.project.anfaoc.common.reptile.JsoupUtil;
 
 import java.util.List;
@@ -15,7 +16,7 @@ public class NewsTest {
 
     @Test
     public void updateNewsTest(){
-        List<NewsDetail> newslist = JsoupUtil.updateNewsLibrary();
+        List<NewsDetailDTO> newslist = JsoupUtil.updateNewsLibrary();
         for(int i=1;i<=10;i++){
             System.out.println("10");
         }

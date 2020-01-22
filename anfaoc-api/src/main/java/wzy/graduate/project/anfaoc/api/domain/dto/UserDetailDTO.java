@@ -15,7 +15,9 @@ import java.io.Serializable;
 
 @Data
 @ToString
-public class UserDTO implements Serializable {
+public class UserDetailDTO implements Serializable {
+
+    private static final long serialVersionUID = 6162253613737704122L;
 
     @ApiModelProperty("主键id")
     private Long id;

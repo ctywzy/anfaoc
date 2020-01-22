@@ -2,11 +2,9 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-import wzy.graduate.project.anfaoc.common.model.entity.NewsDetail;
-import wzy.graduate.project.anfaoc.common.model.entity.ParaEntity;
+import wzy.graduate.project.anfaoc.api.domain.entity.NewsDetail;
+import wzy.graduate.project.anfaoc.common.model.dto.NewsDetailDTO;
 import wzy.graduate.project.anfaoc.common.reptile.JsoupUtil;
-
-import java.io.IOException;
 
 
 @RunWith(SpringRunner.class)
@@ -17,7 +15,7 @@ public class JsoupTest {
     public void getNews() {
         String url = "https://fashion.ifeng.com/c/7tNrrTviv7Q";
         try{
-            NewsDetail newsDetail = JsoupUtil.getNewsDetailEntity(url);
+            NewsDetailDTO newsDetail = JsoupUtil.getNewsDetailEntity(url);
             System.out.println(newsDetail.getLabels());
             System.out.println(newsDetail.getParas());
             System.out.println(newsDetail.getTitle());

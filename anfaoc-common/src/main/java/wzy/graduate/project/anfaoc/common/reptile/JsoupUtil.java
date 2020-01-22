@@ -8,10 +8,9 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import wzy.graduate.project.anfaoc.common.enums.ParaType;
 import wzy.graduate.project.anfaoc.common.exception.ServiceException;
-import wzy.graduate.project.anfaoc.common.model.entity.NewsDetail;
+import wzy.graduate.project.anfaoc.common.model.dto.NewsDetailDTO;
 import wzy.graduate.project.anfaoc.common.model.entity.ParaEntity;
 
-import javax.print.Doc;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +31,7 @@ public class JsoupUtil {
      * @Param
      * @return
      **/
-    public static NewsDetail getNewsDetailEntity(String url) {
+    public static NewsDetailDTO getNewsDetailEntity(String url) {
         
         Connection conn = Jsoup.connect(url);
         Document doc = null;
@@ -44,12 +43,12 @@ public class JsoupUtil {
         if(doc.title().contains("404-页面不存在")){
             throw new ServiceException("404-页面不存在");
         }
-        NewsDetail newsDetail = NewsDetail.builder()
+        NewsDetailDTO newsDetailDTO = NewsDetailDTO.builder()
                 .title(getTitle(doc))
                 .labels(getLabels(doc))
                 .paras(getParas(doc)).build();
 
-        return newsDetail;
+        return newsDetailDTO;
     }
 
 
@@ -110,12 +109,12 @@ public class JsoupUtil {
     }
 
     /**
-     * @Description 定时任务中用来更新新闻库的方法
+     * @Description 定时任务中用来更新新闻库的方法,这个方法用来爬取首页的所有合适的新闻
      * @Date  2020/1/20
      **/
-    public static List<NewsDetail> updateNewsLibrary() {
+    public static List<NewsDetailDTO> updateNewsLibrary() {
         Connection conn = Jsoup.connect(homePageUrl);
-        List<NewsDetail> newsList = new ArrayList<>();
+        List<NewsDetailDTO> newsList = new ArrayList<>();
         List<String> urlList = null;
         try{
             Document doc = conn.get();

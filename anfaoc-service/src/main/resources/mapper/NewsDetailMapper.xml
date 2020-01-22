@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="wzy.graduate.project.anfaoc.service.dao.NewsDetailDao">
+
+    <resultMap id="userDetailMap" type="wzy.graduate.project.anfaoc.api.domain.entity.NewsDetail">
+        <id property="id" column="id"/>
+        <result property="newTitle" column="new_title"/>
+        <result property="newLabelsId" column="new_labelsId"/>
+        <result property="newParas" column="new_paras"/>
+        <result property="createTime" column="creata_time"/>
+        <result property="commentsId" column="comments_id"/>
+        <result property="heatNumber" column="heat_number"/>
+        <result property="pageViews" column="page_views"/>
+    </resultMap>
+
+</mapper>

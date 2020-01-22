@@ -1,6 +1,7 @@
 package wzy.graduate.project.anfaoc.api.domain.entity;
 
 import lombok.Data;
+import lombok.ToString;
 import wzy.graduate.project.anfaoc.common.enums.AuthorityType;
 
 import java.io.Serializable;
@@ -12,6 +13,7 @@ import java.io.Serializable;
  **/
 
 @Data
+@ToString
 public class UserDetail implements Serializable {
 
     private static final long serialVersionUID = 2808784558558815994L;

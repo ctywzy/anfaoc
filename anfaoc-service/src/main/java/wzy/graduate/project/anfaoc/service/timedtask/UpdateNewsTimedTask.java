@@ -1,14 +1,15 @@
 package wzy.graduate.project.anfaoc.service.timedtask;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import wzy.graduate.project.anfaoc.api.facade.NewsDetailFacade;
-import wzy.graduate.project.anfaoc.common.model.entity.NewsDetail;
+import wzy.graduate.project.anfaoc.common.model.dto.NewsDetailDTO;
 import wzy.graduate.project.anfaoc.common.reptile.JsoupUtil;
 
-import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -23,10 +24,18 @@ public class UpdateNewsTimedTask {
     @Autowired
     private NewsDetailFacade newsDetailFacade;
 
-
-    @Scheduled(fixedRate = 3000)
+    /**
+     * @Description 每过8小时更新一次
+     * @Date  2020/1/21
+     **/
+    @Scheduled(fixedRate = 28800000)
     public void updateNewsTask(){
-        List<NewsDetail> urlList = JsoupUtil.updateNewsLibrary();
+        List<NewsDetailDTO> newsList = JsoupUtil.updateNewsLibrary();
+        //类型转换
+        List<NewsDetailDTO> newsDetailDTOS = new ArrayList<>();
+        BeanUtils.copyProperties(newsList,newsDetailDTOS);
+
+        newsDetailFacade.updateNews(newsDetailDTOS);
     }
 
 }
