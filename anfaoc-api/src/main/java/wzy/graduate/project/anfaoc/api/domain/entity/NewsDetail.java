@@ -25,6 +25,9 @@ public class NewsDetail implements Serializable {
     /** 文章主键自增id **/
     private Long id;
 
+    /** 文章地址 **/
+    private String newUrl;
+
     /** 文章标题 **/
     private String newTitle;
 

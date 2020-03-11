@@ -26,14 +26,17 @@ public class NewsDetailDTO implements Serializable {
     @ApiModelProperty("主键id")
     private Long id;
 
+    @ApiModelProperty("文章地址")
+    private String newUrl;
+
     @ApiModelProperty("文章标题")
-    private String title;
+    private String newTitle;
 
     @ApiModelProperty("文章内容")
-    private List<ParaEntity> paras;
+    private List<ParaEntity> newParas;
 
     @ApiModelProperty("文章标签")
-    private List<String> labels;
+    private List<String> newLabelIds;
 
     @ApiModelProperty("文章评论")
     private List<Long> commentsId;

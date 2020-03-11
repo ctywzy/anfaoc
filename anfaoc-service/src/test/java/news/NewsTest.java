@@ -14,6 +14,12 @@ import java.util.List;
 @SpringBootTest(classes = NewsTest.class)
 public class NewsTest {
 
+    /**
+     * @Description 测试从新闻主页抓取的数据
+     * @Date  2020/3/11
+     * @Param
+     * @return
+     **/
     @Test
     public void updateNewsTest(){
         List<NewsDetailDTO> newslist = JsoupUtil.updateNewsLibrary();

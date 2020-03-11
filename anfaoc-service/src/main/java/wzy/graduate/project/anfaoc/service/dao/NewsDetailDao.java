@@ -1,6 +1,7 @@
 package wzy.graduate.project.anfaoc.service.dao;
 
 import org.apache.ibatis.annotations.Mapper;
+import wzy.graduate.project.anfaoc.api.domain.entity.NewsDetail;
 
 
 /**
@@ -10,4 +11,10 @@ import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
 public interface NewsDetailDao {
+
+    /**
+     * @Description 向数据库中插入新闻
+     * @Date  2020/3/11
+     **/
+    Boolean insertNews(NewsDetail newsDetail);
 }

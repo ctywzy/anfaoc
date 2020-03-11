@@ -44,6 +44,7 @@ public class JsoupUtil {
             throw new ServiceException("404-页面不存在");
         }
         NewsDetailDTO newsDetailDTO = NewsDetailDTO.builder()
+                .url(url)
                 .title(getTitle(doc))
                 .labels(getLabels(doc))
                 .paras(getParas(doc)).build();
@@ -123,7 +124,7 @@ public class JsoupUtil {
             e.printStackTrace();
         }
         for(String url : urlList){
-            System.out.println(url);
+            //System.out.println(url);
             try{
                 newsList.add(getNewsDetailEntity(url));
             }catch (Exception e){

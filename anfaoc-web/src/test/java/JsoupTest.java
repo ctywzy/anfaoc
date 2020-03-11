@@ -13,7 +13,7 @@ public class JsoupTest {
 
     @Test
     public void getNews() {
-        String url = "https://fashion.ifeng.com/c/7tNrrTviv7Q";
+        String url = "https://ent.ifeng.com/c/7ukOTAI4x4S";
         try{
             NewsDetailDTO newsDetail = JsoupUtil.getNewsDetailEntity(url);
             System.out.println(newsDetail.getLabels());

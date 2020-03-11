@@ -23,7 +23,7 @@ public class JsoupStringUtil {
                 break;
             }
         }
-        return originStr.substring(index,length-3);
+        return originStr.substring(index+1,length-2);
     }
 
     /**
