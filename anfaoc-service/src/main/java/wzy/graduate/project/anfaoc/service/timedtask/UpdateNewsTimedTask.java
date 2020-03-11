@@ -35,6 +35,7 @@ public class UpdateNewsTimedTask {
         List<NewsDetailDTO> newsDetailDTOS = new ArrayList<>();
         BeanUtils.copyProperties(newsList,newsDetailDTOS);
 
+        // 这个作用是啥
         newsDetailFacade.updateNews(newsDetailDTOS);
     }
 

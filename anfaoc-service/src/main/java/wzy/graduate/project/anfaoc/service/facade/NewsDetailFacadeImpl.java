@@ -41,8 +41,9 @@ public class NewsDetailFacadeImpl implements NewsDetailFacade {
 
         try{
             //把标签名改为标签id
-            newsDetailService.replaceTagNameWithId(newsDetailDTOS);
+
             for (NewsDetailDTO newsDetailDTO : newsDetailDTOS){
+                List<Long> labelTOid = lableDetailService.exchageNameToId(newsDetailDTO);
                 NewsDetail newsDetail = NewsDetail.builder()
                         .createTime(new Date())
                         .newTitle(newsDetailDTO.getTitle())

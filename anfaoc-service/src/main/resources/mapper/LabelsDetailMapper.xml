@@ -9,4 +9,28 @@
         <result property="createTime" column="create_time"/>
     </resultMap>
 
+    <sql id="criteria">
+        <where>
+            <if test = "id != null"> AND `id` = #{id}</if>
+            <if test = "lableNames != null">
+                AND `label_name` in
+                <foreach item="labelName" collection="labelNames" open="(" separator="," close=")">
+                    #{labelName}
+                </foreach>
+            </if>
+            <if test = "createTime != null"> AND `create_time` = #{createTime}</if>
+            <if test = "labelNum != null"> AND `label_num` = #{label_num}</if>
+        </where>
+    </sql>
+
+    <sql id="tabel_name">
+        label_detail
+    </sql>
+
+    <select id="getIdFromName" parameterType="string" resultType="java.lang.Long">
+        select `id` from
+        <include refid="tabel_name"/>
+        <include refid="criteria"/>
+    </select>
+
 </mapper>

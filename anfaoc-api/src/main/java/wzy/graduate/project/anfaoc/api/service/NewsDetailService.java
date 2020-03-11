@@ -15,11 +15,4 @@ public interface NewsDetailService {
      * @param newsList
      * */
     void updateNews(List<NewsDetail> newsList);
-
-    /**
-     * @Description 修改标签名为标签id
-     * @Date  2020/1/22
-     * @Param
-     **/
-    void replaceTagNameWithId(List<NewsDetailDTO> newsDetailDTOS);
 }
