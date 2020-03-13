@@ -44,10 +44,10 @@ public class JsoupUtil {
             throw new ServiceException("404-页面不存在");
         }
         NewsDetailDTO newsDetailDTO = NewsDetailDTO.builder()
-                .url(url)
-                .title(getTitle(doc))
-                .labels(getLabels(doc))
-                .paras(getParas(doc)).build();
+                .newUrl(url)
+                .newTitle(getTitle(doc))
+                .newLabels(getLabels(doc))
+                .newParas(getParas(doc)).build();
 
         return newsDetailDTO;
     }

@@ -6,7 +6,7 @@
         <id property="id" column="id"/>
         <result property="newUrl" column="new_url"/>
         <result property="newTitle" column="new_title"/>
-        <result property="newLabelsId" column="new_labelsId"/>
+        <result property="newLabels" column="new_labels"/>
         <result property="newParas" column="new_paras"/>
         <result property="createTime" column="creata_time"/>
         <result property="commentsId" column="comments_id"/>
@@ -24,12 +24,12 @@
     </sql>
 
     <sql id = "columns_exclude_id">
-        `new_url`, `new_title`, `new_labelsId`, `new_paras`, `creata_time`, `comments_id`,
+        `new_url`, `new_title`, `new_labels`, `new_paras`, `creata_time`, `comments_id`,
         `heat_number`, `page_views`
     </sql>
 
     <sql id = "values_exclude_id">
-        #{newUrl}, #{newTitle}, #{newLabelsId}, #{newParas}, #{createTime}, #{comments_id},
+        #{newUrl}, #{newTitle}, #{newLabels}, #{newParas}, #{createTime}, #{comments_id},
         #{heat_number}, #{page_views}
     </sql>
 

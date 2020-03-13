@@ -16,9 +16,9 @@ public class JsoupTest {
         String url = "https://ent.ifeng.com/c/7ukOTAI4x4S";
         try{
             NewsDetailDTO newsDetail = JsoupUtil.getNewsDetailEntity(url);
-            System.out.println(newsDetail.getLabels());
-            System.out.println(newsDetail.getParas());
-            System.out.println(newsDetail.getTitle());
+            System.out.println(newsDetail.getNewLabels());
+            System.out.println(newsDetail.getNewParas());
+            System.out.println(newsDetail.getNewTitle());
         }catch (Exception e){
             e.printStackTrace();
         }

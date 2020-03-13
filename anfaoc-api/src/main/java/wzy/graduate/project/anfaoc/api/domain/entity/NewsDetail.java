@@ -32,7 +32,7 @@ public class NewsDetail implements Serializable {
     private String newTitle;
 
     /** 文章标签id **/
-    private String newLabelsId;
+    private String newLabels;
 
     /** 文章段落内容 **/
     private String newParas;

@@ -27,7 +27,7 @@ public class UserDetailFacadeImpl implements UserDetailFacade {
     @Override
     public Response<List<UserDetail>> getAllUserDetail() {
         log.info("facade：显示");
-        List<UserDetail> userDetailList = new ArrayList<>();
+        List<UserDetail> userDetailList = null;
         try{
             userDetailList = userDetailService.getAllUserDetail();
         }catch (ServiceException e){

@@ -1,6 +1,7 @@
 package wzy.graduate.project.anfaoc.service.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import wzy.graduate.project.anfaoc.api.domain.entity.LabelDetail;
 import wzy.graduate.project.anfaoc.api.service.LableDetailService;
 import wzy.graduate.project.anfaoc.common.model.dto.NewsDetailDTO;
 import wzy.graduate.project.anfaoc.service.dao.LabelDetailDao;
@@ -17,8 +18,8 @@ public class LabelDetailServiceImpl implements LableDetailService{
     private LabelDetailDao labelDetailDao;
 
     @Override
-    public List<Long> exchageNameToId(NewsDetailDTO newsDetailDTOS) {
+    public List<LabelDetail> exchageNameToId(NewsDetailDTO newsDetailDTOS) {
 
-        return labelDetailDao.getIdFromName(newsDetailDTOS.getLabels());
+        return labelDetailDao.findByName(newsDetailDTOS.getNewLabels());
     }
 }

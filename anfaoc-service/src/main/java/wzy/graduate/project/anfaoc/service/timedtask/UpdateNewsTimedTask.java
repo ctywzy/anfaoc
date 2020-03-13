@@ -30,13 +30,12 @@ public class UpdateNewsTimedTask {
      **/
     @Scheduled(fixedRate = 28800000)
     public void updateNewsTask(){
-        List<NewsDetailDTO> newsList = JsoupUtil.updateNewsLibrary();
-        //类型转换
-        List<NewsDetailDTO> newsDetailDTOS = new ArrayList<>();
-        BeanUtils.copyProperties(newsList,newsDetailDTOS);
+        // 爬新闻
+        List<NewsDetailDTO> newsListDTOs = JsoupUtil.updateNewsLibrary();
 
 
-        newsDetailFacade.updateNews(newsDetailDTOS);
+
+        newsDetailFacade.updateNews(newsListDTOs);
     }
 
 }
