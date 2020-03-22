@@ -33,7 +33,7 @@
         #{heat_number}, #{page_views}
     </sql>
 
-    <insert id="insertNews">
+    <insert id="insertNews" parameterType="wzy.graduate.project.anfaoc.api.domain.entity.NewsDetail" useGeneratedKeys="true">
         INSERT INTO
         <include refid="table_name"/>
         <include refid="columns_exclude_id"/>)

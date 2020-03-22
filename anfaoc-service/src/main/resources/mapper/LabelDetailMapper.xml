@@ -40,7 +40,7 @@
         #{lableName}, #{labelNum}, #{createTime}
     </sql>
 
-    <select id="findByName" parameterType="string" resultType="labelDetailMap">
+    <select id="findByName" parameterType="string" resultMap="labelDetailMap">
         SELECT
         <include refid="columns_all"/>
         FROM
@@ -48,7 +48,7 @@
         <include refid="criteria"/>
     </select>
 
-    <update id="updateLableNumber">
+    <update id="updateLableNumber" parameterType="wzy.graduate.project.anfaoc.api.domain.entity.LabelDetail">
         UPDATE
         <include refid="tabel_name"/>
         SET `label_num` = `label_num` + 1

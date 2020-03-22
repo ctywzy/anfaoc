@@ -1,6 +1,7 @@
 package wzy.graduate.project.anfaoc.service.facade;
 
 import com.alibaba.dubbo.config.annotation.Service;
+import convert.NewsDetailConvert;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import wzy.graduate.project.anfaoc.api.domain.entity.LabelDetail;
@@ -43,17 +44,9 @@ public class NewsDetailFacadeImpl implements NewsDetailFacade {
 
                 List<LabelDetail> labelDetails = lableDetailService.exchageNameToId(newsDetailDTO);
 
+                NewsDetail newsDetail = NewsDetailConvert.convertToNewsDetail(newsDetailDTO);
 
-                NewsDetail newsDetail = NewsDetail.builder()
-                        .createTime(new Date())
-                        .newUrl(newsDetailDTO.getNewUrl())
-                        .newTitle(newsDetailDTO.getNewTitle())
-                        .newLabels(newsUtil.getLablesIdString(newsDetailDTO.getNewLabels()))
-                        .newParas(newsUtil.getParasString(newsDetailDTO.getNewParas()))
-                        //这个热度的计算公式该怎么设计
-                        .heatNumber(1000L)
-                        .pageViews(0L)
-                        .build();
+                NewsDetailConvert.addLabelDetails(newsDetail,labelDetails);
                 newsList.add(newsDetail);
             }
             newsDetailService.updateNews(newsList);
