@@ -6,7 +6,7 @@ import wzy.graduate.project.anfaoc.api.domain.entity.UserDetail;
 import java.util.List;
 
 /**
- * @Description //TODO
+ * @Description 管理用户信息的dao
  * @author wangzy
  * @Date  2019/12/10
  **/

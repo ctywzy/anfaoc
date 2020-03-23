@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="wzy.graduate.project.anfaoc.service.dao.NewsDetailDao">
+
+    <resultMap id="userDetailMap" type="wzy.graduate.project.anfaoc.api.domain.entity.NewsDetail">
+        <id property="id" column="id"/>
+        <result property="newUrl" column="new_url"/>
+        <result property="newTitle" column="new_title"/>
+        <result property="newLabels" column="new_labels"/>
+        <result property="newParas" column="new_paras"/>
+        <result property="createTime" column="creata_time"/>
+        <result property="commentsId" column="comments_id"/>
+        <result property="heatNumber" column="heat_number"/>
+        <result property="pageViews" column="page_views"/>
+    </resultMap>
+
+    <sql id ="table_name">
+        new_detail
+    </sql>
+
+    <sql id = "columns_all">
+        id,
+        <include refid="columns_exclude_id"/>
+    </sql>
+
+    <sql id = "columns_exclude_id">
+        `new_url`, `new_title`, `new_labels`, `new_paras`, `creata_time`, `comments_id`,
+        `heat_number`, `page_views`
+    </sql>
+
+    <sql id = "values_exclude_id">
+        #{newUrl}, #{newTitle}, #{newLabels}, #{newParas}, #{createTime}, #{comments_id},
+        #{heat_number}, #{page_views}
+    </sql>
+
+    <insert id="insertNews" parameterType="wzy.graduate.project.anfaoc.api.domain.entity.NewsDetail" useGeneratedKeys="true">
+        INSERT INTO
+        <include refid="table_name"/>
+        <include refid="columns_exclude_id"/>)
+        VALUES
+        (<include refid="values_exclude_id"/>)
+    </insert>
+
+</mapper>

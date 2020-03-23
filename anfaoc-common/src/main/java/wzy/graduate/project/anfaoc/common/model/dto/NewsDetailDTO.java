@@ -2,10 +2,13 @@ package wzy.graduate.project.anfaoc.common.model.dto;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.Builder;
 import lombok.Data;
 import lombok.ToString;
+import wzy.graduate.project.anfaoc.common.model.entity.ParaEntity;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -15,19 +18,35 @@ import java.util.List;
 
 @Data
 @ToString
+@Builder
 public class NewsDetailDTO implements Serializable {
 
     private static final long serialVersionUID = -5597074539622169471L;
 
-    @ApiModelProperty("作者")
-    private String author;
+    @ApiModelProperty("主键id")
+    private Long id;
+
+    @ApiModelProperty("文章地址")
+    private String newUrl;
 
     @ApiModelProperty("文章标题")
-    private String title;
+    private String newTitle;
 
     @ApiModelProperty("文章内容")
-    private String Content;
+    private List<ParaEntity> newParas;
 
     @ApiModelProperty("文章标签")
-    private List<String> labels;
+    private List<String> newLabels;
+
+    @ApiModelProperty("文章评论")
+    private List<Long> commentsId;
+
+    @ApiModelProperty("文章抓取时间")
+    private Date createTime;
+
+    @ApiModelProperty("文章浏览量")
+    private Long pageViews;
+
+    @ApiModelProperty("文章热度")
+    private Long heatNumber;
 }

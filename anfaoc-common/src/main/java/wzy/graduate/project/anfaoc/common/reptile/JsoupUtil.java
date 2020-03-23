@@ -1,15 +1,16 @@
 package wzy.graduate.project.anfaoc.common.reptile;
 
+import lombok.extern.slf4j.Slf4j;
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import wzy.graduate.project.anfaoc.common.enums.ParaType;
-import wzy.graduate.project.anfaoc.common.model.entity.NewsDetail;
+import wzy.graduate.project.anfaoc.common.exception.ServiceException;
+import wzy.graduate.project.anfaoc.common.model.dto.NewsDetailDTO;
 import wzy.graduate.project.anfaoc.common.model.entity.ParaEntity;
 
-import javax.print.Doc;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +20,7 @@ import java.util.Optional;
  * @author wangzy
  */
 
+@Slf4j
 public class JsoupUtil {
 
     private static final String homePageUrl = "http://www.ifeng.com/";
@@ -29,15 +31,25 @@ public class JsoupUtil {
      * @Param
      * @return
      **/
-    public static NewsDetail getNewsDetailEntity(String url) throws IOException {
+    public static NewsDetailDTO getNewsDetailEntity(String url) {
+        
         Connection conn = Jsoup.connect(url);
-        Document doc = conn.get();
-        NewsDetail newsDetail = NewsDetail.builder()
-                .title(getTitle(doc))
-                .labels(getLabels(doc))
-                .paras(getParas(doc)).build();
+        Document doc = null;
+        try{
+            doc = conn.get();
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+        if(doc.title().contains("404-页面不存在")){
+            throw new ServiceException("404-页面不存在");
+        }
+        NewsDetailDTO newsDetailDTO = NewsDetailDTO.builder()
+                .newUrl(url)
+                .newTitle(getTitle(doc))
+                .newLabels(getLabels(doc))
+                .newParas(getParas(doc)).build();
 
-        return newsDetail;
+        return newsDetailDTO;
     }
 
 
@@ -79,9 +91,11 @@ public class JsoupUtil {
             Element element = originElements.get(i);
             str = element.toString().trim();
             if(str.contains("detailPic")){
-                paras.add(new ParaEntity(
-                    ParaType.PICTURE,JsoupStringUtil.getPicsLink(element.html())
-                ));
+                if(element.html().length()>12){
+                    paras.add(new ParaEntity(
+                            ParaType.PICTURE,JsoupStringUtil.getPicsLink(element.html())
+                    ));
+                }
             }else if(str.contains("picIntro")){
                 paras.add(new ParaEntity(
                     ParaType.DESCRIPTION,element.html()
@@ -96,19 +110,29 @@ public class JsoupUtil {
     }
 
     /**
-     * @Description 定时任务中用来更新新闻库的方法
+     * @Description 定时任务中用来更新新闻库的方法,这个方法用来爬取首页的所有合适的新闻
      * @Date  2020/1/20
      **/
-    public static List<String> updateNewsLibrary() {
+    public static List<NewsDetailDTO> updateNewsLibrary() {
         Connection conn = Jsoup.connect(homePageUrl);
-        List<String> urlList = new ArrayList<>();
+        List<NewsDetailDTO> newsList = new ArrayList<>();
+        List<String> urlList = null;
         try{
             Document doc = conn.get();
             urlList = getHomePageNewsUrl(doc);
-        } catch (IOException e){
+        } catch (Exception e){
             e.printStackTrace();
         }
-        return urlList;
+        for(String url : urlList){
+            //System.out.println(url);
+            try{
+                newsList.add(getNewsDetailEntity(url));
+            }catch (Exception e){
+                log.error("===>页面不存在,错误的url地址:{}",url);
+            }
+
+        }
+        return newsList;
     }
 
     /**
@@ -122,7 +146,16 @@ public class JsoupUtil {
             String str = element.toString();
             if(str.contains("/c/7")){
                 int index = str.indexOf("href");
-                urlList.add(JsoupStringUtil.getNewsUrlFromHref(index,element));
+                String url = JsoupStringUtil.getNewsUrlFromHref(index,element);
+                if(url.contains("//feng") || url.contains("v.ifeng.")
+                    || url.contains("auto.ifeng")){
+                    continue;
+                }else{
+                    if(!url.contains("https:")){
+                        url = "https:" + url;
+                    }
+                    urlList.add(url);
+                }
             }
         }
         return urlList;
