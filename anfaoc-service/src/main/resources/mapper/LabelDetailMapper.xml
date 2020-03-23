@@ -51,7 +51,7 @@
     <update id="updateLableNumber" parameterType="wzy.graduate.project.anfaoc.api.domain.entity.LabelDetail">
         UPDATE
         <include refid="tabel_name"/>
-        SET `label_num` = `label_num` + 1
+        SET `label_num` = `label_num` + 2
     </update>
 
 </mapper>

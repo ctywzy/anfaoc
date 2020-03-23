@@ -16,4 +16,12 @@ public interface LableDetailService {
      * @Date  2020/1/22
      **/
     List<LabelDetail> exchageNameToId(NewsDetailDTO newsDetailDTOS);
+
+    /**
+     * @Description 更新标签热度
+     * @Date  2020/3/23
+     *
+     * @return*/
+    Boolean updateLableNumber(List<String> lables);
+
 }

@@ -29,7 +29,7 @@ public class LabelDetail implements Serializable {
     private String lableName;
 
     /** 标签指数 **/
-    private String labelNum;
+    private Long labelNum;
 
     /** 标签的创建时间 **/
     private Date createTime;

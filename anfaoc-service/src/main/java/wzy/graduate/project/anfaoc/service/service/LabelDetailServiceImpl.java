@@ -23,7 +23,22 @@ public class LabelDetailServiceImpl implements LableDetailService{
 
     @Override
     public List<LabelDetail> exchageNameToId(NewsDetailDTO newsDetailDTOS) {
+        List<LabelDetail> labelDetails = null;
+        try{
+            labelDetails = labelDetailDao.findByName(newsDetailDTOS.getNewLabels());
+        }catch (Exception e){
+            log.info(e.getMessage());
+        }
+        return labelDetails;
+    }
 
-        return labelDetailDao.findByName(newsDetailDTOS.getNewLabels());
+    @Override
+    public Boolean updateLableNumber(List<String> lables) {
+        try{
+            labelDetailDao.updateLableNumber(lables);
+        }catch (Exception e){
+            log.info(e.getMessage());
+        }
+        return Boolean.TRUE;
     }
 }

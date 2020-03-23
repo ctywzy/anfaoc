@@ -1,11 +1,18 @@
 package convert;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.extern.slf4j.Slf4j;
+import net.bytebuddy.implementation.bytecode.Throw;
 import wzy.graduate.project.anfaoc.api.domain.entity.LabelDetail;
 import wzy.graduate.project.anfaoc.api.domain.entity.NewsDetail;
+import wzy.graduate.project.anfaoc.common.exception.ServiceException;
 import wzy.graduate.project.anfaoc.common.model.dto.NewsDetailDTO;
 
+import java.io.IOException;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @Description 新闻参数转化类
@@ -13,21 +20,31 @@ import java.util.List;
  * @Author wangzy
  **/
 
+@Slf4j
 public class NewsDetailConvert {
 
+    private static ObjectMapper mapper = new ObjectMapper();
     /**
      * @Description 视图层对象转换为业务层
      * @Date  2020/3/13
      **/
     public static NewsDetail convertToNewsDetail(NewsDetailDTO newsDetailDTO){
-        NewsDetail newsDetail = NewsDetail.builder()
-                                          .createTime(new Date())
-                                          .newUrl(newsDetailDTO.getNewUrl())
-                                          .newTitle(newsDetailDTO.getNewTitle())
-                                        //这个热度的计算公式该怎么设计
-                                          .heatNumber(1000L)
-                                          .pageViews(0L)
-                                          .build();
+
+        NewsDetail newsDetail = null;
+        try{
+            newsDetail = NewsDetail.builder()
+                    .createTime(new Date())
+                    .newUrl(newsDetailDTO.getNewUrl())
+                    .newTitle(newsDetailDTO.getNewTitle())
+                    .newParas(mapper.writeValueAsString(newsDetailDTO.getNewParas()))
+                    .commentsId(mapper.writeValueAsString(newsDetailDTO.getCommentsId()))
+                    .pageViews(0L)
+                    .build();
+        }catch (IOException e){
+            log.info("json转换错误");
+            throw new ServiceException("json转换错误");
+        }
+
         return newsDetail;
     }
 
@@ -35,7 +52,15 @@ public class NewsDetailConvert {
      * @Description 加入标签信息
      * @Date  2020/3/13
      **/
-    public static void addLabelDetails(NewsDetail newsDetail, List<LabelDetail> labelDetails) {
+    public static void addLabelDetails(NewsDetail newsDetail, List<LabelDetail> labelDetails) throws JsonProcessingException {
+        List<Long> labelIds = labelDetails.stream().map(LabelDetail::getId).collect(Collectors.toList());
+        newsDetail.setNewLabels(mapper.writeValueAsString(labelIds));
 
+        //通过标签指数，计算文章热度指数
+        Long heatNumber = null;
+        for(LabelDetail labelDetail : labelDetails){
+            heatNumber += labelDetail.getLabelNum();
+        }
+        newsDetail.setHeatNumber(heatNumber);
     }
 }
