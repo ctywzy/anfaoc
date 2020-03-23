@@ -56,7 +56,7 @@ public class NewsDetailConvert {
         newsDetail.setNewLabels(mapper.writeValueAsString(labelIds));
 
         //通过标签指数，计算文章热度指数
-        Long heatNumber = null;
+        Long heatNumber = new Long("0");
         for(LabelDetail labelDetail : labelDetails){
             heatNumber += labelDetail.getLabelNum();
         }

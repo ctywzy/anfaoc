@@ -34,6 +34,7 @@ public class LabelDetailServiceImpl implements LabelDetailService{
         List<LabelDetail> labelDetails = null;
         Map<String,Object> map = Maps.newHashMap();
         map.put("labelNames",newsDetailDTOS.getNewLabels());
+        //TODO bug修复
         try{
             labelDetails = labelDetailDao.findByNames(map);
         }catch (Exception e){
