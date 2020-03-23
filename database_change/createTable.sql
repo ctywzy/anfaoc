@@ -26,10 +26,10 @@ CREATE TABLE `new_detail` (
 -- 创建标签表 -标签名也作为主键
 CREATE TABLE `label_detail` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '自增id',
-  `label_name` varchar(20) DEFAULT NULL COMMENT '标签名称',
+  `label_name` varchar(20) NOT NULL COMMENT '标签名称',
   `label_num` varchar(100) NOT NULL COMMENT '标签热度',
-  `create_time` varchar(1000) NOT NULL COMMENT '标签创建事件',
-  PRIMARY KEY (`label_name`) USING BTREE
+  `create_time` varchar(1000) NOT NULL COMMENT '标签创建时间',
+  PRIMARY KEY (`id`,`label_name`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
 -- 创建评论表

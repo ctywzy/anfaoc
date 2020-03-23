@@ -22,7 +22,7 @@ mybatis:
   typeAliasesPackage: wzy.graduate.project.anfaoc.service.dao
 logging:
   level:
-    cn.zyzpp.xxxx.mapper: debug #打印SQL日志
+    wzy.graduate.project.anfaoc.service.dao: debug
 
 
 

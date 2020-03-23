@@ -37,7 +37,6 @@ public class NewsDetailConvert {
                     .newUrl(newsDetailDTO.getNewUrl())
                     .newTitle(newsDetailDTO.getNewTitle())
                     .newParas(mapper.writeValueAsString(newsDetailDTO.getNewParas()))
-                    .commentsId(mapper.writeValueAsString(newsDetailDTO.getCommentsId()))
                     .pageViews(0L)
                     .build();
         }catch (IOException e){
