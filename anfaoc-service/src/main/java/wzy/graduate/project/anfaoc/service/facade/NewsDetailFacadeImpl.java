@@ -6,7 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import wzy.graduate.project.anfaoc.api.domain.entity.LabelDetail;
 import wzy.graduate.project.anfaoc.api.facade.NewsDetailFacade;
-import wzy.graduate.project.anfaoc.api.service.LableDetailService;
+import wzy.graduate.project.anfaoc.api.service.LabelDetailService;
 import wzy.graduate.project.anfaoc.api.service.NewsDetailService;
 import wzy.graduate.project.anfaoc.common.model.dto.NewsDetailDTO;
 import wzy.graduate.project.anfaoc.api.domain.entity.NewsDetail;
@@ -29,7 +29,7 @@ public class NewsDetailFacadeImpl implements NewsDetailFacade {
     private NewsDetailService newsDetailService;
 
     @Autowired
-    private LableDetailService lableDetailService;
+    private LabelDetailService labelDetailService;
 
     @Override
     public void updateNews(List<NewsDetailDTO> newsDetailDTOS) {
@@ -42,7 +42,7 @@ public class NewsDetailFacadeImpl implements NewsDetailFacade {
 
             for (NewsDetailDTO newsDetailDTO : newsDetailDTOS){
 
-                List<LabelDetail> labelDetails = lableDetailService.exchageNameToId(newsDetailDTO);
+                List<LabelDetail> labelDetails = labelDetailService.exchageNameToId(newsDetailDTO);
 
                 NewsDetail newsDetail = NewsDetailConvert.convertToNewsDetail(newsDetailDTO);
 

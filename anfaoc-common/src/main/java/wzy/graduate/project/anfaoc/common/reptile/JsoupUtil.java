@@ -71,10 +71,10 @@ public class JsoupUtil {
      **/
     private static List<String> getLabels(Document doc){
         Elements element1 = doc.getElementsByTag("meta");
-        Element lables = Optional.ofNullable(element1.select("meta[name~=keywords]"))
+        Element labelsElement = Optional.ofNullable(element1.select("meta[name~=keywords]"))
                 .orElseGet(Elements::new).stream().findAny().orElse(null);
-        String originLabel = JsoupStringUtil.getContentFromContent(lables.toString());
-        List<String> labels = JsoupStringUtil.getLablesFromStr(originLabel);
+        String originLabel = JsoupStringUtil.getContentFromContent(labelsElement.toString());
+        List<String> labels = JsoupStringUtil.getLabelsFromStr(originLabel);
         return labels;
     }
 

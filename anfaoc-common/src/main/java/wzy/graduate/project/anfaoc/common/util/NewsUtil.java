@@ -13,26 +13,23 @@ import java.util.List;
 /**
  * @author wangzy
  * @desc 用来操作新闻，数据库存储对象和文章展示对象相互转换
+ *
  */
 
 @Slf4j
 public class NewsUtil {
 
-    private ObjectMapper objectMapper;
+    private static ObjectMapper objectMapper = new ObjectMapper();
 
-    private SimpleDateFormat simpleDateFormat;
-    {
-        objectMapper = new ObjectMapper();
+    private static SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
-        simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-    }
     /**
      * @Description 按照YYYY-mm-DD格式，设置章抓取的时间
      * @Date  2020/1/22
      **/
-    public Date getNowTime() throws ParseException {
+    public static Date getNowTime() throws ParseException {
         Date  needFormatDate = new Date();
-        Date nowTime = simpleDateFormat.parse(String.valueOf(needFormatDate));
+        Date nowTime = simpleDateFormat.parse(simpleDateFormat.format(needFormatDate));
         return nowTime;
     }
 
@@ -40,7 +37,7 @@ public class NewsUtil {
      * @Description 将id列表转换成字符串
      * @Date  2020/1/22
      **/
-    public String getLablesIdString(List<String> labelIds){
+    public String getLabelsIdString(List<String> labelIds){
         String labelIdStr = null;
         try{
             labelIdStr =  objectMapper.writeValueAsString(labelIds);

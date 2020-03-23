@@ -9,7 +9,7 @@ import java.util.List;
  * @author wangzy
  */
 
-public interface LableDetailService {
+public interface LabelDetailService {
 
     /**
      * @Description 将标签的名字改为id
@@ -20,8 +20,8 @@ public interface LableDetailService {
     /**
      * @Description 更新标签热度
      * @Date  2020/3/23
-     *
-     * @return*/
-    Boolean updateLableNumber(List<String> lables);
+     * @return
+     **/
+    Boolean updateLabelNumber(List<String> labels);
 
 }

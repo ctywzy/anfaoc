@@ -26,7 +26,7 @@ public class LabelDetailDTO implements Serializable {
     private Long id;
 
     @ApiModelProperty("标签的名称")
-    private String lableName;
+    private String labelName;
 
     @ApiModelProperty("标签指数")
     private String labelNum;

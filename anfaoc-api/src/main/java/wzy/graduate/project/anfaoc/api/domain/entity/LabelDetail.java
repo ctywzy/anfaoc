@@ -1,10 +1,7 @@
 package wzy.graduate.project.anfaoc.api.domain.entity;
 
 import io.swagger.annotations.ApiModelProperty;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -18,6 +15,7 @@ import java.util.Date;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class LabelDetail implements Serializable {
 
     private static final long serialVersionUID = 7622301422947718173L;
@@ -26,7 +24,7 @@ public class LabelDetail implements Serializable {
     private Long id;
 
     /** 标签的名称 **/
-    private String lableName;
+    private String labelName;
 
     /** 标签指数 **/
     private Long labelNum;
