@@ -33,7 +33,6 @@ public class LabelDetailFacadeImpl implements LabelDetailFacade {
             );
         }catch (Exception e){
             log.error("数据库插入异常:{}",e.getMessage());
-            throw new ServiceException("");
         }
     }
 }

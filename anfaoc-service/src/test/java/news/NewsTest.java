@@ -44,12 +44,12 @@ public class NewsTest {
 
     @Test
     public void insertLabel(){
-        String url = "https://ent.ifeng.com/c/7v6N8M9GxPs#p=1";
+        String url = "https://fo.ifeng.com/c/7uxYlNvcACG";
         try{
             NewsDetailDTO newsDetail = JsoupUtil.getNewsDetailEntity(url);
             List<NewsDetailDTO> list = Lists.newArrayList();
             list.add(newsDetail);
-            labelDetailFacade.updateLabelDetail(list);
+            //labelDetailFacade.updateLabelDetail(list);
             newsDetailFacade.updateNews(list);
             System.out.println(list.size());
         }catch (Exception e){
