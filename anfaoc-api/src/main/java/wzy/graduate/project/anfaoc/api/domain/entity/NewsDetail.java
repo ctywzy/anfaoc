@@ -38,7 +38,7 @@ public class NewsDetail implements Serializable {
     private String newParas;
 
     /** 文章被爬取的时间**/
-    private Date createTime;
+    private String createTime;
 
     /** 文章的评论 **/
     private String commentsId;

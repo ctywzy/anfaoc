@@ -13,11 +13,12 @@ CREATE TABLE `user_detail` (
 -- 创建新闻表
 CREATE TABLE `new_detail` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '自增id',
-  `new_url` varchar(20) DEFAULT NULL COMMENT '新闻地址',
+  `new_url` varchar(50) DEFAULT NULL COMMENT '新闻地址',
+  `new_title` varchar(50) DEFAULT NULL COMMENT '新闻标题',
   `new_labels` varchar(200) NOT NULL COMMENT '新闻标签',
-  `new_paras` varchar(5000) NOT NULL COMMENT '新闻段落',
-  `create_time` varchar(20) DEFAULT NULL COMMENT '爬取时间',
-  `comments_id` varchar(100) DEFAULT NULL COMMENT '评论id',
+  `new_paras` varchar(20000) NOT NULL COMMENT '新闻段落',
+  `create_time` varchar(50) DEFAULT NULL COMMENT '爬取时间',
+  `comments_id` varchar(1000) DEFAULT NULL COMMENT '评论id',
   `heat_number` bigint(20) DEFAULT NULL COMMENT '文章热值',
   `page_views` bigint(20) DEFAULT NULL COMMENT '文章浏览量',
   PRIMARY KEY (`id`) USING BTREE

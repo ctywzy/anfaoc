@@ -39,7 +39,7 @@ public class NewsTest {
         List<NewsDetailDTO> newslist = JsoupUtil.updateNewsLibrary();
         newslist = newslist.subList(1,2);
         //存储或更新标签，规则是出现一次就+2，第一次出现为0
-        //labelDetailFacade.updateLabelDetail(newslist);
+        labelDetailFacade.updateLabelDetail(newslist);
 
         //存储新闻
         newsDetailFacade.updateNews(newslist);

@@ -27,10 +27,9 @@ public class NewsUtil {
      * @Description 按照YYYY-mm-DD格式，设置章抓取的时间
      * @Date  2020/1/22
      **/
-    public static Date getNowTime() throws ParseException {
+    public static String getNowTime() {
         Date  needFormatDate = new Date();
-        Date nowTime = simpleDateFormat.parse(simpleDateFormat.format(needFormatDate));
-        return nowTime;
+        return simpleDateFormat.format(needFormatDate);
     }
 
     /**

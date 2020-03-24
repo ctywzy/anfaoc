@@ -47,7 +47,7 @@ public class LabelDetailServiceImpl implements LabelDetailService{
     @Override
     public Boolean updateLabelNumber(List<String> labels) {
         try{
-            Date nowDate = NewsUtil.getNowTime();
+            String nowDate = NewsUtil.getNowTime();
             labels.stream().forEach(
                 label ->{
                     LabelDetail labelDetail = new LabelDetail();

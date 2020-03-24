@@ -42,7 +42,7 @@ public class NewsDetailDTO implements Serializable {
     private List<Long> commentsId;
 
     @ApiModelProperty("文章抓取时间")
-    private Date createTime;
+    private String createTime;
 
     @ApiModelProperty("文章浏览量")
     private Long pageViews;

@@ -8,6 +8,7 @@ import wzy.graduate.project.anfaoc.api.domain.entity.LabelDetail;
 import wzy.graduate.project.anfaoc.api.domain.entity.NewsDetail;
 import wzy.graduate.project.anfaoc.common.exception.ServiceException;
 import wzy.graduate.project.anfaoc.common.model.dto.NewsDetailDTO;
+import wzy.graduate.project.anfaoc.common.util.NewsUtil;
 
 import java.io.IOException;
 import java.util.Date;
@@ -33,7 +34,7 @@ public class NewsDetailConvert {
         NewsDetail newsDetail = null;
         try{
             newsDetail = NewsDetail.builder()
-                    .createTime(new Date())
+                    .createTime(NewsUtil.getNowTime())
                     .newUrl(newsDetailDTO.getNewUrl())
                     .newTitle(newsDetailDTO.getNewTitle())
                     .newParas(mapper.writeValueAsString(newsDetailDTO.getNewParas()))

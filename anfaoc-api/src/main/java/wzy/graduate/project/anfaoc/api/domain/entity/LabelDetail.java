@@ -30,5 +30,5 @@ public class LabelDetail implements Serializable {
     private Long labelNum;
 
     /** 标签的创建时间 **/
-    private Date createTime;
+    private String createTime;
 }
