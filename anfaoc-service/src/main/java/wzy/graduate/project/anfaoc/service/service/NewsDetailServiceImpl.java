@@ -27,16 +27,21 @@ public class NewsDetailServiceImpl implements NewsDetailService {
      **/
     @Override
     public void updateNews(List<NewsDetail> newsList) {
-        try{
-            newsList.stream().forEach(
+        log.info("新闻总数：{}",newsList.size());
+        final int[] index = {0};
+        newsList.stream().forEach(
                 newsDetail -> {
-                    newsDetailDao.insertNews(newsDetail);
+                    index[0] +=1;
+                    try{
+                        newsDetailDao.insertNews(newsDetail);
+                    }catch (Exception e){
+                        log.info("新闻插入失败:{}",e.getMessage());
+                        log.info("错误的新闻段落：{},{}",newsDetail.getNewParas(),newsDetail.getNewUrl());
+                    }
+
                 }
-            );
-        }catch (Exception e){
-            log.info("新闻插入失败:{}",e.getMessage());
-            throw new ServiceException("数据插入失败");
-        }
+        );
+        log.info("执行了多少条:{}",index[0]);
     }
 
 }
