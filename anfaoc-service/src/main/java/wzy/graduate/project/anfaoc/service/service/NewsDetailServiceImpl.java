@@ -34,6 +34,7 @@ public class NewsDetailServiceImpl implements NewsDetailService {
                 }
             );
         }catch (Exception e){
+            log.info("新闻插入失败:{}",e.getMessage());
             throw new ServiceException("数据插入失败");
         }
     }

@@ -5,6 +5,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.context.annotation.Bean;
 import org.springframework.test.context.junit4.SpringRunner;
 import wzy.graduate.project.anfaoc.api.domain.entity.LabelDetail;
 import wzy.graduate.project.anfaoc.api.domain.entity.NewsDetail;
@@ -19,10 +21,10 @@ import java.util.List;
 @SpringBootTest(classes = NewsTest.class)
 public class NewsTest {
 
-    @Reference
+    @MockBean
     private LabelDetailFacade labelDetailFacade;
 
-    @Reference
+    @MockBean
     private NewsDetailFacade newsDetailFacade;
 
     /**

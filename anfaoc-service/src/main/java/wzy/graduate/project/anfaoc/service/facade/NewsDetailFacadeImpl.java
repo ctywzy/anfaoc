@@ -35,8 +35,6 @@ public class NewsDetailFacadeImpl implements NewsDetailFacade {
     public void updateNews(List<NewsDetailDTO> newsDetailDTOS) {
         List<NewsDetail> newsList = new ArrayList<>();
 
-        NewsUtil newsUtil = new NewsUtil();
-
         try{
             //把标签名改为标签id
 
@@ -49,6 +47,7 @@ public class NewsDetailFacadeImpl implements NewsDetailFacade {
                 NewsDetailConvert.addLabelDetails(newsDetail,labelDetails);
                 newsList.add(newsDetail);
             }
+            //TODO 新闻插入bug
             newsDetailService.updateNews(newsList);
         }catch (Exception e){
             log.error("数据库插入异常:{}",e.getMessage());
