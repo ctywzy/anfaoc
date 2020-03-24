@@ -50,7 +50,7 @@ public class NewsDetailFacadeImpl implements NewsDetailFacade {
             //TODO 新闻插入bug
             newsDetailService.updateNews(newsList);
         }catch (Exception e){
-            log.error("数据库插入异常:{}",e.getMessage());
+            log.error("updateNews fail:{}",e.getMessage());
 
         }
 

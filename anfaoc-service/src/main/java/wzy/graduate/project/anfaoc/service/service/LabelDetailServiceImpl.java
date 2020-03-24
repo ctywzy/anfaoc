@@ -38,7 +38,8 @@ public class LabelDetailServiceImpl implements LabelDetailService{
         try{
             labelDetails = labelDetailDao.findByNames(map);
         }catch (Exception e){
-            log.info(e.getMessage());
+            log.info("exchageNameToId fail:{}",e.getMessage());
+            throw new ServiceException(e.getMessage());
         }
         return labelDetails;
     }
@@ -62,7 +63,7 @@ public class LabelDetailServiceImpl implements LabelDetailService{
                 }
             );
         }catch (Exception e){
-            log.info(e.getMessage());
+            log.info("updateLabelNumber fail :{}",e.getMessage());
             throw new ServiceException(e.getMessage());
         }
         return Boolean.TRUE;
