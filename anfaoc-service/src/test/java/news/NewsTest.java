@@ -14,17 +14,18 @@ import wzy.graduate.project.anfaoc.api.facade.LabelDetailFacade;
 import wzy.graduate.project.anfaoc.api.facade.NewsDetailFacade;
 import wzy.graduate.project.anfaoc.common.model.dto.NewsDetailDTO;
 import wzy.graduate.project.anfaoc.common.reptile.JsoupUtil;
+import wzy.graduate.project.anfaoc.service.AnfaocServiceStarterApp;
 
 import java.util.List;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = NewsTest.class)
+@SpringBootTest(classes = AnfaocServiceStarterApp.class)
 public class NewsTest {
 
-    @MockBean
+    @Autowired
     private LabelDetailFacade labelDetailFacade;
 
-    @MockBean
+    @Autowired
     private NewsDetailFacade newsDetailFacade;
 
     /**
@@ -38,7 +39,7 @@ public class NewsTest {
         List<NewsDetailDTO> newslist = JsoupUtil.updateNewsLibrary();
         newslist = newslist.subList(1,2);
         //存储或更新标签，规则是出现一次就+2，第一次出现为0
-        labelDetailFacade.updateLabelDetail(newslist);
+        //labelDetailFacade.updateLabelDetail(newslist);
 
         //存储新闻
         newsDetailFacade.updateNews(newslist);
