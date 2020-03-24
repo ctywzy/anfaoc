@@ -1,6 +1,7 @@
 package wzy.graduate.project.anfaoc.service.service;
 
 import com.google.common.collect.Maps;
+import convert.LabelDetailConvert;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -52,7 +53,7 @@ public class LabelDetailServiceImpl implements LabelDetailService{
                 label ->{
                     LabelDetail labelDetail = new LabelDetail();
                     labelDetail.setLabelName(label);
-                    LabelDetail judge = labelDetailDao.findByName(labelDetail);
+                    LabelDetail judge = labelDetailDao.findByName(LabelDetailConvert.labelDetailToMap(labelDetail));
                     if(Objects.isNull(judge)){
                         labelDetail.setLabelNum(0L);
                         labelDetail.setCreateTime(nowDate);

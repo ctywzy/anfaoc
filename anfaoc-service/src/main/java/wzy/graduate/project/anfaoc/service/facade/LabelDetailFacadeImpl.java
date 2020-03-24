@@ -3,6 +3,7 @@ package wzy.graduate.project.anfaoc.service.facade;
 import com.alibaba.dubbo.config.annotation.Service;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import wzy.graduate.project.anfaoc.api.facade.LabelDetailFacade;
 import wzy.graduate.project.anfaoc.api.service.LabelDetailService;
 import wzy.graduate.project.anfaoc.common.exception.ServiceException;

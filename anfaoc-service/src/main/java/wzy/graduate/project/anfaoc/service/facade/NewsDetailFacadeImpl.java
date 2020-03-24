@@ -10,12 +10,9 @@ import wzy.graduate.project.anfaoc.api.service.LabelDetailService;
 import wzy.graduate.project.anfaoc.api.service.NewsDetailService;
 import wzy.graduate.project.anfaoc.common.model.dto.NewsDetailDTO;
 import wzy.graduate.project.anfaoc.api.domain.entity.NewsDetail;
-import wzy.graduate.project.anfaoc.common.util.NewsUtil;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
  * @author wangzy

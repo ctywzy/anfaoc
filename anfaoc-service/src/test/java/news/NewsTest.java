@@ -1,15 +1,11 @@
 package news;
 
-import com.alibaba.dubbo.config.annotation.Reference;
+import org.assertj.core.util.Lists;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.context.annotation.Bean;
 import org.springframework.test.context.junit4.SpringRunner;
-import wzy.graduate.project.anfaoc.api.domain.entity.LabelDetail;
-import wzy.graduate.project.anfaoc.api.domain.entity.NewsDetail;
 import wzy.graduate.project.anfaoc.api.facade.LabelDetailFacade;
 import wzy.graduate.project.anfaoc.api.facade.NewsDetailFacade;
 import wzy.graduate.project.anfaoc.common.model.dto.NewsDetailDTO;
@@ -44,5 +40,20 @@ public class NewsTest {
         //存储新闻
         newsDetailFacade.updateNews(newslist);
         System.out.println(newslist.size());
+    }
+
+    @Test
+    public void insertLabel(){
+        String url = "https://ent.ifeng.com/c/7v6N8M9GxPs#p=1";
+        try{
+            NewsDetailDTO newsDetail = JsoupUtil.getNewsDetailEntity(url);
+            List<NewsDetailDTO> list = Lists.newArrayList();
+            list.add(newsDetail);
+            labelDetailFacade.updateLabelDetail(list);
+            newsDetailFacade.updateNews(list);
+            System.out.println(list.size());
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 }

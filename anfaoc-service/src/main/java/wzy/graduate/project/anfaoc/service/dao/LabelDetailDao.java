@@ -32,7 +32,7 @@ public interface LabelDetailDao {
      * @Description 根据name查询标签
      * @Date  2020/3/23
      **/
-    LabelDetail findByName(LabelDetail labelDetail);
+    LabelDetail findByName(Map<String,Object> criteria);
 
     /**
      * @Description 更新所有标签的热度指数

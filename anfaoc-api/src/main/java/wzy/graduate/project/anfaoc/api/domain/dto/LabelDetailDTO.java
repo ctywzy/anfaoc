@@ -32,6 +32,6 @@ public class LabelDetailDTO implements Serializable {
     private String labelNum;
 
     @ApiModelProperty("标签的创建时间")
-    private Sting createTime;
+    private String createTime;
 
 }

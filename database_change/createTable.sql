@@ -16,7 +16,7 @@ CREATE TABLE `new_detail` (
   `new_url` varchar(50) DEFAULT NULL COMMENT '新闻地址',
   `new_title` varchar(50) DEFAULT NULL COMMENT '新闻标题',
   `new_labels` varchar(200) NOT NULL COMMENT '新闻标签',
-  `new_paras` varchar(20000) NOT NULL COMMENT '新闻段落',
+  `new_paras` mediumtext(100000) NOT NULL COMMENT '新闻段落',
   `create_time` varchar(50) DEFAULT NULL COMMENT '爬取时间',
   `comments_id` varchar(1000) DEFAULT NULL COMMENT '评论id',
   `heat_number` bigint(20) DEFAULT NULL COMMENT '文章热值',
