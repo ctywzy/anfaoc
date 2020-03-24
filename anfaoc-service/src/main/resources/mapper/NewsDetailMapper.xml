@@ -29,8 +29,8 @@
     </sql>
 
     <sql id = "values_exclude_id">
-        #{newUrl}, #{newTitle}, #{newLabels}, #{newParas}, #{createTime}, #{comments_id},
-        #{heat_number}, #{page_views}
+        #{newUrl}, #{newTitle}, #{newLabels}, #{newParas}, #{createTime}, #{commentsId},
+        #{heatNumber}, #{pageViews}
     </sql>
 
     <insert id="insertNews" parameterType="wzy.graduate.project.anfaoc.api.domain.entity.NewsDetail" useGeneratedKeys="true">
