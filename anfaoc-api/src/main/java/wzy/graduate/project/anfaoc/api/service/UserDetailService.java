@@ -29,7 +29,7 @@ public interface UserDetailService {
      * @Param
      * @return
      **/
-    boolean register(HashMap<String, Object> criteria);
+    boolean register(UserDetail userDetail);
 
     /**
      * @Description 根据电话号码查询用户

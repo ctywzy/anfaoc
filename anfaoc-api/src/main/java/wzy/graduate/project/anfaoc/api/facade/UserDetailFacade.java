@@ -1,5 +1,6 @@
 package wzy.graduate.project.anfaoc.api.facade;
 
+import wzy.graduate.project.anfaoc.api.domain.dto.UserDetailDTO;
 import wzy.graduate.project.anfaoc.api.domain.entity.UserDetail;
 import wzy.graduate.project.anfaoc.common.model.Response;
 
@@ -27,7 +28,7 @@ public interface UserDetailFacade {
      * @Param
      * @return
      **/
-    Response<Boolean> register(UserDetail userDetail);
+    Response<Boolean> register(UserDetailDTO userDetailDTO);
 
     /**
      * @Description 根据电话号码查询用户是否存在

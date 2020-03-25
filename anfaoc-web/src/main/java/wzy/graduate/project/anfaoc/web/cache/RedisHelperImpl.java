@@ -1,4 +1,4 @@
-package wzy.graduate.project.anfaoc.service.redis;
+package wzy.graduate.project.anfaoc.web.cache;
 
 import com.alibaba.dubbo.config.annotation.Service;
 import lombok.extern.slf4j.Slf4j;

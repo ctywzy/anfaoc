@@ -36,4 +36,8 @@ public class UserDetailDTO implements Serializable {
 
     @ApiModelProperty("手机号")
     private Long phoneNumber;
+
+    @ApiModelProperty("注册时间")
+    private String createTime;
+
 }
