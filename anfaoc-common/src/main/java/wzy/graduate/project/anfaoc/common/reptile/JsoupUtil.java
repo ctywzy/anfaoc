@@ -14,6 +14,7 @@ import wzy.graduate.project.anfaoc.common.model.entity.ParaEntity;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -71,10 +72,10 @@ public class JsoupUtil {
      **/
     private static List<String> getLabels(Document doc){
         Elements element1 = doc.getElementsByTag("meta");
-        Element lables = Optional.ofNullable(element1.select("meta[name~=keywords]"))
+        Element labelsElement = Optional.ofNullable(element1.select("meta[name~=keywords]"))
                 .orElseGet(Elements::new).stream().findAny().orElse(null);
-        String originLabel = JsoupStringUtil.getContentFromContent(lables.toString());
-        List<String> labels = JsoupStringUtil.getLablesFromStr(originLabel);
+        String originLabel = JsoupStringUtil.getContentFromContent(labelsElement.toString());
+        List<String> labels = JsoupStringUtil.getLabelsFromStr(originLabel);
         return labels;
     }
 
@@ -124,9 +125,12 @@ public class JsoupUtil {
             e.printStackTrace();
         }
         for(String url : urlList){
-            //System.out.println(url);
             try{
-                newsList.add(getNewsDetailEntity(url));
+                NewsDetailDTO newsDetailDTO = null;
+                newsDetailDTO = getNewsDetailEntity(url);
+                if(Objects.nonNull(newsDetailDTO) && newsDetailDTO.getNewParas().size() > 0){
+                    newsList.add(newsDetailDTO);
+                }
             }catch (Exception e){
                 log.error("===>页面不存在,错误的url地址:{}",url);
             }

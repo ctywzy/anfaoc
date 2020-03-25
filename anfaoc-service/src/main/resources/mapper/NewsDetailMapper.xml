@@ -8,7 +8,7 @@
         <result property="newTitle" column="new_title"/>
         <result property="newLabels" column="new_labels"/>
         <result property="newParas" column="new_paras"/>
-        <result property="createTime" column="creata_time"/>
+        <result property="createTime" column="create_time"/>
         <result property="commentsId" column="comments_id"/>
         <result property="heatNumber" column="heat_number"/>
         <result property="pageViews" column="page_views"/>
@@ -24,21 +24,51 @@
     </sql>
 
     <sql id = "columns_exclude_id">
-        `new_url`, `new_title`, `new_labels`, `new_paras`, `creata_time`, `comments_id`,
+        `new_url`, `new_title`, `new_labels`, `new_paras`, `create_time`, `comments_id`,
         `heat_number`, `page_views`
     </sql>
 
     <sql id = "values_exclude_id">
-        #{newUrl}, #{newTitle}, #{newLabels}, #{newParas}, #{createTime}, #{comments_id},
-        #{heat_number}, #{page_views}
+        #{newUrl}, #{newTitle}, #{newLabels}, #{newParas}, #{createTime}, #{commentsId},
+        #{heatNumber}, #{pageViews}
+    </sql>
+
+    <sql id = "criteria">
+        <where>
+            <if test = "id != null"> AND `id` = #{id}</if>
+            <if test = "newUrl != null"> AND `id` = #{newUrl}</if>
+            <if test = "newTitle != null"> AND `id` = #{newTitle}</if>
+            <if test = "newLabels != null"> AND `id` = #{newLabels}</if>
+            <if test = "newParas != null"> AND `id` = #{newParas}</if>
+            <if test = "createTime != null"> AND `id` = #{createTime}</if>
+            <if test = "commentsId != null"> AND `id` = #{commentsId}</if>
+            <if test = "heatNumber != null"> AND `id` = #{heatNumber}</if>
+            <if test = "pageViews != null"> AND `id` = #{pageViews}</if>
+        </where>
     </sql>
 
     <insert id="insertNews" parameterType="wzy.graduate.project.anfaoc.api.domain.entity.NewsDetail" useGeneratedKeys="true">
         INSERT INTO
         <include refid="table_name"/>
-        <include refid="columns_exclude_id"/>)
+        (<include refid="columns_exclude_id"/>)
         VALUES
         (<include refid="values_exclude_id"/>)
     </insert>
+
+    <update id="updateNewNum" parameterType="wzy.graduate.project.anfaoc.api.domain.entity.NewsDetail">
+        UPDATE
+        <include refid="table_name"/>
+        SET
+        `heat_number` = `heat_number` * 1.5
+        <include refid="criteria"/>
+    </update>
+
+    <select id="judgeNewPresence" parameterType="wzy.graduate.project.anfaoc.api.domain.entity.NewsDetail" resultMap="userDetailMap">
+        SELECT
+        <include refid="columns_all"/>
+        FROM
+        <include refid="table_name"/>
+        <include refid="criteria"/>
+    </select>
 
 </mapper>

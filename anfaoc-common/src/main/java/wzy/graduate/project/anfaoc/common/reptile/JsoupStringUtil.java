@@ -30,10 +30,10 @@ public class JsoupStringUtil {
      * @Description 从整体的字符串中拆分出新闻的标签
      * @Date  2020/1/16
      **/
-    public static List<String> getLablesFromStr(String orginStr){
-        String[] lablesStr = orginStr.split(" ");
+    public static List<String> getLabelsFromStr(String orginStr){
+        String[] labelsStr = orginStr.split(" ");
         List<String> labels = new ArrayList<>();
-        for(String str : lablesStr){
+        for(String str : labelsStr){
             labels.add(str);
         }
         return labels;

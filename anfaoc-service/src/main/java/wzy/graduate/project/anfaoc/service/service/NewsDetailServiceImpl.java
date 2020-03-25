@@ -10,6 +10,7 @@ import wzy.graduate.project.anfaoc.common.model.dto.NewsDetailDTO;
 import wzy.graduate.project.anfaoc.service.dao.NewsDetailDao;
 
 import java.util.List;
+import java.util.Objects;
 
 /**
  * @author wangzy
@@ -27,15 +28,29 @@ public class NewsDetailServiceImpl implements NewsDetailService {
      **/
     @Override
     public void updateNews(List<NewsDetail> newsList) {
-        try{
-            newsList.stream().forEach(
+        log.info("新闻总数：{}",newsList.size());
+        final int[] index = {0};
+
+        //TODO 新闻去重问题没有插入，有的话更新为1.5倍
+        newsList.stream().forEach(
                 newsDetail -> {
-                    newsDetailDao.insertNews(newsDetail);
+                    index[0] +=1;
+                    try{
+                        NewsDetail judge = newsDetailDao.judgeNewPresence(newsDetail);
+                        if(Objects.nonNull(judge)){
+                            newsDetailDao.updateNewNum(newsDetail);
+                        }else{
+                            newsDetailDao.insertNews(newsDetail);
+                        }
+
+                    }catch (Exception e){
+                        log.info("新闻插入失败:{}",e.getMessage());
+                        log.info("错误的新闻段落：{},{}",newsDetail.getNewParas(),newsDetail.getNewUrl());
+                    }
+
                 }
-            );
-        }catch (Exception e){
-            throw new ServiceException("数据插入失败");
-        }
+        );
+        log.info("执行了多少条:{}",index[0]);
     }
 
 }

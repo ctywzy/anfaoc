@@ -4,7 +4,7 @@
 
     <resultMap id="labelDetailMap" type="wzy.graduate.project.anfaoc.api.domain.entity.LabelDetail">
         <id property="id" column="id"/>
-        <result property="lableName" column="label_name"/>
+        <result property="labelName" column="label_name"/>
         <result property="labelNum" column="label_num"/>
         <result property="createTime" column="create_time"/>
     </resultMap>
@@ -12,7 +12,8 @@
     <sql id="criteria">
         <where>
             <if test = "id != null"> AND `id` = #{id}</if>
-            <if test = "lableNames != null">
+            <if test = "labelName != null"> AND `label_name` = #{labelName}</if>
+            <if test = "labelNames != null">
                 AND `label_name` in
                 <foreach item="labelName" collection="labelNames" open="(" separator="," close=")">
                     #{labelName}
@@ -37,10 +38,18 @@
     </sql>
 
     <sql id = "value_exclude_id">
-        #{lableName}, #{labelNum}, #{createTime}
+        #{labelName}, #{labelNum}, #{createTime}
     </sql>
 
-    <select id="findByName" parameterType="string" resultMap="labelDetailMap">
+    <insert id="addLabelDetail" parameterType="wzy.graduate.project.anfaoc.api.domain.entity.LabelDetail" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO
+        <include refid="tabel_name"/>
+        (<include refid="columns_exclude_id"/>)
+        VALUES
+        (<include refid="value_exclude_id"/>)
+    </insert>
+
+    <select id="findByNames" parameterType="map" resultMap="labelDetailMap">
         SELECT
         <include refid="columns_all"/>
         FROM
@@ -48,10 +57,21 @@
         <include refid="criteria"/>
     </select>
 
-    <update id="updateLableNumber" parameterType="wzy.graduate.project.anfaoc.api.domain.entity.LabelDetail">
+    <select id="findByName" parameterType="wzy.graduate.project.anfaoc.api.domain.entity.LabelDetail" resultMap="labelDetailMap">
+        SELECT
+        <include refid="columns_all"/>
+        FROM
+        <include refid="tabel_name"/>
+        <include refid="criteria"/>
+    </select>
+
+    <update id="updateLabelNumber" parameterType="wzy.graduate.project.anfaoc.api.domain.entity.LabelDetail">
         UPDATE
         <include refid="tabel_name"/>
-        SET `label_num` = `label_num` + 1
+        SET
+        `label_num` = `label_num` + 2
+        WHERE
+        `label_name` = #{labelName}
     </update>
 
 </mapper>

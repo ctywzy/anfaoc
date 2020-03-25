@@ -12,7 +12,7 @@ import wzy.graduate.project.anfaoc.common.model.Response;
 import java.util.*;
 
 /**
- * @Description //TODO
+ * @Description 用户详情facade
  * @author wangzy
  * @Date  2019/12/10
  **/
