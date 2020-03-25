@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Import;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 /**
- * @Description //TODO
+ * @Description 启动类配置文件
  * @author wangzy
  * @Date  2019/12/10
  **/

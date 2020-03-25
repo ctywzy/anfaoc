@@ -3,7 +3,7 @@ package wzy.graduate.project.anfaoc.common.enums;
 import lombok.Getter;
 
 /**
- * @Description //TODO
+ * @Description 用户身份
  * @author wangzy
  * @Date  2019/12/10
  **/

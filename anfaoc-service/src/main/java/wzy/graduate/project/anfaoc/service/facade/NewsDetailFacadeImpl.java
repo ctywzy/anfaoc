@@ -44,7 +44,6 @@ public class NewsDetailFacadeImpl implements NewsDetailFacade {
                 NewsDetailConvert.addLabelDetails(newsDetail,labelDetails);
                 newsList.add(newsDetail);
             }
-            //TODO 新闻插入bug
             newsDetailService.updateNews(newsList);
         }catch (Exception e){
             log.error("updateNews fail:{}",e.getMessage());

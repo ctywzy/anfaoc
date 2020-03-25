@@ -7,7 +7,7 @@ import wzy.graduate.project.anfaoc.common.enums.AuthorityType;
 import java.io.Serializable;
 
 /**
- * @Description //TODO
+ * @Description 用户详情
  * @author wangzy
  * @Date  2019/12/10
  **/

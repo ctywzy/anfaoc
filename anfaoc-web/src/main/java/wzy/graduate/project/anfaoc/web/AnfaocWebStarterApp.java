@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Import;
 
 /**
- * @Description //TODO
+ * @Description 启动类文件
  * @author wangzy
  * @Date  2019/12/10
  **/

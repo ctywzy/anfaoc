@@ -41,6 +41,16 @@ public class UpdateNewsTimedTask {
 
         //存储新闻
         newsDetailFacade.updateNews(newsListDTOs);
+
+        //TODO 新闻量过大的时候删除部分 考虑 2000～4000中的某个数为阀值
+
+
+        //TODO 如果用户登陆，跟新喜爱榜和推荐榜喜爱榜时自己选标签，推荐榜是我们根据用户常浏览标签推算
+
+        // TODO 这里应该存在一个标签淘汰机制今天浏览了+ 1，未浏览考虑 - 1
+
     }
+
+
 
 }
