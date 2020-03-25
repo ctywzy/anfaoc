@@ -1,7 +1,7 @@
 package wzy.graduate.project.anfaoc.service.facade;
 
 import com.alibaba.dubbo.config.annotation.Service;
-import convert.NewsDetailConvert;
+import wzy.graduate.project.anfaoc.service.convert.NewsDetailConvert;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import wzy.graduate.project.anfaoc.api.domain.entity.LabelDetail;

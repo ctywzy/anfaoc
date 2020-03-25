@@ -1,4 +1,4 @@
-package convert;
+package wzy.graduate.project.anfaoc.service.convert;
 
 import com.google.common.collect.Maps;
 import wzy.graduate.project.anfaoc.api.domain.entity.LabelDetail;
