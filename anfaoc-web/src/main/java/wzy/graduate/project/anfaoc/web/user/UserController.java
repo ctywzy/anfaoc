@@ -8,6 +8,7 @@ import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import wzy.graduate.project.anfaoc.api.domain.dto.UserDetailDTO;
 import wzy.graduate.project.anfaoc.api.domain.entity.UserDetail;
 import wzy.graduate.project.anfaoc.api.facade.UserDetailFacade;
 import wzy.graduate.project.anfaoc.api.redis.RedisHelper;
@@ -39,9 +40,9 @@ public class UserController {
 
     @ApiOperation("用户注册")
     @PostMapping("/register")
-    public Boolean register(@RequestBody UserDetail userDetail){
+    public Boolean register(@RequestBody UserDetailDTO userDetailDTO){
         //前端js校验
-        Response<Boolean> response = userDetailFacade.register(userDetail);
+        Response<Boolean> response = userDetailFacade.register(userDetailDTO);
         return response.getResult();
     }
 
@@ -83,8 +84,18 @@ public class UserController {
     @PostMapping(value = "/userLogin/password")
     public Response<Boolean> userLoginPass(@RequestParam String phoneNumber,@RequestParam String password){
 
+        String lockKey = RedisKeyConstant.getLoginErrorTimes(phoneNumber);
+        if(RedisUtil.lockedJudge(redis.getValue(lockKey))){
+            return Response.fail("账户已经锁定");
+        }
+
         Response<Boolean> response = userDetailFacade.loginByPhoneNumber(phoneNumber,password);
 
+        if(!response.isSuccess() && ("账号或密码错误").equals(response.getError())){
+            int result = RedisUtil.calErrorTimes(RedisKeyConstant.getLoginErrorTimes(phoneNumber));
+            redis.valuePut(lockKey,result);
+            return Response.fail("账号密码错误,再过"+ result +"次将被锁定");
+        }
         return response;
     }
 

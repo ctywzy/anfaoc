@@ -15,7 +15,18 @@ public class RedisKeyConstant {
 
     private static final String Lock = login + "LOCK:";
 
+    /**
+     * @Description 登陆错误次数，五次则死锁
+     * @Date  2020/3/25
+     **/
+    public static String getLoginErrorTimes(String phoneNumber){
+        return errorNum + phoneNumber;
+    }
 
+    /**
+     * @Description 登陆验证码存储
+     * @Date  2020/3/25
+     **/
     public static String getUserLoginVerityCode(String phoneNumber) {
         return verityCode + phoneNumber;
     }

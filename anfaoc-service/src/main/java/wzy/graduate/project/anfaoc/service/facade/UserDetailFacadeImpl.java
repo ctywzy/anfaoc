@@ -80,7 +80,7 @@ public class UserDetailFacadeImpl implements UserDetailFacade {
             response = Response.fail("用户不存在");
         }else{
             if(!password.equals(userDetail.getUserPassword())){
-                response = Response.fail("用户名或密码错误");
+                response = Response.fail("账号或密码错误");
             }
         }
         return response;

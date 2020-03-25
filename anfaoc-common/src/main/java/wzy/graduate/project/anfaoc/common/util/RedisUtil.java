@@ -3,12 +3,10 @@ package wzy.graduate.project.anfaoc.common.util;
 
 import com.google.common.collect.Maps;
 import com.zhenzi.sms.ZhenziSmsClient;
-import org.springframework.beans.factory.annotation.Autowired;
-import wzy.graduate.project.anfaoc.common.exception.RestException;
 import wzy.graduate.project.anfaoc.common.model.ZhenziSMS;
 
 import java.util.Map;
-import java.util.Random;
+import java.util.Objects;
 
 /**
  * @Description redis操作相关工具
@@ -33,5 +31,23 @@ public class RedisUtil {
         result = client.send(param);
 
         return result;
+    }
+
+    public static int calErrorTimes(Object getLoginErrorTimes) {
+        int times = 4;
+        if(Objects.nonNull(getLoginErrorTimes)){
+            times =( (int) getLoginErrorTimes ) - 1;
+        }
+        return times;
+    }
+
+    public static boolean lockedJudge(Object loginErrorTimes) {
+        if(Objects.nonNull(loginErrorTimes)){
+            int time = (int) loginErrorTimes;
+            if(time == 0){
+                return true;
+            }
+        }
+        return false;
     }
 }
