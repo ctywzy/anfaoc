@@ -7,7 +7,7 @@ dubbo:
     address: zookeeper://127.0.0.1:2181
   protocol:
     name: dubbo
-    port: 20880
+    port: -1
 
 redis:
   host: 127.0.0.1

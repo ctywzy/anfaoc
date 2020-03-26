@@ -55,7 +55,7 @@ public class UserController {
         try{
             Integer verityCode = new Random().nextInt(899999) + 100000;
             result = RedisUtil.getSendVerityCode(phoneNumber,verityCode);
-            redis.valuePut(RedisKeyConstant.getUserLoginVerityCode(phoneNumber),verityCode);
+            redis.valuePut(RedisKeyConstant.getUserLoginVerityCode(phoneNumber),verityCode.toString());
         }catch (Exception e){
             log.info("验证码发送出错:{}",e.getMessage());
         }
@@ -66,15 +66,15 @@ public class UserController {
     @GetMapping(value = "/userLogin/verityCode")
     public Response<Boolean> userLoginMsg(@RequestParam String phoneNumber
             ,@RequestParam String verityCode){
-        //查询该手机号用户是否存在
-        Response<Boolean> response = userDetailFacade.findUserByPhoneNumber(phoneNumber);
+            //查询该手机号用户是否存在
+            Response<Boolean> response = userDetailFacade.findUserByPhoneNumber(phoneNumber);
 
-        //根据sessionId从缓存中获取手机校验码
-        if(Objects.isNull(response.getResult())){
-            return Response.fail("用户不存在");
-        }
+            //根据sessionId从缓存中获取手机校验码
+            if(Objects.isNull(response.getResult())){
+                return Response.fail("用户不存在");
+            }
 
-        String sentVerityCode = (String) redis.getValue(RedisKeyConstant.getUserLoginVerityCode(phoneNumber));
+            String sentVerityCode = (String) redis.getValue(RedisKeyConstant.getUserLoginVerityCode(phoneNumber));
         if(verityCode.equals(sentVerityCode)){
             return Response.ok(Boolean.TRUE);
         }else{

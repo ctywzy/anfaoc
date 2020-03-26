@@ -1,9 +1,9 @@
 package wzy.graduate.project.anfaoc.web.cache;
 
-import com.alibaba.dubbo.config.annotation.Service;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.*;
+import org.springframework.stereotype.Service;
 import wzy.graduate.project.anfaoc.api.redis.RedisHelper;
 
 import java.util.List;
