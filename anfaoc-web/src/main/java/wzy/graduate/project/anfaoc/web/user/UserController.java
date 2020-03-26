@@ -7,6 +7,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.cache.CacheProperties;
 import org.springframework.web.bind.annotation.*;
 import wzy.graduate.project.anfaoc.api.domain.dto.UserDetailDTO;
 import wzy.graduate.project.anfaoc.api.domain.entity.UserDetail;
@@ -22,6 +23,7 @@ import java.io.Serializable;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author wangzy
@@ -82,20 +84,29 @@ public class UserController {
 
     @ApiOperation("用户登陆校验-密码和名称方式")
     @PostMapping(value = "/userLogin/password")
-    public Response<Boolean> userLoginPass(@RequestParam String phoneNumber,@RequestParam String password){
+    public Response<Boolean> userLoginPass(@RequestParam String phoneNumber
+            ,@RequestParam String password){
 
-        String lockKey = RedisKeyConstant.getLoginErrorTimes(phoneNumber);
-        if(RedisUtil.lockedJudge(redis.getValue(lockKey))){
-            return Response.fail("账户已经锁定");
+        String errorKey = RedisKeyConstant.getLoginErrorTimes(phoneNumber);
+
+        if(RedisUtil.lockedJudge(redis.getValue(errorKey))){
+            return Response.fail("账户已被锁定");
         }
 
         Response<Boolean> response = userDetailFacade.loginByPhoneNumber(phoneNumber,password);
 
         if(!response.isSuccess() && ("账号或密码错误").equals(response.getError())){
-            int result = RedisUtil.calErrorTimes(RedisKeyConstant.getLoginErrorTimes(phoneNumber));
-            redis.valuePut(lockKey,result);
-            return Response.fail("账号密码错误,再过"+ result +"次将被锁定");
+            int times = RedisUtil.calErrorTimes(redis.getValue(errorKey));
+            redis.valuePut(errorKey,times);
+            if(times != 0){
+                return Response.fail("账号密码错误,再过"+ times +"次将被锁定");
+            }else{
+                redis.expirse(errorKey,30,TimeUnit.MINUTES);
+                return Response.fail("账户已被锁定,请半小时后进行尝试");
+            }
+
         }
+        redis.remove(errorKey);
         return response;
     }
 

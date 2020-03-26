@@ -13,7 +13,7 @@ public class RedisKeyConstant {
 
     private static final String errorNum = login + "ERRORNUM:";
 
-    private static final String Lock = login + "LOCK:";
+    private static final String lock = login + "LOCK:";
 
     /**
      * @Description 登陆错误次数，五次则死锁
@@ -29,6 +29,14 @@ public class RedisKeyConstant {
      **/
     public static String getUserLoginVerityCode(String phoneNumber) {
         return verityCode + phoneNumber;
+    }
+
+    /**
+     * @Description 用户锁定
+     * @Date  2020/3/26
+     **/
+    public static String getUserLoginLock(String phoneNumber) {
+        return lock + phoneNumber;
     }
 
 }
