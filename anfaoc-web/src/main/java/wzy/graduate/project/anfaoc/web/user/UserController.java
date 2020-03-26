@@ -50,16 +50,17 @@ public class UserController {
 
     @ApiOperation("请求发送验证码")
     @GetMapping("/getVerifyCode")
-    public String getVerifyCode(@RequestParam String phoneNumber) {
-        String result = null;
+    public Response<Boolean> getVerifyCode(@RequestParam String phoneNumber) {
         try{
             Integer verityCode = new Random().nextInt(899999) + 100000;
-            result = RedisUtil.getSendVerityCode(phoneNumber,verityCode);
-            redis.valuePut(RedisKeyConstant.getUserLoginVerityCode(phoneNumber),verityCode.toString());
+            RedisUtil.getSendVerityCode(phoneNumber,verityCode);
+            String verityKey = RedisKeyConstant.getUserLoginVerityCode(phoneNumber);
+            redis.valuePut(verityKey,verityCode.toString());
+            redis.expirse(verityKey,60,TimeUnit.SECONDS);
         }catch (Exception e){
-            log.info("验证码发送出错:{}",e.getMessage());
+            return Response.fail("验证码发送出错");
         }
-        return result;
+        return Response.ok(Boolean.TRUE);
     }
 
     @ApiOperation("用户登陆校验-短信验证码方式")
@@ -73,9 +74,11 @@ public class UserController {
             if(Objects.isNull(response.getResult())){
                 return Response.fail("用户不存在");
             }
-
-            String sentVerityCode = (String) redis.getValue(RedisKeyConstant.getUserLoginVerityCode(phoneNumber));
+            String verityKey = RedisKeyConstant.getUserLoginVerityCode(phoneNumber);
+            String sentVerityCode = (String) redis.getValue(verityKey);
         if(verityCode.equals(sentVerityCode)){
+            // 登陆成功删除验证码
+            redis.remove(verityKey);
             return Response.ok(Boolean.TRUE);
         }else{
             return Response.fail("验证码错误");
@@ -104,7 +107,6 @@ public class UserController {
                 redis.expirse(errorKey,30,TimeUnit.MINUTES);
                 return Response.fail("账户已被锁定,请半小时后进行尝试");
             }
-
         }
         redis.remove(errorKey);
         return response;

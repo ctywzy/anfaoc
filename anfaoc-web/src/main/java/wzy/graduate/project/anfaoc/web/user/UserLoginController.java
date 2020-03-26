@@ -32,26 +32,12 @@ public class UserLoginController {
     @Autowired
     private RedisHelper redisHelper;
 
-    @GetMapping("/login")
-    public ModelAndView login(String error){
-        ModelAndView modelAndView = new ModelAndView("/login");
-        modelAndView.addObject("error", error);
-        return modelAndView;
-    }
-
     @ApiOperation("ThreadLocal效果查看")
     @GetMapping("/getUserLocal")
     public UserDetail getUserLocal(){
         log.info("线程名:{}",Thread.currentThread().getId());
 
         return UserContext.getUserLocal();
-    }
-
-    @ApiOperation("用户注册")
-    @PostMapping("/register")
-    public Response<Boolean> register(UserDetailDTO userDetailDTO){
-
-        return userDetailFacade.register(userDetailDTO);
     }
 
 }
