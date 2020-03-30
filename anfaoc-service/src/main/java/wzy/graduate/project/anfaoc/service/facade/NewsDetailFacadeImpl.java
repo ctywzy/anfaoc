@@ -1,6 +1,8 @@
 package wzy.graduate.project.anfaoc.service.facade;
 
 import com.alibaba.dubbo.config.annotation.Service;
+import com.google.common.collect.Lists;
+import wzy.graduate.project.anfaoc.common.model.Response;
 import wzy.graduate.project.anfaoc.service.convert.NewsDetailConvert;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,6 +51,43 @@ public class NewsDetailFacadeImpl implements NewsDetailFacade {
             log.error("updateNews fail:{}",e.getMessage());
 
         }
-
     }
+
+    @Override
+    public Response<List<NewsDetailDTO>> newsPage(Integer pageNo) {
+
+        List<NewsDetailDTO> newsDetailDTOS = Lists.newArrayList();
+
+        try{
+
+        }catch (Exception e){
+
+        }
+        return Response.ok(newsDetailDTOS);
+    }
+
+    @Override
+    public Response<List<NewsDetailDTO>> newsPageRecommend(Integer pageNo) {
+        List<NewsDetailDTO> newsDetailDTOS = Lists.newArrayList();
+
+        try{
+
+        }catch (Exception e){
+
+        }
+        return Response.ok(newsDetailDTOS);
+    }
+
+    @Override
+    public Response<List<NewsDetailDTO>> newsPageLike(Integer pageNo) {
+        List<NewsDetailDTO> newsDetailDTOS = Lists.newArrayList();
+
+        try{
+
+        }catch (Exception e){
+
+        }
+        return Response.ok(newsDetailDTOS);
+    }
+
 }

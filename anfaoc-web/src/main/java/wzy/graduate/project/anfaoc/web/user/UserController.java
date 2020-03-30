@@ -1,26 +1,18 @@
 package wzy.graduate.project.anfaoc.web.user;
 
 import com.alibaba.dubbo.config.annotation.Reference;
-import com.google.common.collect.Maps;
-import com.zhenzi.sms.ZhenziSmsClient;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.cache.CacheProperties;
 import org.springframework.web.bind.annotation.*;
 import wzy.graduate.project.anfaoc.api.domain.dto.UserDetailDTO;
-import wzy.graduate.project.anfaoc.api.domain.entity.UserDetail;
 import wzy.graduate.project.anfaoc.api.facade.UserDetailFacade;
 import wzy.graduate.project.anfaoc.api.redis.RedisHelper;
-import wzy.graduate.project.anfaoc.common.exception.RestException;
 import wzy.graduate.project.anfaoc.common.model.Response;
-import wzy.graduate.project.anfaoc.common.model.ZhenziSMS;
 import wzy.graduate.project.anfaoc.common.util.RedisUtil;
 import wzy.graduate.project.anfaoc.web.cache.RedisKeyConstant;
 
-import java.io.Serializable;
-import java.util.Map;
 import java.util.Objects;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
