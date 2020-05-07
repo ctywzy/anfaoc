@@ -4,6 +4,7 @@ import wzy.graduate.project.anfaoc.api.domain.entity.NewsDetail;
 import wzy.graduate.project.anfaoc.common.model.dto.NewsDetailDTO;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author wangzy
@@ -15,4 +16,12 @@ public interface NewsDetailService {
      * @param newsList
      * */
     void updateNews(List<NewsDetail> newsList);
+
+    /**
+     * @Description 新闻的分页查询
+     * @Date  2020/4/13
+     * @Param
+     **/
+    List<NewsDetail> paging(Map<String, Object> criteria);
+
 }

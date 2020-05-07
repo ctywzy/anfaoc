@@ -1,5 +1,6 @@
 package wzy.graduate.project.anfaoc.api.facade;
 
+import wzy.graduate.project.anfaoc.api.Request.NewsPagingRequest;
 import wzy.graduate.project.anfaoc.common.model.Response;
 import wzy.graduate.project.anfaoc.common.model.dto.NewsDetailDTO;
 
@@ -18,11 +19,11 @@ public interface NewsDetailFacade {
     void updateNews(List<NewsDetailDTO> newsList);
 
     /**
-     * @Description 展示新闻到前端
+     * @Description 展示新闻到前端，pageSize默认20
      * @Date  2020/3/30
      * @Param
      **/
-    Response<List<NewsDetailDTO>> newsPage(Integer pageNo);
+    Response<List<NewsDetailDTO>> newsPage(NewsPagingRequest request);
 
     /**
      * @Description 展示该用户被推荐的新闻到前端，pageSize 默认20

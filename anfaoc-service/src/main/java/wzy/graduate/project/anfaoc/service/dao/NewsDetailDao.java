@@ -3,6 +3,9 @@ package wzy.graduate.project.anfaoc.service.dao;
 import org.apache.ibatis.annotations.Mapper;
 import wzy.graduate.project.anfaoc.api.domain.entity.NewsDetail;
 
+import java.util.List;
+import java.util.Map;
+
 
 /**
  * @author wangzy
@@ -29,4 +32,10 @@ public interface NewsDetailDao {
      * @Date  2020/3/24
      **/
     void updateNewNum(NewsDetail newsDetail);
+
+    /**
+     * @Description 查询数据库中的新闻
+     * @Date  2020/4/20
+     **/
+    List<NewsDetail> paging(Map<String, Object> criteria);
 }

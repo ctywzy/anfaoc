@@ -71,4 +71,9 @@
         <include refid="criteria"/>
     </select>
 
+    <select id="paging" parameterType="map" resultType="wzy.graduate.project.anfaoc.api.domain.entity.NewsDetail">
+
+
+    </select>
+
 </mapper>

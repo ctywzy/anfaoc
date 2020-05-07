@@ -2,6 +2,7 @@ package wzy.graduate.project.anfaoc.service.facade;
 
 import com.alibaba.dubbo.config.annotation.Service;
 import com.google.common.collect.Lists;
+import wzy.graduate.project.anfaoc.api.Request.NewsPagingRequest;
 import wzy.graduate.project.anfaoc.common.model.Response;
 import wzy.graduate.project.anfaoc.service.convert.NewsDetailConvert;
 import lombok.extern.slf4j.Slf4j;
@@ -12,9 +13,11 @@ import wzy.graduate.project.anfaoc.api.service.LabelDetailService;
 import wzy.graduate.project.anfaoc.api.service.NewsDetailService;
 import wzy.graduate.project.anfaoc.common.model.dto.NewsDetailDTO;
 import wzy.graduate.project.anfaoc.api.domain.entity.NewsDetail;
+import wzy.graduate.project.anfaoc.service.util.MapUtil;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author wangzy
@@ -29,6 +32,8 @@ public class NewsDetailFacadeImpl implements NewsDetailFacade {
 
     @Autowired
     private LabelDetailService labelDetailService;
+
+    private MapUtil mapUtil = new MapUtil();
 
     @Override
     public void updateNews(List<NewsDetailDTO> newsDetailDTOS) {
@@ -54,11 +59,15 @@ public class NewsDetailFacadeImpl implements NewsDetailFacade {
     }
 
     @Override
-    public Response<List<NewsDetailDTO>> newsPage(Integer pageNo) {
+    public Response<List<NewsDetailDTO>> newsPage(NewsPagingRequest request) {
 
         List<NewsDetailDTO> newsDetailDTOS = Lists.newArrayList();
 
         try{
+
+            Map<String,Object> criteria = mapUtil.toMap(request);
+            List<NewsDetail> newsDetails = newsDetailService.paging(criteria);
+
 
         }catch (Exception e){
 
