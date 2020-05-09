@@ -40,3 +40,7 @@ thymeleaf:
 
 server:
   port: 8005
+
+spring:
+  mvc:
+    static-path-pattern: /static/**
