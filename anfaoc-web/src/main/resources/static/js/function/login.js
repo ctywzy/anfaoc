@@ -5,23 +5,27 @@
 $(document).ready(function() {
     //登陆
     $("#loginButton").click(function () {
+        var phone = $("#phone").val();
+        var verity = $("#verity").val();
         $.get({
-            url: "loginCheck", //请求后台
+            url: "/api/anfaoc/user/ordinary/userLogin/verityCode", //请求后台
             dataType: "text",
             async: true,
             data: {
-                name : $("#name").val()
+                phoneNumber : phone,
+                verityCode : verity
             },
             success: function (result) {
                 console.log(result);
                 var response = $.parseJSON(result);
                 var success = response.success;
+                var msg = response.error;
                 if (success == true) {
                     $("#bingo").html("验证成功，即将跳转");
                     window.setTimeout("location.href=\"http://localhost:8005/homepage\"", 2000);
                 }else {
 
-                    $("#bingo").html("用户名密码不正确");
+                    $("#bingo").html(msg);
                     document.getElementById("bingo").style.color="red";
                 }
             }
@@ -40,7 +44,6 @@ $(document).ready(function() {
 
     var time = 60;
     var flag = true;
-    var vercode	 = 0;
     //获取验证码
     $("#getVerity").click(function () {
         $(this).attr("disabled",true);
@@ -52,17 +55,23 @@ $(document).ready(function() {
                     flag = false;
                     $.get({
                         async : false,
-                        url : 'sms.do',
+                        url : '/api/anfaoc/user/ordinary/getVerifyCode',
                         data : {
-                            "phone" : phone
+                            "phoneNumber" : phone
                         },
-                        dataType:"json",
-                        success : function(data) {
-                            if(data.status == 0){
-                                vercode = data.data;
-                                $("#getVerity").html("已发送");
+                        dataType:"text",
+                        success : function(result) {
+                            response = $.parseJSON(result);
+                            var error = response.error;
+                            var success = response.success;
+                            if(success == true){
+                                $("#bingo").html("发送成功");
                             }else {
-                                alert(data.msg);
+                                $("#getVerity").removeAttr("disabled");
+                                $("#getVerity").css("background-color","#4CAF50");
+                                $("#getVerity").css("border-color","#4CAF50");
+                                $("#bingo").html(error);
+                                document.getElementById("bingo").style.color="red";
                                 flag = true;
                                 time = 60;
                                 clearInterval(timer);

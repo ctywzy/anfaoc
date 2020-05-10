@@ -10,6 +10,8 @@ import wzy.graduate.project.anfaoc.api.domain.dto.UserDetailDTO;
 import wzy.graduate.project.anfaoc.api.facade.UserDetailFacade;
 import wzy.graduate.project.anfaoc.api.redis.RedisHelper;
 import wzy.graduate.project.anfaoc.common.model.Response;
+import wzy.graduate.project.anfaoc.common.model.dto.PhoneCheckResponse;
+import wzy.graduate.project.anfaoc.common.util.PhoneUtil;
 import wzy.graduate.project.anfaoc.common.util.RedisUtil;
 import wzy.graduate.project.anfaoc.web.cache.RedisKeyConstant;
 
@@ -43,6 +45,10 @@ public class UserController {
     @ApiOperation("请求发送验证码")
     @GetMapping("/getVerifyCode")
     public Response<Boolean> getVerifyCode(@RequestParam String phoneNumber) {
+        PhoneCheckResponse response = PhoneUtil.checkPhoneNumber(phoneNumber);
+        if(!response.isResult()){
+            return Response.fail(response.getMsg());
+        }
         try{
             Integer verityCode = new Random().nextInt(899999) + 100000;
             RedisUtil.getSendVerityCode(phoneNumber,verityCode);

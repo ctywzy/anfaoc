@@ -299,7 +299,8 @@
 }
 
 .overbox .input {
-   margin-top: 3px;
+   margin-top: 20px;
+   margin-bottom: 20px;
 }
 
 .overbox .input input,
