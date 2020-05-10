@@ -65,21 +65,22 @@ public class UserController {
     @GetMapping(value = "/userLogin/verityCode")
     public Response<Boolean> userLoginMsg(@RequestParam String phoneNumber
             ,@RequestParam String verityCode){
-            //查询该手机号用户是否存在
-            Response<Boolean> response = userDetailFacade.findUserByPhoneNumber(phoneNumber);
+        //查询该手机号用户是否存在
+        //Response<Boolean> response = userDetailFacade.findUserByPhoneNumber(phoneNumber);
 
-            //根据sessionId从缓存中获取手机校验码
-            if(Objects.isNull(response.getResult())){
-                return Response.fail("用户不存在");
-            }
-            String verityKey = RedisKeyConstant.getUserLoginVerityCode(phoneNumber);
-            String sentVerityCode = (String) redis.getValue(verityKey);
+        //根据sessionId从缓存中获取手机校验码
+//        if(Objects.isNull(response.getResult())){
+//            return Response.fail("用户不存在");
+//        }
+        String verityKey = RedisKeyConstant.getUserLoginVerityCode(phoneNumber);
+        String sentVerityCode = (String) redis.getValue(verityKey);
+
         if(verityCode.equals(sentVerityCode)){
             // 登陆成功删除验证码
             redis.remove(verityKey);
             return Response.ok(Boolean.TRUE);
         }else{
-            return Response.fail("验证码错误");
+            return Response.fail("验证码错误或已过期");
         }
     }
 

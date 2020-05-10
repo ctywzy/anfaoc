@@ -22,7 +22,7 @@ $(document).ready(function() {
                 var msg = response.error;
                 if (success == true) {
                     $("#bingo").html("验证成功，即将跳转");
-                    window.setTimeout("location.href=\"http://localhost:8005/homepage\"", 2000);
+                    window.setTimeout(location.href='/homepage', 2000);
                 }else {
 
                     $("#bingo").html(msg);
@@ -36,10 +36,18 @@ $(document).ready(function() {
     $("#registerButton").click(function () {
         $.get(
             {
+                async : false,
+                url : '',
+                data : {
 
+                },
+                dataType : 'text',
+                success : function (result) {
+                    window.location.href = '/newsPage';
+                    //请求数据填充
+                }
             }
         )
-        alert("密码格式错误");
     })
 
     var time = 60;
@@ -55,7 +63,7 @@ $(document).ready(function() {
                     flag = false;
                     $.get({
                         async : false,
-                        url : '/api/anfaoc/user/ordinary/getVerifyCode',
+                        url : "/api/anfaoc/user/ordinary/getVerifyCode",
                         data : {
                             "phoneNumber" : phone
                         },
@@ -71,6 +79,7 @@ $(document).ready(function() {
                                 $("#getVerity").css("background-color","#4CAF50");
                                 $("#getVerity").css("border-color","#4CAF50");
                                 $("#bingo").html(error);
+                                $("#verity").html("");
                                 document.getElementById("bingo").style.color="red";
                                 flag = true;
                                 time = 60;

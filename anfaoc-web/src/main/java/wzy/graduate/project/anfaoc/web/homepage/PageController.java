@@ -35,15 +35,21 @@ public class PageController {
         }
     }
 
-    @ApiOperation("成功")
+    @ApiOperation("登陆界面")
     @GetMapping("login")
     public String loginPage(){
         return "usercontrol/index";
     }
 
-    @ApiOperation("登陆页面")
+    @ApiOperation("用户信息页面")
     @GetMapping("homepage")
     public String homePage(){
-        return "page/homePage";
+        return "page/userPage";
+    }
+
+    @ApiOperation("新闻页面")
+    @GetMapping("newsPage")
+    public String newsPage(){
+        return "page/newsPage";
     }
 }
