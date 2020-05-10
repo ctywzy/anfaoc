@@ -12,19 +12,19 @@ import org.springframework.web.bind.annotation.RestController;
 import wzy.graduate.project.anfaoc.common.model.Response;
 
 /**
- * @author terminus
+ * @author wangzy
  */
 
 @Api(tags = "主页相关")
 @Controller
 @RequestMapping("/")
 @Slf4j
-public class HomeController {
+public class PageController {
 
     @ApiOperation("主页显示")
-    @GetMapping("home")
+    @GetMapping("loginCheck")
     @ResponseBody
-    public Response<Boolean> homePage(String name){
+    public Response<Boolean> loginCheck(String name){
 
         System.out.println(name);
         if(name.equals("user")){
@@ -36,14 +36,14 @@ public class HomeController {
     }
 
     @ApiOperation("成功")
-    @GetMapping("homepage")
-    public String successPage(){
-        return "index";
+    @GetMapping("login")
+    public String loginPage(){
+        return "usercontrol/index";
     }
 
     @ApiOperation("登陆页面")
-    @GetMapping("login")
-    public String loginPage(){
-        return "login";
+    @GetMapping("homepage")
+    public String homePage(){
+        return "page/homePage";
     }
 }

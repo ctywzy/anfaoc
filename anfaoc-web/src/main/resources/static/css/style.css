@@ -249,6 +249,15 @@
    z-index: 2;
 }
 
+.spin-point{
+   width: 100%;
+   float: left;
+   text-align: center;
+   color: rgba(0, 1, 237, 0.5);
+   font-size: 15px;
+   margin-bottom: 5px;
+}
+
 .pass-forgot {
    width: 100%;
    float: left;
