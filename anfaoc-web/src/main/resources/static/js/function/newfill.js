@@ -33,7 +33,7 @@ $(document).ready(function () {
     function finalDiv(result){
         for(var i = 0 ;i<result.length ; i++){
             var ajumpurl = ""+"@@@@@"+result[i].id;
-            singleDiv(ajumpurl,result[i].newLabels,result[i].newTitle,result[i].newParas,result[i].pageViews,i);
+            singleDiv(ajumpurl,result[i].newLabels,result[i].newTitle,result[i].newsFinalPara,result[i].pageViews,i);
         }
         connRow("<button class=\"main__btn\" type=\"button\"><span>load more</span></button>")
         $("#newsDiv").html(newDiv);
@@ -86,7 +86,7 @@ $(document).ready(function () {
            "\t\t\t\t\t\t</div>\n" +
            "\n" +
            "\t\t\t\t\t\t<div class=\"post__description\">\n" +
-           "\t\t\t\t\t\t\t<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.</p>\n" +
+           "\t\t\t\t\t\t\t<p>"+ introduction +"</p>\n" +
            "\t\t\t\t\t\t\t<a href="+aurl+">view more</a>\n" +
            "\t\t\t\t\t\t</div>\n"
             )

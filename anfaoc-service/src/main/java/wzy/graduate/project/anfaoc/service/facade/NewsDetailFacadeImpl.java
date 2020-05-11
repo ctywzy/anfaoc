@@ -5,6 +5,7 @@ import com.google.common.collect.Lists;
 import wzy.graduate.project.anfaoc.api.Request.NewsPagingRequest;
 import wzy.graduate.project.anfaoc.api.facade.LabelDetailFacade;
 import wzy.graduate.project.anfaoc.common.model.Response;
+import wzy.graduate.project.anfaoc.common.model.entity.ParaEntity;
 import wzy.graduate.project.anfaoc.common.util.NewsUtil;
 import wzy.graduate.project.anfaoc.service.convert.NewsDetailConvert;
 import lombok.extern.slf4j.Slf4j;
@@ -17,9 +18,7 @@ import wzy.graduate.project.anfaoc.common.model.dto.NewsDetailDTO;
 import wzy.graduate.project.anfaoc.api.domain.entity.NewsDetail;
 import wzy.graduate.project.anfaoc.service.util.MapUtil;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @author wangzy
@@ -120,6 +119,9 @@ public class NewsDetailFacadeImpl implements NewsDetailFacade {
                 //TODO需要处理,保留一部分
                 newsDetailDTO.setNewParas(NewsUtil.getParas(newsDetail.getNewParas()));
 
+                //处理段落
+                newsDetailDTO.setNewsFinalPara(convertPara(newsDetailDTO.getNewParas()));
+
                 newsDetailDTO.setPageViews(newsDetail.getPageViews());
             }catch (Exception e){
                 log.info("convert fail :{}",e.getMessage());
@@ -128,5 +130,30 @@ public class NewsDetailFacadeImpl implements NewsDetailFacade {
         }
 
         return newsDetailDTOS;
+    }
+
+    /**
+     * @Description 段落内容转化
+     * @Date  2020/5/11
+     **/
+    private List<String> convertPara(List<ParaEntity> orgNewParas){
+        List<String> finalParas = new ArrayList<>();
+
+        for(ParaEntity paraEntity : orgNewParas){
+            String para = paraEntity.getContent();
+            switch (paraEntity.getType()){
+                case PICTURE:
+                    finalParas.add(para);
+                    break;
+                case PARAGRAPH:
+                    finalParas.add(para);
+                    break;
+                case DESCRIPTION:
+                    finalParas.add(para);
+                    break;
+            }
+        }
+
+        return finalParas;
     }
 }

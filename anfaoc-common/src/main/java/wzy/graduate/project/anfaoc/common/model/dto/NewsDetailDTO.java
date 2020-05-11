@@ -49,4 +49,10 @@ public class NewsDetailDTO implements Serializable {
 
     @ApiModelProperty("文章热度")
     private Long heatNumber;
+
+    @ApiModelProperty("文章段落内容")
+    private List<String> newsFinalPara;
+
+    @ApiModelProperty("预览内容")
+    private List<String> preViewPara;
 }

@@ -1,6 +1,7 @@
 package wzy.graduate.project.anfaoc.common.util;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import wzy.graduate.project.anfaoc.common.model.dto.NewsDetailDTO;
@@ -84,7 +85,7 @@ public class NewsUtil {
     public static List<ParaEntity> getParas(String paraJson){
         List<ParaEntity> paraEntities = new ArrayList<>();
         try{
-            paraEntities = objectMapper.readValue(paraJson,List.class);
+            paraEntities = objectMapper.readValue(paraJson,new TypeReference<ArrayList<ParaEntity>>(){});
         }catch (IOException e){
             log.error("段落反序列化出错");
         }
