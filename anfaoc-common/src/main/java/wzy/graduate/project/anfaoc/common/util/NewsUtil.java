@@ -37,6 +37,48 @@ public class NewsUtil {
     }
 
     /**
+     * @Description 图片格式转化
+     * @Date  2020/5/11
+     **/
+    public static String doPicture(String para) {
+
+        para =  "<div>" +
+                "<img style=\"position: relative;left: 50%;top: 50%;width:350px;height: 500px\" src = \" " + para + "\"/>" +
+                "</div>";
+        return para;
+    }
+
+    /**
+     * @Description 段落格式转化
+     * @Date  2020/5/11
+     **/
+    public static String doPara(String para) {
+
+        if(para.contains("<img")){
+            StringBuilder sb = new StringBuilder(para);
+            sb.insert(5, "style=\"position: relative;left: 50%;top: 50%;width:350px;height: 500px\" ");
+            sb.insert(0,"<div> ");
+            sb.append("</div>");
+            para = sb.toString();
+        }
+        else{
+            para = "<p>" +"  "+para + "</p>";
+        }
+
+        return para;
+    }
+
+    /**
+     * @Description 图片描述转化
+     * @Date  2020/5/11
+     **/
+    public static String doDes(String para) {
+
+        para = "<p style = \"width: 100%;height: 45px;display: block;line-height: 45px;text-align: center;\">" + para + "</p>";
+        return para;
+    }
+
+    /**
      * @Description 将id列表转换成字符串
      * @Date  2020/1/22
      **/

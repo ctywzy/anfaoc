@@ -136,24 +136,24 @@ public class NewsDetailFacadeImpl implements NewsDetailFacade {
      * @Description 段落内容转化
      * @Date  2020/5/11
      **/
-    private List<String> convertPara(List<ParaEntity> orgNewParas){
-        List<String> finalParas = new ArrayList<>();
+    private String convertPara(List<ParaEntity> orgNewParas){
+        StringBuilder finalParas = new StringBuilder();
 
         for(ParaEntity paraEntity : orgNewParas){
             String para = paraEntity.getContent();
             switch (paraEntity.getType()){
                 case PICTURE:
-                    finalParas.add(para);
+                    finalParas.append(NewsUtil.doPicture(para));
                     break;
                 case PARAGRAPH:
-                    finalParas.add(para);
+                    finalParas.append(NewsUtil.doPara(para));
                     break;
                 case DESCRIPTION:
-                    finalParas.add(para);
+                    finalParas.append(NewsUtil.doDes(para));
                     break;
             }
         }
 
-        return finalParas;
+        return finalParas.toString();
     }
 }

@@ -51,8 +51,8 @@ public class NewsDetailDTO implements Serializable {
     private Long heatNumber;
 
     @ApiModelProperty("文章段落内容")
-    private List<String> newsFinalPara;
+    private String newsFinalPara;
 
     @ApiModelProperty("预览内容")
-    private List<String> preViewPara;
+    private String preViewPara;
 }
