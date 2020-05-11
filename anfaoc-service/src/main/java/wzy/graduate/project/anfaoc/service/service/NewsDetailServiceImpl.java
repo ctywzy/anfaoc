@@ -38,6 +38,7 @@ public class NewsDetailServiceImpl implements NewsDetailService {
                 newsDetail -> {
                     index[0] +=1;
                     try{
+                        //新闻去重
                         NewsDetail judge = newsDetailDao.judgeNewPresence(newsDetail);
                         if(Objects.nonNull(judge)){
                             newsDetailDao.updateNewNum(newsDetail);
@@ -63,7 +64,7 @@ public class NewsDetailServiceImpl implements NewsDetailService {
         }catch (Exception e){
             throw new ServiceException("查询新闻失败");
         }
-        return null;
+        return newsDetails;
     }
 
 }

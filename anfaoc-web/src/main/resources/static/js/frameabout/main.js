@@ -44,14 +44,13 @@ $(document).ready(function () {
 			noUiSlider.create(firstSlider, {
 				range: {
 					'min': 0,
-					'max': 100
+					'max': 100000
 				},
 				step: 1,
-				connect: true,
-				start: [18, 34],
+				start: [40000, 60000],
 				format: wNumb({
 					decimals: 0,
-					prefix: '$'
+					suffix: '次'
 				})
 			});
 			var firstValues = [

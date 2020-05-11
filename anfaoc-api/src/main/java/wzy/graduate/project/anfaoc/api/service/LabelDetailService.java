@@ -18,6 +18,12 @@ public interface LabelDetailService {
     List<LabelDetail> exchageNameToId(NewsDetailDTO newsDetailDTOS);
 
     /**
+     * @Description 获取标签明
+     * @Date  2020/5/11
+     **/
+    List<String> getLabelNameById(List<String> ids);
+
+    /**
      * @Description 更新标签热度
      * @Date  2020/3/23
      * @return

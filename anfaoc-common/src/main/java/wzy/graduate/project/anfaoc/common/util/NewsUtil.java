@@ -3,10 +3,13 @@ package wzy.graduate.project.anfaoc.common.util;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
+import wzy.graduate.project.anfaoc.common.model.dto.NewsDetailDTO;
 import wzy.graduate.project.anfaoc.common.model.entity.ParaEntity;
 
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -47,6 +50,20 @@ public class NewsUtil {
     }
 
     /**
+     * @Description 将label字符串转换回数组
+     * @Date  2020/5/11
+     **/
+    public static List<String> getLabelIds(String labelIdStr){
+        List<String> labelIds = null;
+        try{
+            labelIds = objectMapper.readValue(labelIdStr, List.class);
+        }catch (IOException e){
+            log.info("标签反序列化出错");
+        }
+        return labelIds;
+    }
+
+    /**
      * @Description 将段落属性保存到json字符串中
      * @Date  2020/1/22
      **/
@@ -58,5 +75,20 @@ public class NewsUtil {
             log.error("Json格式转换错误");
         }
         return paraEntityStr;
+    }
+
+    /**
+     * @Description 将段落json反序列化
+     * @Date  2020/5/11
+     **/
+    public static List<ParaEntity> getParas(String paraJson){
+        List<ParaEntity> paraEntities = new ArrayList<>();
+        try{
+            paraEntities = objectMapper.readValue(paraJson,List.class);
+        }catch (IOException e){
+            log.error("段落反序列化出错");
+        }
+
+        return paraEntities;
     }
 }

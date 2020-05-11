@@ -2,9 +2,7 @@ package wzy.graduate.project.anfaoc.common.model.dto;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.Builder;
-import lombok.Data;
-import lombok.ToString;
+import lombok.*;
 import wzy.graduate.project.anfaoc.common.model.entity.ParaEntity;
 
 import java.io.Serializable;
@@ -19,6 +17,8 @@ import java.util.List;
 @Data
 @ToString
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class NewsDetailDTO implements Serializable {
 
     private static final long serialVersionUID = -5597074539622169471L;

@@ -16,14 +16,7 @@ import java.util.Map;
 public interface LabelDetailDao {
 
     /**
-     * @Description 插入标签
-     * @Date  2020/3/13
-     * @Param
-     * @return
-     **/
-
-    /**
-     * @Description 查询名称返回Id列表
+     * @Description 根据条件查询标签
      * @Date  2020/1/22
      **/
     List<LabelDetail> findByNames(Map<String,Object> criteria);

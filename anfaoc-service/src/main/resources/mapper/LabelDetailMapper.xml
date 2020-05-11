@@ -12,6 +12,12 @@
     <sql id="criteria">
         <where>
             <if test = "id != null"> AND `id` = #{id}</if>
+            <if test = "ids != null">
+                AND `id` in
+                <foreach item="id" collection="ids" open="(" separator="," close=")">
+                    #{id}
+                </foreach>
+            </if>
             <if test = "labelName != null"> AND `label_name` = #{labelName}</if>
             <if test = "labelNames != null">
                 AND `label_name` in

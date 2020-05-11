@@ -7,11 +7,13 @@ import java.util.Map;
 
 public class MapUtil {
 
+    private static final Integer PAGE_NUMBER = 15;
     public Map<String,Object> toMap(NewsPagingRequest request){
         Map<String,Object> criteria = Maps.newHashMap();
-        criteria.put("pageNo", request.getPagingNo());
-        criteria.put("pageSize", request.getPageSize());
-        criteria.put("pagingType", request.getPagingType());
+        Integer pageNo = request.getPagingNo();
+        int begin = (pageNo - 1) * PAGE_NUMBER;
+        criteria.put("offset", begin);
+        criteria.put("limit", PAGE_NUMBER);
         return criteria;
     }
     

@@ -3,7 +3,9 @@ package wzy.graduate.project.anfaoc.service.facade;
 import com.alibaba.dubbo.config.annotation.Service;
 import com.google.common.collect.Lists;
 import wzy.graduate.project.anfaoc.api.Request.NewsPagingRequest;
+import wzy.graduate.project.anfaoc.api.facade.LabelDetailFacade;
 import wzy.graduate.project.anfaoc.common.model.Response;
+import wzy.graduate.project.anfaoc.common.util.NewsUtil;
 import wzy.graduate.project.anfaoc.service.convert.NewsDetailConvert;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,7 +42,6 @@ public class NewsDetailFacadeImpl implements NewsDetailFacade {
         List<NewsDetail> newsList = new ArrayList<>();
 
         try{
-            //把标签名改为标签id
 
             for (NewsDetailDTO newsDetailDTO : newsDetailDTOS){
 
@@ -60,17 +61,18 @@ public class NewsDetailFacadeImpl implements NewsDetailFacade {
 
     @Override
     public Response<List<NewsDetailDTO>> newsPage(NewsPagingRequest request) {
-
-        List<NewsDetailDTO> newsDetailDTOS = Lists.newArrayList();
-
+        List<NewsDetailDTO> newsDetailDTOS;
         try{
 
             Map<String,Object> criteria = mapUtil.toMap(request);
             List<NewsDetail> newsDetails = newsDetailService.paging(criteria);
 
 
-        }catch (Exception e){
+            newsDetailDTOS = this.convertToFront(newsDetails);
 
+        }catch (Exception e){
+            log.info("获取资讯失败");
+            return Response.fail("获取资讯失败");
         }
         return Response.ok(newsDetailDTOS);
     }
@@ -99,4 +101,32 @@ public class NewsDetailFacadeImpl implements NewsDetailFacade {
         return Response.ok(newsDetailDTOS);
     }
 
+    /**
+     * @Description 新闻格式批量转化
+     * @Date  2020/5/11
+     **/
+    private List<NewsDetailDTO> convertToFront(List<NewsDetail> newsDetails){
+        List<NewsDetailDTO> newsDetailDTOS = new ArrayList<>();
+        for(NewsDetail newsDetail : newsDetails)
+        {
+            NewsDetailDTO newsDetailDTO = new NewsDetailDTO();
+            try{
+                newsDetailDTO.setId(newsDetail.getId());
+                newsDetailDTO.setNewTitle(newsDetail.getNewTitle());
+                List<String> labelIds = NewsUtil.getLabelIds(newsDetail.getNewLabels());
+
+                newsDetailDTO.setNewLabels(labelDetailService.getLabelNameById(labelIds));
+
+                //TODO需要处理,保留一部分
+                newsDetailDTO.setNewParas(NewsUtil.getParas(newsDetail.getNewParas()));
+
+                newsDetailDTO.setPageViews(newsDetail.getPageViews());
+            }catch (Exception e){
+                log.info("convert fail :{}",e.getMessage());
+            }
+            newsDetailDTOS.add(newsDetailDTO);
+        }
+
+        return newsDetailDTOS;
+    }
 }

@@ -66,12 +66,12 @@ public class UserController {
     public Response<Boolean> userLoginMsg(@RequestParam String phoneNumber
             ,@RequestParam String verityCode){
         //查询该手机号用户是否存在
-        //Response<Boolean> response = userDetailFacade.findUserByPhoneNumber(phoneNumber);
+        Response<Boolean> response = userDetailFacade.findUserByPhoneNumber(phoneNumber);
 
         //根据sessionId从缓存中获取手机校验码
-//        if(Objects.isNull(response.getResult())){
-//            return Response.fail("用户不存在");
-//        }
+        if(Objects.isNull(response.getResult())){
+            return Response.fail("用户不存在");
+        }
         String verityKey = RedisKeyConstant.getUserLoginVerityCode(phoneNumber);
         String sentVerityCode = (String) redis.getValue(verityKey);
 
@@ -110,5 +110,4 @@ public class UserController {
         redis.remove(errorKey);
         return response;
     }
-
 }

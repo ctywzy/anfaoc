@@ -15,6 +15,7 @@ import wzy.graduate.project.anfaoc.service.dao.LabelDetailDao;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 /**
  * @author wangzy
@@ -39,6 +40,23 @@ public class LabelDetailServiceImpl implements LabelDetailService{
             throw new ServiceException(e.getMessage());
         }
         return labelDetails;
+    }
+
+    @Override
+    public List<String> getLabelNameById(List<String> ids) {
+        List<LabelDetail> labelDetails = null;
+        Map<String,Object> map = Maps.newHashMap();
+        map.put("ids",ids);
+        try{
+            labelDetails = labelDetailDao.findByNames(map);
+        }catch (Exception e){
+            log.info("getLabelNameById fail:{}",e.getMessage());
+            throw new ServiceException(e.getMessage());
+        }
+        List<String> labelNames = labelDetails.stream()
+                                              .map(LabelDetail::getLabelName)
+                                              .collect(Collectors.toList());
+        return labelNames;
     }
 
     @Override
