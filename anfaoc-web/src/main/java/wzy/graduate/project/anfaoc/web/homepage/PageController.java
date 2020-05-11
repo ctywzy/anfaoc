@@ -55,6 +55,6 @@ public class PageController {
     @GetMapping("getNewsDetail/{id}")
     public String getNewsDetail(@PathVariable("id") Long newsId, Model model){
         model.addAttribute("newsId",newsId);
-        return "/page/newDetailPage";
+        return "page/newsDetailPage";
     }
 }

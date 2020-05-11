@@ -37,13 +37,21 @@ public class NewsUtil {
     }
 
     /**
-     * @Description 图片格式转化
+     * @Description 图片格式转化简介
      * @Date  2020/5/11
      **/
-    public static String doPicture(String para) {
+    public static String doPictureInt(String para) {
 
         para =  "<div>" +
                 "<img style=\"position: relative;left: 60%;top: 50%;width:350px;height: 500px\" src = \" " + para + "\"/>" +
+                "</div>";
+        return para;
+    }
+
+    public static String doPicture(String para) {
+
+        para =  "<div>" +
+                "<img style=\"position: relative;left: 160%;top: 50%;width:250px;height: 300px\" src = \" " + para + "\"/>" +
                 "</div>";
         return para;
     }

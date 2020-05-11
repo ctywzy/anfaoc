@@ -33,7 +33,7 @@ $(document).ready(function () {
     function finalDiv(result){
         for(var i = 0 ;i<result.length ; i++){
             var ajumpurl = "getNewsDetail/"+result[i].id;
-            singleDiv(ajumpurl,result[i].newLabels,result[i].newTitle,result[i].preViewPara,result[i].pageViews,i);
+            singleDiv(ajumpurl,result[i].newLabels,result[i].newTitle,result[i].preViewPara,result[i].pageViews,i,result[i].id);
         }
         connRow("<button class=\"main__btn\" type=\"button\"><span>load more</span></button>")
         $("#newsDiv").html(newDiv);
@@ -48,15 +48,11 @@ $(document).ready(function () {
      * @param introduction 简介
      * @Param pageViews 浏览量
      */
-    function singleDiv(aurl,labelList,title,introduction,pageViews,count){
+    function singleDiv(aurl,labelList,title,introduction,pageViews,count,newsNo){
        connRow("<div class=\"post\">\n" +
            "\t\t\t\t\t\t<div class=\"post__head\">\n" +
-           "\t\t\t\t\t\t\t<a href=\"#\" class=\"post__head-img\">\n" +
-           "\t\t\t\t\t\t\t\t<img src=\"static/images/user2.jpg\" alt=\"\">\n" +
-           "\t\t\t\t\t\t\t</a>\n" +
            "\t\t\t\t\t\t\t<div class=\"post__head-title\">\n" +
            "\t\t\t\t\t\t\t\t<h5><a href=\"#\">"+ title +"</a></h5>\n" +
-           "\t\t\t\t\t\t\t\t<p>11 min ago</p>\n" +
            "\t\t\t\t\t\t\t</div>\n" +
            "\n" +
            "\t\t\t\t\t\t\t<div class=\"post__dropdown\">\n" +
@@ -80,7 +76,7 @@ $(document).ready(function () {
            "\t\t\t\t\t\t\t<div class=\"post__actions\">\n" +
            "\t\t\t\t\t\t\t\t<a class=\"post__actions-btn post__actions-btn--green\" href=\"#\">\n" +
            "\t\t\t\t\t\t\t\t\t<i class=\"icon ion-ios-bookmark\"></i>\n" +
-           "\t\t\t\t\t\t\t\t</a>\n" +
+           "\t\t\t\t\t\t\t\t</a>\n" +                                                 /** 收藏按钮 **/
            "\t\t\t\t\t\t\t\t<a href=\"#\" class=\"post__actions-btn post__actions-btn--blue\"><span>收藏</span></a>\n" +
            "\t\t\t\t\t\t\t</div>\n" +
            "\t\t\t\t\t\t</div>\n" +
@@ -108,8 +104,8 @@ $(document).ready(function () {
            "\n" +
            "\t\t\t\t\t\t<div class=\"collapse post__collapse\" id=\"collapse"+ count +"\">\n" +
            "\t\t\t\t\t\t\t<form action=\"#\" class=\"post__form\">\n" +
-           "\t\t\t\t\t\t\t\t<input type=\"text\" placeholder=\"Type your comment...\">\n" +
-           "\t\t\t\t\t\t\t\t<button type=\"button\"><i class=\"icon ion-ios-paper-plane\"></i></button>\n" +
+           "\t\t\t\t\t\t\t\t<input type=\"text\" placeholder=\"Type your comment...\">\n" +  /** 评论的话 **/
+           "\t\t\t\t\t\t\t\t<button type=\"button\"><i class=\"icon ion-ios-paper-plane\"></i></button>\n" +  /** 评论按钮 **/
            "\t\t\t\t\t\t\t</form>\n" +
            "\t\t\t\t\t\t</div>\n" +
            "\t\t\t\t\t</div>")
@@ -120,6 +116,7 @@ $(document).ready(function () {
         newDiv += Row + "\n";
     }
 
+    //标签列表
     function connLabel(labels){
         connRow("\t\t\t\t\t\t<div class=\"post__tags\">");
         for(var i = 0;i < labels.length; i++){
