@@ -67,4 +67,15 @@ public class NewsDetailServiceImpl implements NewsDetailService {
         return newsDetails;
     }
 
+    @Override
+    public NewsDetail getNewsDetail(Map<String, Object> criteria) {
+        NewsDetail newsDetail;
+        try{
+            newsDetail = newsDetailDao.getNewsDetail(criteria);
+        }catch (Exception e){
+            throw new ServiceException("查询失败");
+        }
+        return newsDetail;
+    }
+
 }

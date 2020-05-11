@@ -2,6 +2,7 @@ package wzy.graduate.project.anfaoc.service.facade;
 
 import com.alibaba.dubbo.config.annotation.Service;
 import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 import wzy.graduate.project.anfaoc.api.Request.NewsPagingRequest;
 import wzy.graduate.project.anfaoc.api.facade.LabelDetailFacade;
 import wzy.graduate.project.anfaoc.common.model.Response;
@@ -100,6 +101,30 @@ public class NewsDetailFacadeImpl implements NewsDetailFacade {
         return Response.ok(newsDetailDTOS);
     }
 
+    @Override
+    public Response<NewsDetailDTO> getNewsDetail(Long newsId) {
+
+
+        NewsDetailDTO newsDetailDTO = new NewsDetailDTO();
+
+        try{
+            Map<String,Object> criteria = Maps.newHashMap();
+            criteria.put("id",newsId);
+            NewsDetail newsDetail = newsDetailService.getNewsDetail(criteria);
+
+            newsDetailDTO = this.DetailToDTO(newsDetail);
+        }catch (Exception e){
+
+            log.info("getNewsDetail:{}",e.getMessage());
+            return Response.fail("获取新闻失败");
+
+        }
+
+
+
+        return Response.ok(newsDetailDTO);
+    }
+
     /**
      * @Description 新闻格式批量转化
      * @Date  2020/5/11
@@ -110,19 +135,7 @@ public class NewsDetailFacadeImpl implements NewsDetailFacade {
         {
             NewsDetailDTO newsDetailDTO = new NewsDetailDTO();
             try{
-                newsDetailDTO.setId(newsDetail.getId());
-                newsDetailDTO.setNewTitle(newsDetail.getNewTitle());
-                List<String> labelIds = NewsUtil.getLabelIds(newsDetail.getNewLabels());
-
-                newsDetailDTO.setNewLabels(labelDetailService.getLabelNameById(labelIds));
-
-                //TODO需要处理,保留一部分
-                newsDetailDTO.setNewParas(NewsUtil.getParas(newsDetail.getNewParas()));
-
-                //处理段落
-                newsDetailDTO.setNewsFinalPara(convertPara(newsDetailDTO.getNewParas()));
-
-                newsDetailDTO.setPageViews(newsDetail.getPageViews());
+                newsDetailDTO = this.DetailToDTO(newsDetail);
             }catch (Exception e){
                 log.info("convert fail :{}",e.getMessage());
             }
@@ -130,6 +143,58 @@ public class NewsDetailFacadeImpl implements NewsDetailFacade {
         }
 
         return newsDetailDTOS;
+    }
+
+    /**
+     * @Description Detail==》DTO
+     * @Date  2020/5/12
+     **/
+    private NewsDetailDTO DetailToDTO(NewsDetail newsDetail){
+        NewsDetailDTO newsDetailDTO = new NewsDetailDTO();
+        newsDetailDTO.setId(newsDetail.getId());
+        newsDetailDTO.setNewTitle(newsDetail.getNewTitle());
+        List<String> labelIds = NewsUtil.getLabelIds(newsDetail.getNewLabels());
+
+        newsDetailDTO.setNewLabels(labelDetailService.getLabelNameById(labelIds));
+
+        //TODO需要处理,保留一部分
+        newsDetailDTO.setNewParas(NewsUtil.getParas(newsDetail.getNewParas()));
+
+        //处理段落
+        newsDetailDTO.setNewsFinalPara(convertPara(newsDetailDTO.getNewParas()));
+
+        //处理简介
+        newsDetailDTO.setPreViewPara(convertPrePara(newsDetailDTO.getNewParas()));
+        newsDetailDTO.setPageViews(newsDetail.getPageViews());
+        return newsDetailDTO;
+    }
+
+    /**
+     * @Description 获取简介
+     * @Date  2020/5/12
+     **/
+    private String convertPrePara(List<ParaEntity> newParas) {
+        StringBuilder finalParas = new StringBuilder();
+        int index = 0;
+        for(ParaEntity paraEntity : newParas){
+            index++;
+            if(index>=5){
+                break;
+            }
+            String para = paraEntity.getContent();
+            switch (paraEntity.getType()){
+                case PICTURE:
+                    finalParas.append(NewsUtil.doPicture(para));
+                    break;
+                case PARAGRAPH:
+                    finalParas.append(NewsUtil.doPara(para));
+                    break;
+                case DESCRIPTION:
+                    finalParas.append(NewsUtil.doDes(para));
+                    break;
+            }
+        }
+        return finalParas.toString();
     }
 
     /**

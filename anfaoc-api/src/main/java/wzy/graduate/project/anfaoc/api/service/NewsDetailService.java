@@ -24,4 +24,9 @@ public interface NewsDetailService {
      **/
     List<NewsDetail> paging(Map<String, Object> criteria);
 
+    /**
+     * @Description //TODO
+     * @Date  2020/5/12
+     **/
+    NewsDetail getNewsDetail(Map<String, Object> criteria);
 }

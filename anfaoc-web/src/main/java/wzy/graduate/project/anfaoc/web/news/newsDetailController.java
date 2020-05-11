@@ -5,7 +5,9 @@ import com.alibaba.dubbo.config.annotation.Reference;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import wzy.graduate.project.anfaoc.api.Request.NewsPagingRequest;
@@ -42,6 +44,15 @@ public class newsDetailController {
         }else{
             return Response.fail("获取新闻失败");
         }
+    }
+
+    @ApiOperation("新闻详情")
+    @GetMapping("/getNewsDetail")
+    public Response<NewsDetailDTO> getNewsDetail(Long newsId){
+
+        Response<NewsDetailDTO> response = newsDetailFacade.getNewsDetail(newsId);
+
+        return response;
     }
 
 }

@@ -80,4 +80,12 @@
         limit #{offset},#{limit}
     </select>
 
+    <select id="getNewsDetail" resultType="wzy.graduate.project.anfaoc.api.domain.entity.NewsDetail">
+        SELECT
+        <include refid="columns_all"/>
+        FROM
+        <include refid="table_name"/>
+        <include refid="criteria"/>
+    </select>
+
 </mapper>

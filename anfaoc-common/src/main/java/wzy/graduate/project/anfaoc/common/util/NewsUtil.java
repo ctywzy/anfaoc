@@ -43,7 +43,7 @@ public class NewsUtil {
     public static String doPicture(String para) {
 
         para =  "<div>" +
-                "<img style=\"position: relative;left: 50%;top: 50%;width:350px;height: 500px\" src = \" " + para + "\"/>" +
+                "<img style=\"position: relative;left: 60%;top: 50%;width:350px;height: 500px\" src = \" " + para + "\"/>" +
                 "</div>";
         return para;
     }
@@ -56,7 +56,7 @@ public class NewsUtil {
 
         if(para.contains("<img")){
             StringBuilder sb = new StringBuilder(para);
-            sb.insert(5, "style=\"position: relative;left: 50%;top: 50%;width:350px;height: 500px\" ");
+            sb.insert(5, "style=\"position: relative;left: 60%;top: 50%;width:350px;height: 500px\" ");
             sb.insert(0,"<div> ");
             sb.append("</div>");
             para = sb.toString();

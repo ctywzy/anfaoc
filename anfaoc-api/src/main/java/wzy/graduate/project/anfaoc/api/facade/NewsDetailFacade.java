@@ -36,4 +36,10 @@ public interface NewsDetailFacade {
      * @Date  2020/3/30
      **/
     Response<List<NewsDetailDTO>> newsPageLike(Integer pageNo);
+
+    /**
+     * @Description 根据id获得新闻详情
+     * @Date  2020/5/12
+     **/
+    Response<NewsDetailDTO> getNewsDetail(Long newsId);
 }

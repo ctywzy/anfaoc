@@ -32,8 +32,8 @@ $(document).ready(function () {
     //最后的div表格
     function finalDiv(result){
         for(var i = 0 ;i<result.length ; i++){
-            var ajumpurl = ""+"@@@@@"+result[i].id;
-            singleDiv(ajumpurl,result[i].newLabels,result[i].newTitle,result[i].newsFinalPara,result[i].pageViews,i);
+            var ajumpurl = "getNewsDetail/"+result[i].id;
+            singleDiv(ajumpurl,result[i].newLabels,result[i].newTitle,result[i].preViewPara,result[i].pageViews,i);
         }
         connRow("<button class=\"main__btn\" type=\"button\"><span>load more</span></button>")
         $("#newsDiv").html(newDiv);
@@ -74,7 +74,7 @@ $(document).ready(function () {
            "\n" +
            "\t\t\t\t\t\t<div class=\"post__wrap\">\n" +
            "\t\t\t\t\t\t\t<div class=\"post__company\">\n" +
-           "\t\t\t\t\t\t\t\t<i class=\"icon ion-ios-briefcase\"></i>\n" +
+           "\t\t\t\t\t\t\t\t<i class=\"icon ion-ios-briefcase\"></i>\n" + "<span>简介</span>" +
            "\t\t\t\t\t\t\t</div>\n" +
            "\n" +
            "\t\t\t\t\t\t\t<div class=\"post__actions\">\n" +
@@ -87,7 +87,7 @@ $(document).ready(function () {
            "\n" +
            "\t\t\t\t\t\t<div class=\"post__description\">\n" +
            "\t\t\t\t\t\t\t<p>"+ introduction +"</p>\n" +
-           "\t\t\t\t\t\t\t<a href="+aurl+">view more</a>\n" +
+           "\t\t\t\t\t\t\t<a href="+aurl+">view more</a>\n" + /** 新闻详情**/
            "\t\t\t\t\t\t</div>\n"
             )
 

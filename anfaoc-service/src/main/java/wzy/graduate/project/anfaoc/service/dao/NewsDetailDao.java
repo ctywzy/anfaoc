@@ -38,4 +38,10 @@ public interface NewsDetailDao {
      * @Date  2020/4/20
      **/
     List<NewsDetail> paging(Map<String, Object> criteria);
+
+    /**
+     * @Description 获取新闻
+     * @Date  2020/5/12
+     **/
+    NewsDetail getNewsDetail(Map<String, Object> criteria);
 }
