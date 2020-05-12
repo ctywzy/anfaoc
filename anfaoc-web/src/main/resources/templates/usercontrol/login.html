@@ -1,19 +1,81 @@
-<!DOCTYPE HTML>
-<!-- thymeleaf模板必须引入 -->
-<!DOCTYPE HTML>
-<!-- thymeleaf模板必须引入 -->
-<html xmlns:th="http://www.thymeleaf.org">
+<!DOCTYPE html>
+<html lang="zh-CN">
+
 <head>
-    <title>SpringBoot模版渲染</title>
-    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+    <meta charset="UTF-8">
+    <title>动画注册登录页面</title>
+    <link rel="stylesheet" href="/static/css/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/static/css/style.css">
 </head>
+
 <body>
-<form th:action="@{/login}" method="post" >
-    <input th:text="用户名" type="text" name="username" />
-    <input th:text="密码" type="password" name="password" />
-    <button type="submit" >提交</button>
-    <!-- ${session?.SPRING_SECURITY_LAST_EXCEPTION?.message} security自带的错误提示信息 -->
-    <p th:if="${param.error}" th:text="${session?.SPRING_SECURITY_LAST_EXCEPTION?.message}" ></p>
-</form>
+    <div class="materialContainer">
+        <div class="box">
+            <div class="title">手机验证码登录</div>
+                <div class="input">
+                    <label for="phone">手机号</label>
+                    <input type="text" name="phone" id="phone">
+                    <span class="spin"></span>
+                </div>
+                <div class="input">
+                    <label for="verity">验证码</label>
+                    <input type="text" name="verity" id="verity">
+                    <button id="getVerity" style=" background-color:#4CAF50;
+                                    border: none;
+                                    color: white;
+                                    padding: 15px 32px;
+                                    text-align: center;
+                                    text-decoration: none;
+                                    display: inline-block;
+                                    font-size: 16px;
+                                    margin: 4px 2px;
+                                    cursor: pointer;
+                                    z-index: 100;
+                                    position: absolute;
+                                    right: 0px;
+                                    top: 10px;">
+                        获取验证码</button>
+                    <span class="spin"></span>
+                </div>
+                <div class="spanpoing">
+                    <sapn id = "bingo"></sapn>
+                </div>
+                <div class="button login">
+                    <button id="loginButton">
+                        <span>登录</span>
+                    </button>
+                </div>
+
+                <a href="" class="spin-point">注册账号请点击这里</a>
+                <a href="javascript:" class="pass-forgot">忘记密码？</a>
+        </div>
+
+        <div class="overbox">
+            <div class="material-button alt-2">
+                <span class="shape"></span>
+            </div>
+            <div style="font-size: 40px" class="title">用户名密码登陆</div>
+            <div class="input">
+                <label for="username">用户名</label>
+                <input type="text" name="username" id="username">
+                <span class="spin"></span>
+            </div>
+            <div class="input">
+                <label for="password">密码</label>
+                <input type="text" name="password" id="password">
+                <span class="spin"></span>
+            </div>
+            <div class="button">
+                <button id="registerButton">
+                    <span>登陆</span>
+                </button>
+            </div>
+        </div>
+
+    </div>
+    <script src="/static/js/frameabout/jquery.min.js"></script>
+    <script src="/static/js/frameabout/index.js"></script>
+    <script src="/static/js/function/login.js"></script>
 </body>
+
 </html>

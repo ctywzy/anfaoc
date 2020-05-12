@@ -7,6 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import wzy.graduate.project.anfaoc.api.domain.dto.UserDetailDTO;
+import wzy.graduate.project.anfaoc.api.domain.entity.UserDetail;
 import wzy.graduate.project.anfaoc.api.facade.UserDetailFacade;
 import wzy.graduate.project.anfaoc.api.redis.RedisHelper;
 import wzy.graduate.project.anfaoc.common.model.Response;
@@ -15,6 +16,7 @@ import wzy.graduate.project.anfaoc.common.util.PhoneUtil;
 import wzy.graduate.project.anfaoc.common.util.RedisUtil;
 import wzy.graduate.project.anfaoc.web.cache.RedisKeyConstant;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Objects;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
@@ -64,20 +66,25 @@ public class UserController {
     @ApiOperation("用户登陆校验-短信验证码方式")
     @GetMapping(value = "/userLogin/verityCode")
     public Response<Boolean> userLoginMsg(@RequestParam String phoneNumber
-            ,@RequestParam String verityCode){
+            , @RequestParam String verityCode, HttpServletRequest request){
         //查询该手机号用户是否存在
-        Response<Boolean> response = userDetailFacade.findUserByPhoneNumber(phoneNumber);
+        Response<UserDetail> response = userDetailFacade.findUserByPhoneNumber(phoneNumber);
 
+        UserDetail userDetail = response.getResult();
         //根据sessionId从缓存中获取手机校验码
-        if(Objects.isNull(response.getResult())){
+        if(Objects.isNull(userDetail)){
             return Response.fail("用户不存在");
         }
+
         String verityKey = RedisKeyConstant.getUserLoginVerityCode(phoneNumber);
         String sentVerityCode = (String) redis.getValue(verityKey);
 
         if(verityCode.equals(sentVerityCode)){
             // 登陆成功删除验证码
             redis.remove(verityKey);
+            String sessionId = request.getRequestedSessionId();
+            String loginKey = RedisKeyConstant.getUserLoginFlag(sessionId);
+            redis.valuePut(loginKey,userDetail.getId());
             return Response.ok(Boolean.TRUE);
         }else{
             return Response.fail("验证码错误或已过期");

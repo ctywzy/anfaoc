@@ -36,7 +36,7 @@ public interface UserDetailFacade {
      * @Param
      * @return
      **/
-    Response<Boolean> findUserByPhoneNumber(String phoneNumber);
+    Response<UserDetail> findUserByPhoneNumber(String phoneNumber);
 
     /**
      * @Description 根据电话好号码和密码判断登陆是否成功

@@ -38,6 +38,16 @@ CREATE TABLE `label_detail` (
 
 -- 创建回复表
 
+
 -- 创建用户标签关系表表
+
+-- 新闻收藏表
+CREATE TABLE `news_collection` (
+    `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '自增id',
+    `user_id` varchar(20) NOT NULL COMMENT '用户id',
+    `label_name` varchar(20) NOT NULL COMMENT '新闻id',
+    `create_time` varchar(100) NOT NULL COMMENT '标签创建时间',
+    PRIMARY KEY (`id`,`label_name`) USING BTREE
+)ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
 
 

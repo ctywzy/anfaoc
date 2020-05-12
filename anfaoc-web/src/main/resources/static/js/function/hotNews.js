@@ -8,6 +8,7 @@ $(document).ready(function () {
 
     var newDiv = "";
     var newsId = $("#newsNo").val();
+    var collectUrl = "../collectNews/"+newsId;
     $.get({
         url : "../api/anfaoc/news/getNewsDetail",
         dataType : "text",
@@ -58,7 +59,7 @@ $(document).ready(function () {
             "\t\t\t\t\t\t\t\t<a class=\"post__actions-btn post__actions-btn--green\" href=\"#\">\n" +
             "\t\t\t\t\t\t\t\t\t<i class=\"icon ion-ios-bookmark\"></i>\n" +
             "\t\t\t\t\t\t\t\t</a>\n" +
-            "\t\t\t\t\t\t\t\t<a href=\"#\" class=\"post__actions-btn post__actions-btn--blue\"><span>Bid now</span></a>\n" +
+            "\t\t\t\t\t\t\t\t<a href=\""+collectUrl+"\" class=\"post__actions-btn post__actions-btn--blue\"><span>"+ "收藏"+"</span></a>\n" +
             "\t\t\t\t\t\t\t</div>\n" +
             "\t\t\t\t\t\t</div>\n" +
             "\n" +

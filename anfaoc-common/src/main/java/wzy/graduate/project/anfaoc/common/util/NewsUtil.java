@@ -48,6 +48,10 @@ public class NewsUtil {
         return para;
     }
 
+    /**
+     * @Description 图片转化详细
+     * @Date  2020/5/12
+     **/
     public static String doPicture(String para) {
 
         para =  "<div>" +
@@ -64,7 +68,7 @@ public class NewsUtil {
 
         if(para.contains("<img")){
             StringBuilder sb = new StringBuilder(para);
-            sb.insert(5, "style=\"position: relative;left: 60%;top: 50%;width:350px;height: 500px\" ");
+            sb.insert(5, "style=\"position: relative;left: 160%;top: 50%;width:250px;height: 300px\" ");
             sb.insert(0,"<div> ");
             sb.append("</div>");
             para = sb.toString();
@@ -76,6 +80,25 @@ public class NewsUtil {
         return para;
     }
 
+    /**
+     * @Description 段落格式转化
+     * @Date  2020/5/11
+     **/
+    public static String doParaInt(String para) {
+
+        if(para.contains("<img")){
+            StringBuilder sb = new StringBuilder(para);
+            sb.insert(5, "style=\"position: relative;left: 60%;top: 50%;width:350px;height: 500px\" ");
+            sb.insert(0,"<div> ");
+            sb.append("</div>");
+            para = sb.toString();
+        }
+        else{
+            para = "<p>" +"  "+para + "</p>";
+        }
+
+        return para;
+    }
     /**
      * @Description 图片描述转化
      * @Date  2020/5/11

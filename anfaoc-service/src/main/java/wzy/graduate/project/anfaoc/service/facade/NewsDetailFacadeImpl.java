@@ -187,7 +187,7 @@ public class NewsDetailFacadeImpl implements NewsDetailFacade {
                     finalParas.append(NewsUtil.doPictureInt(para));
                     break;
                 case PARAGRAPH:
-                    finalParas.append(NewsUtil.doPara(para));
+                    finalParas.append(NewsUtil.doParaInt(para));
                     break;
                 case DESCRIPTION:
                     finalParas.append(NewsUtil.doDes(para));

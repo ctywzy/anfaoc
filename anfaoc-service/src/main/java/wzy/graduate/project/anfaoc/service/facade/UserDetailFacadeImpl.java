@@ -51,7 +51,7 @@ public class UserDetailFacadeImpl implements UserDetailFacade {
     }
 
     @Override
-    public Response<Boolean> findUserByPhoneNumber(String phoneNumber) {
+    public Response<UserDetail> findUserByPhoneNumber(String phoneNumber) {
         UserDetail userDetail = null;
 
         try{
@@ -59,7 +59,7 @@ public class UserDetailFacadeImpl implements UserDetailFacade {
         }catch (Exception e){
             return Response.fail(e.getMessage());
         }
-        Response<Boolean> response = Response.ok(Boolean.TRUE);
+        Response<UserDetail> response = Response.ok(userDetail);
         if(Objects.isNull(userDetail)){
             response = Response.fail("用户不存在");
         }
