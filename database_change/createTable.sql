@@ -47,7 +47,7 @@ CREATE TABLE `news_collection` (
     `user_id` varchar(20) NOT NULL COMMENT '用户id',
     `label_name` varchar(20) NOT NULL COMMENT '新闻id',
     `create_time` varchar(100) NOT NULL COMMENT '标签创建时间',
-    PRIMARY KEY (`id`,`label_name`) USING BTREE
+    PRIMARY KEY (`id`) USING BTREE
 )ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
 
 
