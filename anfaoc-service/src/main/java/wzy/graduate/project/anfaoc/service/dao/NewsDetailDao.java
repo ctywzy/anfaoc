@@ -44,4 +44,10 @@ public interface NewsDetailDao {
      * @Date  2020/5/12
      **/
     NewsDetail getNewsDetail(Map<String, Object> criteria);
+
+    /**
+     * @Description 查看次数更新
+     * @Date  2020/5/13
+     **/
+    void addPageViews(Map<String, Object> criteria);
 }

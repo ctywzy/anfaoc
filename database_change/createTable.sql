@@ -5,7 +5,7 @@ CREATE TABLE `user_detail` (
   `user_password` varchar(31) NOT NULL COMMENT '用户密码',
   `user_authority` varchar(20) DEFAULT NULL COMMENT '用户权限vip管理员或普通用户',
   `phone_number` varchar(20) NOT NULL COMMENT '手机号',
-  `create_time` varchar(50) DEFAULT NULL COMMENT '账号创建时间',
+  `create_time` varchar(31) DEFAULT NULL COMMENT '账号创建时间',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
 
@@ -29,7 +29,7 @@ CREATE TABLE `label_detail` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '自增id',
   `label_name` varchar(20) NOT NULL COMMENT '标签名称',
   `label_num` bigint(20) NOT NULL COMMENT '标签热度',
-  `create_time` varchar(100) NOT NULL COMMENT '标签创建时间',
+  `create_time` varchar(31) NOT NULL COMMENT '标签创建时间',
   PRIMARY KEY (`id`,`label_name`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
 
@@ -38,7 +38,7 @@ CREATE TABLE `comments` (
     `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '自增id',
     `content` varchar(255) NOT NULL COMMENT '用户id',
     `news_id` varchar(20) NOT NULL COMMENT '新闻id',
-    `create_time` varchar(100) NOT NULL COMMENT '标签创建时间',
+    `create_time` varchar(31) NOT NULL COMMENT '标签创建时间',
     PRIMARY KEY (`id`) USING BTREE
 )ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
 
@@ -47,7 +47,7 @@ CREATE TABLE `user_label` (
     `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '自增id',
     `user_id` varchar(255) NOT NULL COMMENT '用户id',
     `label_id` varchar(20) NOT NULL COMMENT '标签id',
-    `create_time` varchar(100) NOT NULL COMMENT '标签创建时间',
+    `create_time` varchar(31) NOT NULL COMMENT '标签创建时间',
     PRIMARY KEY (`id`) USING BTREE
 )ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
 
@@ -56,7 +56,7 @@ CREATE TABLE `news_collection` (
     `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '自增id',
     `user_id` varchar(20) NOT NULL COMMENT '用户id',
     `news_id` varchar(20) NOT NULL COMMENT '新闻id',
-    `create_time` varchar(100) NOT NULL COMMENT '标签创建时间',
+    `create_time` varchar(31) NOT NULL COMMENT '标签创建时间',
     PRIMARY KEY (`id`) USING BTREE
 )ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
 

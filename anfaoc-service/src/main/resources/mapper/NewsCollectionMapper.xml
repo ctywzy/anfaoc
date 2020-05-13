@@ -41,7 +41,7 @@
         <include refid="tabel_name"/>
         (<include refid="columns_exclude_id"/>)
         VALUES
-        <include refid="value_exclude_id"/>
+        (<include refid="value_exclude_id"/>)
     </insert>
 
 

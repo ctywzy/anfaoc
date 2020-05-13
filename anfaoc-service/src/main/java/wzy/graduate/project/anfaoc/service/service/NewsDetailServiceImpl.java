@@ -78,4 +78,13 @@ public class NewsDetailServiceImpl implements NewsDetailService {
         return newsDetail;
     }
 
+    @Override
+    public void addPageViews(Map<String, Object> criteria) {
+        try{
+            newsDetailDao.addPageViews(criteria);
+        }catch (Exception e){
+            log.info("更新查看次数失败:{}",criteria);
+        }
+    }
+
 }

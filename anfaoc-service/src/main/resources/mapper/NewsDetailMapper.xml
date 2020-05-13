@@ -55,6 +55,13 @@
         (<include refid="values_exclude_id"/>)
     </insert>
 
+    <update id="addPageViews">
+        UPDATE
+        <include refid="columns_all"/>
+        SET `page_views` = `page_views` + 1
+        <include refid="criteria"/>
+    </update>
+
     <update id="updateNewNum" parameterType="wzy.graduate.project.anfaoc.api.domain.entity.NewsDetail">
         UPDATE
         <include refid="table_name"/>
@@ -80,7 +87,7 @@
         limit #{offset},#{limit}
     </select>
 
-    <select id="getNewsDetail" resultType="wzy.graduate.project.anfaoc.api.domain.entity.NewsDetail">
+    <select id="getNewsDetail" parameterType="map" resultType="wzy.graduate.project.anfaoc.api.domain.entity.NewsDetail">
         SELECT
         <include refid="columns_all"/>
         FROM

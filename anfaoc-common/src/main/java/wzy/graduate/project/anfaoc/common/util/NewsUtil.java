@@ -94,7 +94,7 @@ public class NewsUtil {
             para = sb.toString();
         }
         else{
-            para = "<p>" +"  "+para + "</p>";
+            para = "<p>" +"&nbsp;&nbsp;&nbsp;&nbsp;"+para + "</p>";
         }
 
         return para;

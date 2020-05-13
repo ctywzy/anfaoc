@@ -25,8 +25,14 @@ public interface NewsDetailService {
     List<NewsDetail> paging(Map<String, Object> criteria);
 
     /**
-     * @Description //TODO
+     * @Description 获取新闻详情
      * @Date  2020/5/12
      **/
     NewsDetail getNewsDetail(Map<String, Object> criteria);
+
+    /**
+     * @Description 浏览次数加1
+     * @Date  2020/5/13
+     **/
+    void addPageViews(Map<String, Object> criteria);
 }

@@ -41,9 +41,14 @@
         <include refid="tabel_name"/>
         (<include refid="columns_exclude_id"/>)
         VALUES
-        <include refid="value_exclude_id"/>
+        (<include refid="value_exclude_id"/>)
     </insert>
 
+    <select id="getAllCommnets" resultType="wzy.graduate.project.anfaoc.api.domain.entity.Comments">
+        SELECT * FROM
+        <include refid="tabel_name"/>
+        <include refid="criteria"/>
+    </select>
 
 
 </mapper>

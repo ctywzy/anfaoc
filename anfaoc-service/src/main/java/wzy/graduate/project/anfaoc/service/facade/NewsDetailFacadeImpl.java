@@ -4,7 +4,9 @@ import com.alibaba.dubbo.config.annotation.Service;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import wzy.graduate.project.anfaoc.api.Request.NewsPagingRequest;
+import wzy.graduate.project.anfaoc.api.facade.CommentsFacade;
 import wzy.graduate.project.anfaoc.api.facade.LabelDetailFacade;
+import wzy.graduate.project.anfaoc.api.service.CommentsService;
 import wzy.graduate.project.anfaoc.common.model.Response;
 import wzy.graduate.project.anfaoc.common.model.entity.ParaEntity;
 import wzy.graduate.project.anfaoc.common.util.NewsUtil;
@@ -34,6 +36,9 @@ public class NewsDetailFacadeImpl implements NewsDetailFacade {
 
     @Autowired
     private LabelDetailService labelDetailService;
+
+    @Autowired
+    private CommentsFacade commentsFacade;
 
     private MapUtil mapUtil = new MapUtil();
 
@@ -113,6 +118,7 @@ public class NewsDetailFacadeImpl implements NewsDetailFacade {
             NewsDetail newsDetail = newsDetailService.getNewsDetail(criteria);
 
             newsDetailDTO = this.DetailToDTO(newsDetail);
+            newsDetailService.addPageViews(criteria);
         }catch (Exception e){
 
             log.info("getNewsDetail:{}",e.getMessage());
@@ -166,6 +172,7 @@ public class NewsDetailFacadeImpl implements NewsDetailFacade {
         //处理简介
         newsDetailDTO.setPreViewPara(convertPrePara(newsDetailDTO.getNewParas()));
         newsDetailDTO.setPageViews(newsDetail.getPageViews());
+        newsDetailDTO.setComments(commentsFacade.getAllCommnets(newsDetail.getId()));
         return newsDetailDTO;
     }
 

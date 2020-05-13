@@ -50,7 +50,6 @@ $(document).ready(function () {
 				start: [40000, 60000],
 				format: wNumb({
 					decimals: 0,
-					suffix: '次'
 				})
 			});
 			var firstValues = [

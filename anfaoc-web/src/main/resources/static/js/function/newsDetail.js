@@ -9,24 +9,30 @@ $(document).ready(function () {
     var newDiv = "";
     var newsId = $("#newsNo").val();
     var collectUrl = "../collectNews/"+newsId;
-    $.get({
-        url : "../api/anfaoc/news/getNewsDetail",
-        dataType : "text",
-        async : true,
-        data : {
-            newsId : newsId
-        },
-        success: function (result){
-            var response = $.parseJSON(result);
-            var success = response.success;
-            if(success == true){
-                fillDiv(response.result);
-            }else{
-                alert("查询失败");
-            }
-        }
-    });
 
+    loadNews();
+
+    $("#reply").click(function () {
+        $.post({
+            url : "../api/anfaoc/news/newsComment",
+            dataType : "json",
+            contentType: "application/json;charset=UTF-8",
+            async : true,
+            data : JSON.stringify({
+                newId : newsId,
+                content : $("#reply").val()
+            }),
+            success : function (response) {
+
+                var success = response.success;
+                if(success == true){
+                    loadNews();
+                }else{
+                    alert("回复失败");
+                }
+            }
+        })
+    })
 
     function fillDiv(result) {
 
@@ -81,9 +87,9 @@ $(document).ready(function () {
             "\t\t\t\t\t\t</div>\n" +
             "\n" +
             "\t\t\t\t\t\t<div class=\"collapse post__collapse\" id=\"collapse3\">\n" +
-            "\t\t\t\t\t\t\t<form action=\" "+ + "\" class=\"post__form\">\n" +
+            "\t\t\t\t\t\t\t<form class=\"post__form\">\n" +
             "\t\t\t\t\t\t\t\t<input type=\"text\" placeholder=\"Type your comment...\">\n" +
-            "\t\t\t\t\t\t\t\t<button type=\"button\"><i class=\"icon ion-ios-paper-plane\"></i></button>\n" +
+            "\t\t\t\t\t\t\t\t<button id= \"reply\" type=\"button\"><i class=\"icon ion-ios-paper-plane\"></i></button>\n" +
             "\t\t\t\t\t\t\t</form>\n" +
             "\t\t\t\t\t\t</div>\n" +
             "\t\t\t\t\t</div>");
@@ -107,5 +113,25 @@ $(document).ready(function () {
         connRow("\t\t\t\t\t\t</div>");
     }
 
+    function loadNews() {
+        $.get({
+            url : "../api/anfaoc/news/getNewsDetail",
+            dataType : "json",
+            contentType: "application/json;charset=UTF-8",
+            async : true,
+            data : {
+                newsId : newsId
+            },
+            success: function (result){
+                var response = $.parseJSON(result);
+                var success = response.success;
+                if(success == true){
+                    fillDiv(response.result);
+                }else{
+                    alert("查询失败");
+                }
+            }
+        });
+    }
 
 })

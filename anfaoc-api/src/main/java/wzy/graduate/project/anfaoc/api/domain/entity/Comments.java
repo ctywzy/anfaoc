@@ -1,12 +1,16 @@
 package wzy.graduate.project.anfaoc.api.domain.entity;
 
 import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
 /**
  * @author wangzy
  */
+@Data
+@NoArgsConstructor
 public class Comments implements Serializable {
 
     private static final long serialVersionUID = 6584391043799923453L;
