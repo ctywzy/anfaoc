@@ -41,7 +41,7 @@ public class RedisKeyConstant {
     }
 
     /**
-     * @Description 用户是否登陆
+     * @Description 用户是否登陆,对应存着用户id
      * @Date  2020/5/12
      **/
     public static String getUserLoginFlag(String sessionId){

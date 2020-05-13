@@ -20,6 +20,8 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.Objects;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * @author wangzy
@@ -38,10 +40,23 @@ public class UserController {
 
     @ApiOperation("用户注册")
     @PostMapping("/register")
-    public Boolean register(@RequestBody UserDetailDTO userDetailDTO){
+    public Response<Boolean> register(@RequestBody UserDetailDTO userDetailDTO){
         //前端js校验
+        if(checkString(userDetailDTO.getPhoneNumber()) || checkString(userDetailDTO.getUserPassword())
+                || checkString(userDetailDTO.getCheckPasswrod()) || checkString(userDetailDTO.getUserName())){
+            return Response.fail("不允许参数为空");
+        }
+
+        if(userDetailDTO.getPhoneNumber().length() != 11){
+            return Response.fail("电话号码有误");
+        }
+
+        if(!userDetailDTO.getCheckPasswrod().equals(userDetailDTO.getUserPassword())){
+            return Response.fail("两次密码输入不一致");
+
+        }
         Response<Boolean> response = userDetailFacade.register(userDetailDTO);
-        return response.getResult();
+        return response;
     }
 
     @ApiOperation("请求发送验证码")
@@ -82,6 +97,8 @@ public class UserController {
         if(verityCode.equals(sentVerityCode)){
             // 登陆成功删除验证码
             redis.remove(verityKey);
+
+            //根据sessionId存储
             String sessionId = request.getRequestedSessionId();
             String loginKey = RedisKeyConstant.getUserLoginFlag(sessionId);
             redis.valuePut(loginKey,userDetail.getId());
@@ -94,7 +111,7 @@ public class UserController {
     @ApiOperation("用户登陆校验-密码和名称方式")
     @PostMapping(value = "/userLogin/password")
     public Response<Boolean> userLoginPass(@RequestParam String phoneNumber
-            ,@RequestParam String password){
+            ,@RequestParam String password,HttpServletRequest request){
 
         String errorKey = RedisKeyConstant.getLoginErrorTimes(phoneNumber);
 
@@ -102,7 +119,7 @@ public class UserController {
             return Response.fail("账户已被锁定");
         }
 
-        Response<Boolean> response = userDetailFacade.loginByPhoneNumber(phoneNumber,password);
+        Response<UserDetail> response = userDetailFacade.loginByPhoneNumber(phoneNumber,password);
 
         if(!response.isSuccess() && ("账号或密码错误").equals(response.getError())){
             int times = RedisUtil.calErrorTimes(redis.getValue(errorKey));
@@ -115,6 +132,23 @@ public class UserController {
             }
         }
         redis.remove(errorKey);
-        return response;
+
+        //根据sessionId存储
+        String sessionId = request.getRequestedSessionId();
+        String loginKey = RedisKeyConstant.getUserLoginFlag(sessionId);
+        redis.valuePut(loginKey,response.getResult().getId());
+        return Response.ok();
     }
+
+    private boolean checkString(String string){
+
+        if(Objects.isNull(string)){
+            return true;
+        }
+        if(string.length() == 0){
+            return true;
+        }
+        return false;
+    }
+
 }

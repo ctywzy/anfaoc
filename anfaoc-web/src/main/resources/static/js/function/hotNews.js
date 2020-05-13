@@ -81,7 +81,7 @@ $(document).ready(function () {
             "\t\t\t\t\t\t</div>\n" +
             "\n" +
             "\t\t\t\t\t\t<div class=\"collapse post__collapse\" id=\"collapse3\">\n" +
-            "\t\t\t\t\t\t\t<form action=\"#\" class=\"post__form\">\n" +
+            "\t\t\t\t\t\t\t<form action=\" "+ + "\" class=\"post__form\">\n" +
             "\t\t\t\t\t\t\t\t<input type=\"text\" placeholder=\"Type your comment...\">\n" +
             "\t\t\t\t\t\t\t\t<button type=\"button\"><i class=\"icon ion-ios-paper-plane\"></i></button>\n" +
             "\t\t\t\t\t\t\t</form>\n" +

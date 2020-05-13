@@ -17,7 +17,7 @@ public class jacksonTest {
         ObjectMapper mapper = new ObjectMapper();
         UserDetail userDetail = new UserDetail();
         userDetail.setId(1L);
-        userDetail.setPhoneNumber(123L);
+        userDetail.setPhoneNumber("123");
         userDetail.setUserAge(7);
 
         List<UserDetail> list = new ArrayList<>();

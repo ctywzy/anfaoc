@@ -36,7 +36,7 @@ public class UserDetail implements Serializable {
     private AuthorityType userAuthority;
 
     /** 手机号 **/
-    private Long phoneNumber;
+    private String phoneNumber;
 
     /** 注册时间 **/
     private String createTime;

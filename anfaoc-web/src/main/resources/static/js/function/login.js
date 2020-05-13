@@ -22,7 +22,7 @@ $(document).ready(function() {
                 var msg = response.error;
                 if (success == true) {
                     $("#bingo").html("验证成功，即将跳转");
-                    window.setTimeout(location.href='/homepage', 2000);
+                    window.setTimeout(location.href='/homePage', 2000);
                 }else {
 
                     $("#bingo").html(msg);
@@ -33,18 +33,24 @@ $(document).ready(function() {
     })
 
     //注册
-    $("#registerButton").click(function () {
-        $.get(
+    $("#nameLoginButton").click(function () {
+        $.post(
             {
-                async : false,
-                url : '',
+                async : true,
+                url : '/api/anfaoc/user/ordinary/userLogin/password',
                 data : {
-
+                    phoneNumber : $("#username").val(),
+                    password : $("#password").val()
                 },
                 dataType : 'text',
                 success : function (result) {
-                    window.location.href = '/newsPage';
-                    //请求数据填充
+                    var response = $.parseJSON(result);
+                    var success = response.success;
+                    if(success == true){
+                        window.setTimeout(location.href='/homePage', 2000);
+                    }else{
+                        alert("用户名或密码错误");
+                    }
                 }
             }
         )

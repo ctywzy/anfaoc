@@ -34,18 +34,28 @@ CREATE TABLE `label_detail` (
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
 
 -- 创建评论表
+CREATE TABLE `comments` (
+    `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '自增id',
+    `content` varchar(255) NOT NULL COMMENT '用户id',
+    `news_id` varchar(20) NOT NULL COMMENT '新闻id',
+    `create_time` varchar(100) NOT NULL COMMENT '标签创建时间',
+    PRIMARY KEY (`id`) USING BTREE
+)ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
 
-
--- 创建回复表
-
-
--- 创建用户标签关系表表
+-- 用户标签表
+CREATE TABLE `user_label` (
+    `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '自增id',
+    `user_id` varchar(255) NOT NULL COMMENT '用户id',
+    `label_id` varchar(20) NOT NULL COMMENT '标签id',
+    `create_time` varchar(100) NOT NULL COMMENT '标签创建时间',
+    PRIMARY KEY (`id`) USING BTREE
+)ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
 
 -- 新闻收藏表
 CREATE TABLE `news_collection` (
     `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '自增id',
     `user_id` varchar(20) NOT NULL COMMENT '用户id',
-    `label_name` varchar(20) NOT NULL COMMENT '新闻id',
+    `news_id` varchar(20) NOT NULL COMMENT '新闻id',
     `create_time` varchar(100) NOT NULL COMMENT '标签创建时间',
     PRIMARY KEY (`id`) USING BTREE
 )ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;

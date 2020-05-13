@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<!-- CSS -->
+	<link rel="stylesheet" href="css/bootstrap-reboot.min.css">
+	<link rel="stylesheet" href="css/bootstrap-grid.min.css">
+	<link rel="stylesheet" href="css/owl.carousel.min.css">
+	<link rel="stylesheet" href="css/nouislider.min.css">
+	<link rel="stylesheet" href="css/select2.min.css">
+	<link rel="stylesheet" href="css/jquery.mCustomScrollbar.min.css">
+	<link rel="stylesheet" href="css/ionicons.min.css">
+	<link rel="stylesheet" href="css/main.css">
+
+	<!-- Favicons -->
+	<link rel="icon" type="image/png" href="icon/favicon-32x32.png" sizes="32x32">
+	<link rel="apple-touch-icon" href="icon/favicon-32x32.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="icon/apple-touch-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="icon/apple-touch-icon-114x114.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="icon/apple-touch-icon-144x144.png">
+
+	<meta name="description" content="">
+	<meta name="keywords" content="">
+	<meta name="author" content="Dmitry Volkov">
+	<title>iJ – Job Board & Freelance Services Marketplace HTML Template</title>
+</head>
+<input type="hidden" value="1" id = "pageNumber"/>
+<body>
+	
+	<!-- header -->
+	<header class="header">
+		<div class="container">
+			<div class="row">
+				<div class="col-7 col-md-9 col-lg-8 col-xl-9">
+					<div class="header__content">
+						<!-- header menu btn -->
+						<button class="header__btn" type="button">
+							<span></span>
+							<span></span>
+							<span></span>
+						</button>
+						<!-- end header menu btn -->
+
+						<!-- header logo -->
+						<a href="index.html" class="header__logo">
+							<img src="img/logo.svg" alt="">
+						</a>
+						<!-- end header logo -->
+
+						<ul class="header__nav">
+							<!-- dropdown -->
+							<li class="header__nav-item">
+								<a href="homepage" class="header__nav-link">个人主页</a>
+							</li>
+							<!-- end dropdown -->
+
+							<!-- dropdown -->
+							<li class="header__nav-item">
+								<a class="dropdown-toggle header__nav-link" href="newsPage">热点新闻</a>
+							</li>
+							<!-- end dropdown -->
+
+							<!-- dropdown -->
+							<li class="header__nav-item">
+								<a class="dropdown-toggle header__nav-link" href="newsRecommendPage">推荐新闻</a>
+							</li>
+							<!-- end dropdown -->
+
+							<!-- dropdown -->
+							<li class="header__nav-item">
+								<a class="dropdown-toggle header__nav-link" href="companies.html">标签选择</a>
+							</li>
+
+							<li class="header__nav-item">
+								<a class="dropdown-toggle header__nav-link" href="#" role="button" id="dropdownMenuPages" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">其他功能</a>
+
+								<ul class="dropdown-menu header__dropdown-menu" aria-labelledby="dropdownMenuPages">
+									<li><a href="messages.html">消息</a></li>
+									<li><a href="contacts.html">私信</a></li>
+									<li><a href="signin.html">登陆</a></li>
+									<li><a href="signup.html">注册</a></li>
+									<li><a href="forgot.html">修改密码</a></li>
+								</ul>
+							</li>
+							<!-- end dropdown -->
+						</ul>
+
+						<!-- header search -->
+						<form action="#" class="header__search">
+							<input class="header__search-input" type="text" placeholder="Search...">
+							<button class="header__search-button" type="button">
+								<i class="icon ion-ios-search"></i>
+							</button>
+						</form>
+						<!-- end header search -->
+					</div>
+				</div>
+
+				<div class="col-5 col-md-3 col-lg-4 col-xl-3">
+					<div class="header__content header__content--end">
+						<a href="messages.html" class="header__messages header__messages--active">
+							<i class="icon ion-ios-mail"></i>
+						</a>
+
+						<div class="header__notifications">
+							<a class="dropdown-toggle header__notifications-btn header__notifications-btn--active" href="#" role="button" id="dropdownMenuNotifications" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								<i class="icon ion-ios-notifications"></i>
+							</a>
+
+							<div class="dropdown-menu dropdown-menu-right header__dropdown-menu header__dropdown-menu--right header__dropdown-menu--ntf" aria-labelledby="dropdownMenuNotifications">
+								<div class="header__ntf">
+									<a href="#" class="header__ntf-img">
+										<img src="img/user3.jpg" alt="">
+									</a>
+									<h6 class="header__ntf-title">
+										<span>Marsha Baldwin</span> Comment on your project.
+									</h6>
+								</div>
+
+								<div class="header__ntf">
+									<a href="#" class="header__ntf-img">
+										<img src="img/user7.jpg" alt="">
+									</a>
+									<h6 class="header__ntf-title">
+										<span>Andy Ramos</span> Comment on your project.
+									</h6>
+								</div>
+
+								<div class="header__ntf">
+									<a href="#" class="header__ntf-img">
+										<img src="img/user4.jpg" alt="">
+									</a>
+									<h6 class="header__ntf-title">
+										<span>Sophia Mendoza</span> Comment on your project.
+									</h6>
+								</div>
+
+								<div class="header__ntf">
+									<a href="#" class="header__ntf-img">
+										<img src="img/user1.jpg" alt="">
+									</a>
+									<h6 class="header__ntf-title">
+										<span>Tony Young</span> Comment on your project.
+									</h6>
+								</div>
+
+								<a href="#" class="header__ntf-more">View more</a>
+							</div>
+						</div>
+
+						<div class="header__profile">
+							<a class="dropdown-toggle header__profile-btn" href="#" role="button" id="dropdownMenuProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								<img src="img/user5.jpg" alt="">
+								<span>John Doe</span>
+							</a>
+
+							<ul class="dropdown-menu dropdown-menu-right header__dropdown-menu header__dropdown-menu--right" aria-labelledby="dropdownMenuProfile">
+								<li><a href="profile.html"><i class="icon ion-ios-settings"></i> Settings</a></li>
+								<li><a href="privacy.html"><i class="icon ion-ios-lock"></i> Privacy</a></li>
+								<li><a href="faq.html"><i class="icon ion-ios-help-buoy"></i> FAQ</a></li>
+								<li><a href="#"><i class="icon ion-ios-exit"></i> Logout</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</header>
+	<!-- end header -->
+
+	<!-- main content -->
+	<main class="main main--breadcrumb">
+		<!-- breadcrumb -->
+		<div class="breadcrumb">
+			<div class="container">
+				<div class="row">
+					<div class="col-12">
+						<ul class="breadcrumb__wrap">
+							<li class="breadcrumb__item breadcrumb__item--active">热点新闻</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- end breadcrumb -->
+
+		<div class="container">
+			<div class="row">
+				<div class="col-12 col-md-5 col-lg-4 col-xl-3" style="position: fixed;right: 0px;top: 130px;">
+					<!-- filter -->
+					<div class="sidebox">
+						<h4 class="sidebox__title">Filters <button type="button">Clear all</button></h4>
+
+						<div class="filter">
+							<div class="filter__group">
+								<label class="filter__label">标题:</label>
+								<input type="text" class="filter__input" placeholder="标题">
+							</div>
+							
+
+							<div class="filter__group">
+								<label class="filter__label">收藏次数</label>
+
+								<div class="filter__range">
+									<div id="filter__range-start"></div>
+									<div id="filter__range-end"></div>
+								</div>
+
+								<div id="filter__range"></div>
+							</div>
+
+
+							<div class="filter__group">
+								<button class="filter__btn" type="button"><span>Search</span></button>
+							</div>
+						</div>
+					</div>
+					<!-- end filter -->
+				</div>
+
+				<div class="col-12 col-md-9 col-lg-9 col-xl-9">
+					<!-- post -->
+
+					
+					<div class="post">
+						<div class="post__head">
+							<a href="#" class="post__head-img">
+								<img src="img/user2.jpg" alt="">
+							</a>
+							<div class="post__head-title">
+								<h5><a href="#">Andy Ramos</a></h5>
+								<p>11 min ago</p>
+							</div>
+
+							<div class="post__dropdown">
+								<a class="dropdown-toggle post__dropdown-btn" href="#" role="button" id="dropdownMenu3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+									<i class="icon ion-md-more"></i>
+								</a>
+
+								<ul class="dropdown-menu dropdown-menu-right post__dropdown-menu" aria-labelledby="dropdownMenu3">
+									<li><a href="#">Edit</a></li>
+									<li><a href="#">Delete</a></li>
+									<li><a href="#">Hide</a></li>
+								</ul>
+							</div>
+						</div>
+
+						<div class="post__wrap">
+							<div class="post__company">
+								<i class="icon ion-ios-briefcase"></i>
+								<span>Front-end Developer</span>
+							</div>
+
+							<div class="post__actions">
+								<a class="post__actions-btn post__actions-btn--green" href="#">
+									<i class="icon ion-ios-bookmark"></i>
+								</a>
+								<a href="#" class="post__actions-btn post__actions-btn--blue"><span>收藏</span></a>
+							</div>
+						</div>
+
+						<div class="post__description">
+							<div>
+								<img style="position: relative;left: 50%;top: 50%;width:350px;height: 500px" src=" https://x0.ifengimg.com/ucms/2020_12/C9E5B57DF0D5CDC2A973C4A27A536465A2BB04A3_w1080_h1920.jpg">
+							</div>
+							<a href="abc+def">view more</a>
+						</div>
+
+						<div class="post__tags">
+							<a href="#">HTML</a>
+							<a href="#">CSS</a>
+							<a href="#">JS</a>
+							<a href="#">PSD</a>
+						</div>
+
+						<div class="post__stats">
+							<div>
+								<a class="post__likes" href="#"><i class="icon ion-ios-heart"></i> <span>15</span></a>
+								<a class="post__comments" data-toggle="collapse" href="#collapse3" role="button" aria-expanded="false" aria-controls="collapse1"><i class="icon ion-ios-text"></i> <span>0</span></a>
+							</div>
+
+							<div class="post__views">
+								<i class="icon ion-ios-eye"></i> <span>214</span>
+							</div>
+						</div>
+
+						<div class="collapse post__collapse" id="collapse3">
+							<form action="#" class="post__form">
+								<input type="text" placeholder="Type your comment...">
+								<button type="button"><i class="icon ion-ios-paper-plane"></i></button>
+							</form>
+						</div>
+					</div>
+
+					<div class="post">
+						<div class="post__head">
+							<a href="#" class="post__head-img">
+								<img src="img/user2.jpg" alt="">
+							</a>
+							<div class="post__head-title">
+								<h5><a href="#">Andy Ramos</a></h5>
+								<p>11 min ago</p>
+							</div>
+
+							<div class="post__dropdown">
+								<a class="dropdown-toggle post__dropdown-btn" href="#" role="button" id="dropdownMenu3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+									<i class="icon ion-md-more"></i>
+								</a>
+
+								<ul class="dropdown-menu dropdown-menu-right post__dropdown-menu" aria-labelledby="dropdownMenu3">
+									<li><a href="#">Edit</a></li>
+									<li><a href="#">Delete</a></li>
+									<li><a href="#">Hide</a></li>
+								</ul>
+							</div>
+						</div>
+
+						<div class="post__wrap">
+							<div class="post__company">
+								<i class="icon ion-ios-briefcase"></i>
+								<span>Front-end Developer</span>
+							</div>
+
+							<div class="post__actions">
+								<a class="post__actions-btn post__actions-btn--green" href="#">
+									<i class="icon ion-ios-bookmark"></i>
+								</a>
+								<a href="#" class="post__actions-btn post__actions-btn--blue"><span>收藏</span></a>
+							</div>
+						</div>
+
+						<div class="post__description">
+							<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.</p>
+							<a href="abc+def">view more</a>
+						</div>
+
+						<div class="post__tags">
+							<a href="#">HTML</a>
+							<a href="#">CSS</a>
+							<a href="#">JS</a>
+							<a href="#">PSD</a>
+						</div>
+
+						<div class="post__stats">
+							<div>
+								<a class="post__likes" href="#"><i class="icon ion-ios-heart"></i> <span>15</span></a>
+								<a class="post__comments" data-toggle="collapse" href="#collapse3" role="button" aria-expanded="false" aria-controls="collapse1"><i class="icon ion-ios-text"></i> <span>0</span></a>
+							</div>
+
+							<div class="post__views">
+								<i class="icon ion-ios-eye"></i> <span>214</span>
+							</div>
+						</div>
+
+						<div class="collapse post__collapse" id="collapse3">
+							<form action="#" class="post__form">
+								<input type="text" placeholder="Type your comment...">
+								<button type="button"><i class="icon ion-ios-paper-plane"></i></button>
+							</form>
+						</div>
+					</div>
+					<!-- end post -->
+					<button class="main__btn" type="button"><span>load more</span></button>
+					<!-- end view more -->
+				</div>
+
+				
+			</div>
+		</div>
+	</main>
+	<!-- end main content -->
+
+	<!-- footer -->
+	<footer class="footer">
+		<div class="container">
+			<div class="row">
+				<div class="col-12">
+					<div class="footer__content">
+						<a href="index.html" class="footer__logo">
+							<img src="img/logo.svg" alt="">
+						</a>
+
+						<span class="footer__copyright">© 2020 iJob<br> Create by <a href="https://themeforest.net/user/dmitryvolkov/portfolio?ref=DmitryVolkov" target="_blank">Dmitry Volkov</a></span>
+
+						<nav class="footer__nav">
+							<a href="contacts.html">Contacts</a>
+							<a href="faq.html">FAQ</a>
+							<a href="privacy.html">Privacy Policy</a>
+						</nav>
+
+						<button class="footer__back" type="button">
+							<i class="icon ion-ios-arrow-round-up"></i>
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
+	<!-- end footer -->
+
+	<!-- JS -->
+	<script src="js/jquery-3.4.1.min.js"></script>
+	<script src="js/bootstrap.bundle.min.js"></script>
+	<script src="js/owl.carousel.min.js"></script>
+	<script src="js/wNumb.js"></script>
+	<script src="js/nouislider.min.js"></script>
+	<script src="js/select2.min.js"></script>
+	<script src="js/jquery.mousewheel.min.js"></script>
+	<script src="js/jquery.mCustomScrollbar.min.js"></script>
+	<script src="js/main.js"></script>
+</body>
+</html>

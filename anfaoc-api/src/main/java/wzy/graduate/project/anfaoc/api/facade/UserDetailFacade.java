@@ -44,5 +44,5 @@ public interface UserDetailFacade {
      * @Param
      * @return
      **/
-    Response<Boolean> loginByPhoneNumber(String phoneNumber, String password);
+    Response<UserDetail> loginByPhoneNumber(String phoneNumber, String password);
 }

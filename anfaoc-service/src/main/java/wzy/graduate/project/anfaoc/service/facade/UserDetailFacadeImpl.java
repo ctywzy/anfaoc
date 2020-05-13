@@ -43,6 +43,11 @@ public class UserDetailFacadeImpl implements UserDetailFacade {
     public Response<Boolean> register(UserDetailDTO userDetailDTO) {
         try{
             UserDetail userDetail = UserDetailConvert.modelConvert(userDetailDTO);
+            //判断电话号码是否存在
+            UserDetail userJudge = userDetailService.findUserByPhoneNumber(userDetail.getPhoneNumber());
+            if(Objects.isNull(userJudge)){
+                return Response.fail("电话号码已经被注册");
+            }
             userDetailService.register(userDetail);
         }catch (ServiceException e){
             return Response.fail(e.getMessage());
@@ -67,7 +72,7 @@ public class UserDetailFacadeImpl implements UserDetailFacade {
     }
 
     @Override
-    public Response<Boolean> loginByPhoneNumber(String phoneNumber, String password) {
+    public Response<UserDetail> loginByPhoneNumber(String phoneNumber, String password) {
 
         UserDetail userDetail = null;
         try{
@@ -75,14 +80,13 @@ public class UserDetailFacadeImpl implements UserDetailFacade {
         }catch (Exception e){
             return Response.fail(e.getMessage());
         }
-        Response<Boolean> response = Response.ok(Boolean.TRUE);
         if(Objects.isNull(userDetail)){
-            response = Response.fail("用户不存在");
+            return Response.fail("用户不存在");
         }else{
             if(!password.equals(userDetail.getUserPassword())){
-                response = Response.fail("账号或密码错误");
+                return  Response.fail("账号或密码错误");
             }
         }
-        return response;
+        return Response.ok(userDetail);
     }
 }
