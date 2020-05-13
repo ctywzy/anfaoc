@@ -38,4 +38,10 @@ public interface UserDetailService {
      * @return
      **/
     UserDetail findUserByPhoneNumber(String phoneNumber);
+
+    /**
+     * @Description 根据userId查询用户
+     * @Date  2020/5/13
+     **/
+    UserDetail findUserByUserId(String userId);
 }

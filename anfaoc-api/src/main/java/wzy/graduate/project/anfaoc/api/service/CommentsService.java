@@ -12,5 +12,5 @@ public interface CommentsService {
      **/
     void addComments(Comments comments);
 
-    List<Comments> getAllCommnets(Long newId);
+    List<Comments> getAllCommnets(Long newsId);
 }

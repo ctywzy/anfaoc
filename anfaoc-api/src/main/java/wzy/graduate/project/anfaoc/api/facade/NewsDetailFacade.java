@@ -42,4 +42,10 @@ public interface NewsDetailFacade {
      * @Date  2020/5/12
      **/
     Response<NewsDetailDTO> getNewsDetail(Long newsId);
+
+    /**
+     * @Description 根据用户id获取新闻
+     * @Date  2020/5/13
+     **/
+    Response<List<NewsDetailDTO>> newsColPage(String userId);
 }

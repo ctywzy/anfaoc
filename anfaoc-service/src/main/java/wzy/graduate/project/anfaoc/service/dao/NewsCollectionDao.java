@@ -1,7 +1,10 @@
 package wzy.graduate.project.anfaoc.service.dao;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import wzy.graduate.project.anfaoc.api.domain.entity.NewsCollectionDetail;
+
+import java.util.List;
 
 /**
  * @author wangzy
@@ -13,4 +16,8 @@ import wzy.graduate.project.anfaoc.api.domain.entity.NewsCollectionDetail;
 public interface NewsCollectionDao {
 
     void insert(NewsCollectionDetail detail);
+
+    NewsCollectionDetail oneJudge(NewsCollectionDetail detail);
+
+    List<NewsCollectionDetail> getAllColNews(@Param("userId") String userId);
 }

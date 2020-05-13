@@ -89,4 +89,20 @@ public class UserDetailFacadeImpl implements UserDetailFacade {
         }
         return Response.ok(userDetail);
     }
+
+    @Override
+    public Response<UserDetail> findUserByUserId(String userId) {
+        UserDetail userDetail = null;
+
+        try{
+            userDetail = userDetailService.findUserByUserId(userId);
+        }catch (Exception e){
+            return Response.fail(e.getMessage());
+        }
+        Response<UserDetail> response = Response.ok(userDetail);
+        if(Objects.isNull(userDetail)){
+            response = Response.fail("用户不存在");
+        }
+        return response;
+    }
 }

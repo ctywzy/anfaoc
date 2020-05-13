@@ -19,7 +19,7 @@
     </sql>
 
     <sql id="tabel_name">
-        news_collection
+        comments
     </sql>
 
     <sql id = "columns_all">
@@ -45,9 +45,12 @@
     </insert>
 
     <select id="getAllCommnets" resultType="wzy.graduate.project.anfaoc.api.domain.entity.Comments">
-        SELECT * FROM
+        SELECT
+        <include refid="columns_all"/>
+        FROM
         <include refid="tabel_name"/>
-        <include refid="criteria"/>
+        WHERE
+        `news_id` = #{newsId}
     </select>
 
 

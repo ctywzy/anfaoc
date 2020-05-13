@@ -19,7 +19,7 @@
     </sql>
 
     <sql id="tabel_name">
-        news_collection
+        user_label
     </sql>
 
     <sql id = "columns_all">

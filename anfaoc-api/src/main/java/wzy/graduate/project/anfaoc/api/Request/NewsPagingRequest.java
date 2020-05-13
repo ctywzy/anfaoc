@@ -16,11 +16,14 @@ public class NewsPagingRequest implements Serializable {
     private static final long serialVersionUID = -6199253197397260099L;
 
     @ApiModelProperty("页码")
-    Integer pagingNo;
+    private Integer pagingNo;
 
     @ApiModelProperty("页面大小")
-    Integer pageSize;
+    private Integer pageSize;
+
+    @ApiModelProperty("用户id")
+    private String userId;
 
     @ApiModelProperty("类型")
-    PagingType pagingType;
+    private PagingType pagingType;
 }

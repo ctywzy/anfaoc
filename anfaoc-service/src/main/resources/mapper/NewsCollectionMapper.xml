@@ -44,6 +44,19 @@
         (<include refid="value_exclude_id"/>)
     </insert>
 
+    <select id="oneJudge" resultType="wzy.graduate.project.anfaoc.api.domain.entity.NewsCollectionDetail">
+        SELECT * FROM
+        <include refid="tabel_name"/>
+        WHERE
+        `user_id` = #{userId} AND `news_id` = #{newsId}
+    </select>
+
+    <select id="getAllColNews" resultType="wzy.graduate.project.anfaoc.api.domain.entity.NewsCollectionDetail">
+        SELECT * FROM
+        <include refid="tabel_name"/>
+        WHERE
+        `user_id` = #{userId}
+    </select>
 
 
 </mapper>

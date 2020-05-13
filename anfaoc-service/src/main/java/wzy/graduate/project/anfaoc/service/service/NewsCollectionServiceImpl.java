@@ -9,6 +9,8 @@ import wzy.graduate.project.anfaoc.common.exception.ServiceException;
 import wzy.graduate.project.anfaoc.service.dao.NewsCollectionDao;
 
 import javax.sql.rowset.serial.SerialException;
+import java.util.List;
+import java.util.Objects;
 
 /**
  * @author wangzy
@@ -29,5 +31,32 @@ public class NewsCollectionServiceImpl implements NewsCollectionService {
             throw new ServiceException(e.getMessage());
         }
 
+    }
+
+    @Override
+    public Boolean newsCollectionOneJudge(NewsCollectionDetail detail) {
+
+        try{
+            NewsCollectionDetail newsCollectionDetail = newsCollectionDao.oneJudge(detail);
+            if(Objects.nonNull(newsCollectionDetail)){
+                return Boolean.FALSE;
+            }
+        }catch (Exception e){
+            log.info(e.getMessage());
+            throw new ServiceException(e.getMessage());
+        }
+        return Boolean.TRUE;
+    }
+
+    @Override
+    public List<NewsCollectionDetail> getAllColNews(String userId) {
+        List<NewsCollectionDetail> details;
+        try{
+            details = newsCollectionDao.getAllColNews(userId);
+        }catch (Exception e){
+            log.info(e.getMessage());
+            throw new ServiceException(e.getMessage());
+        }
+        return details;
     }
 }

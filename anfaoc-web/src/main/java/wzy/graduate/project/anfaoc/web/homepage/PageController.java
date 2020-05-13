@@ -58,14 +58,16 @@ public class PageController {
 
     @ApiOperation("用户信息页面")
     @GetMapping("homePage")
-    public String homePage(HttpServletRequest request){
+    public String homePage(HttpServletRequest request,Model model){
         HttpSession session = request.getSession();
         String sessionId = session.getId();
         String loginKey = RedisKeyConstant.getUserLoginFlag(sessionId);
         Object loginFlag =  redis.getValue(loginKey);
+
         if(Objects.isNull(loginFlag)){
             return "usercontrol/login";
         }else{
+            model.addAttribute("userId",String.valueOf(loginFlag));
             return "page/userPage";
         }
 

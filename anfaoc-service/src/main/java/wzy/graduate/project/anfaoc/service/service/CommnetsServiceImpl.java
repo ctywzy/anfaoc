@@ -26,7 +26,7 @@ public class CommnetsServiceImpl implements CommentsService {
     }
 
     @Override
-    public List<Comments> getAllCommnets(Long newId) {
-       return commentsDao.getAllCommnets(newId);
+    public List<Comments> getAllCommnets(Long newsId) {
+       return commentsDao.getAllCommnets(String.valueOf(newsId));
     }
 }

@@ -45,4 +45,10 @@ public interface UserDetailFacade {
      * @return
      **/
     Response<UserDetail> loginByPhoneNumber(String phoneNumber, String password);
+
+    /**
+     * @Description 根据用户id获取用户信息
+     * @Date  2020/5/13
+     **/
+    Response<UserDetail> findUserByUserId(String userId);
 }

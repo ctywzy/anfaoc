@@ -36,6 +36,12 @@
     <sql id = "criteria">
         <where>
             <if test = "id != null"> AND `id` = #{id}</if>
+            <if test = "ids != null">
+                AND `id` in
+                <foreach item="id" collection="ids" open="(" separator="," close=")">
+                    #{id}
+                </foreach>
+            </if>
             <if test = "newUrl != null"> AND `id` = #{newUrl}</if>
             <if test = "newTitle != null"> AND `id` = #{newTitle}</if>
             <if test = "newLabels != null"> AND `id` = #{newLabels}</if>

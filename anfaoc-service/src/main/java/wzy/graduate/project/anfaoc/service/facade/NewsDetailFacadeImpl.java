@@ -6,7 +6,9 @@ import com.google.common.collect.Maps;
 import wzy.graduate.project.anfaoc.api.Request.NewsPagingRequest;
 import wzy.graduate.project.anfaoc.api.facade.CommentsFacade;
 import wzy.graduate.project.anfaoc.api.facade.LabelDetailFacade;
+import wzy.graduate.project.anfaoc.api.facade.NewsCollectionFacade;
 import wzy.graduate.project.anfaoc.api.service.CommentsService;
+import wzy.graduate.project.anfaoc.api.service.NewsCollectionService;
 import wzy.graduate.project.anfaoc.common.model.Response;
 import wzy.graduate.project.anfaoc.common.model.entity.ParaEntity;
 import wzy.graduate.project.anfaoc.common.util.NewsUtil;
@@ -40,6 +42,9 @@ public class NewsDetailFacadeImpl implements NewsDetailFacade {
     @Autowired
     private CommentsFacade commentsFacade;
 
+    @Autowired
+    private NewsCollectionFacade newsCollectionFacade;
+
     private MapUtil mapUtil = new MapUtil();
 
     @Override
@@ -71,8 +76,6 @@ public class NewsDetailFacadeImpl implements NewsDetailFacade {
 
             Map<String,Object> criteria = mapUtil.toMap(request);
             List<NewsDetail> newsDetails = newsDetailService.paging(criteria);
-
-
             newsDetailDTOS = this.convertToFront(newsDetails);
 
         }catch (Exception e){
@@ -126,9 +129,22 @@ public class NewsDetailFacadeImpl implements NewsDetailFacade {
 
         }
 
-
-
         return Response.ok(newsDetailDTO);
+    }
+
+    @Override
+    public Response<List<NewsDetailDTO>> newsColPage(String userId) {
+        List<NewsDetailDTO> newsDetailDTOS = new ArrayList<>();
+        try{
+            List<String> newsIds = newsCollectionFacade.getAllColNewsId(userId);
+            Map<String,Object> criteria = Maps.newHashMap();
+            criteria.put("ids",newsIds);
+            List<NewsDetail> newsDetails = newsDetailService.colNews(criteria);
+            newsDetailDTOS = this.convertToFront(newsDetails);
+        }catch (Exception e){
+
+        }
+        return Response.ok(newsDetailDTOS);
     }
 
     /**

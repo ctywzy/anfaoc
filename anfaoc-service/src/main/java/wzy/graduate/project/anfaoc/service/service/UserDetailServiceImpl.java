@@ -45,4 +45,9 @@ public class UserDetailServiceImpl implements UserDetailService{
     public UserDetail findUserByPhoneNumber(String phoneNumber) {
         return userDetailDao.findUserByPhoneNumber(phoneNumber);
     }
+
+    @Override
+    public UserDetail findUserByUserId(String userId) {
+        return userDetailDao.findUserByUserId(userId);
+    }
 }

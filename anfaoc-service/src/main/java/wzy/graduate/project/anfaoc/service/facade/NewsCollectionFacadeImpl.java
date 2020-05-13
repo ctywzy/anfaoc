@@ -12,6 +12,10 @@ import wzy.graduate.project.anfaoc.api.service.NewsCollectionService;
 import wzy.graduate.project.anfaoc.common.model.Response;
 import wzy.graduate.project.anfaoc.common.util.NewsUtil;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 @Slf4j
 public class NewsCollectionFacadeImpl implements NewsCollectionFacade {
@@ -25,11 +29,25 @@ public class NewsCollectionFacadeImpl implements NewsCollectionFacade {
             NewsCollectionDetail detail = new NewsCollectionDetail();
             BeanUtils.copyProperties(newsCollectionDTO,detail);
             detail.setCreateTime(NewsUtil.getNowTime());
-            newsCollectionService.addNewsCollection(detail);
+            if(newsCollectionService.newsCollectionOneJudge(detail)){
+                newsCollectionService.addNewsCollection(detail);
+            }
         }catch (Exception e){
             log.info("收藏新闻出错:{}",e.getMessage());
             return Response.fail(e.getMessage());
         }
         return Response.ok(Boolean.TRUE);
+    }
+
+    @Override
+    public List<String> getAllColNewsId(String userId) {
+        List<NewsCollectionDetail> list = new ArrayList<>();
+        try{
+            list = newsCollectionService.getAllColNews(userId);
+
+        }catch (Exception e){
+            log.info("查找收藏新闻出错");
+        }
+        return list.stream().map(NewsCollectionDetail::getNewsId).collect(Collectors.toList());
     }
 }

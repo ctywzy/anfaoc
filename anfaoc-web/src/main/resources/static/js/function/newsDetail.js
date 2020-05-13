@@ -122,8 +122,7 @@ $(document).ready(function () {
             data : {
                 newsId : newsId
             },
-            success: function (result){
-                var response = $.parseJSON(result);
+            success: function (response){
                 var success = response.success;
                 if(success == true){
                     fillDiv(response.result);

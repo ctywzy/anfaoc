@@ -49,5 +49,10 @@
         FROM <include refid="table_name"/>
         WHERE `phone_number` = #{phoneNumber}
     </select>
+    <select id="findUserByUserId" resultType="wzy.graduate.project.anfaoc.api.domain.entity.UserDetail">
+        ELECT *
+        FROM <include refid="table_name"/>
+        WHERE `id` = #{userId}
+    </select>
 
 </mapper>

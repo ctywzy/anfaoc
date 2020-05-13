@@ -38,6 +38,14 @@ public class UserController {
     @Autowired
     private RedisHelper redis;
 
+    @ApiOperation("获取用户信息")
+    @GetMapping("/getUserDetail")
+    public Response<UserDetail> getUserDetail(String userId){
+        Response<UserDetail> response = userDetailFacade.findUserByUserId(userId);
+
+        return response;
+    }
+
     @ApiOperation("用户注册")
     @PostMapping("/register")
     public Response<Boolean> register(@RequestBody UserDetailDTO userDetailDTO){

@@ -57,6 +57,17 @@ public class newsDetailController {
         }
     }
 
+    @ApiOperation("用户收藏新闻获取")
+    @GetMapping("/getColNews")
+    public Response<List<NewsDetailDTO>> getColNews(String userId){
+        Response<List<NewsDetailDTO>> response = newsDetailFacade.newsColPage(userId);
+        if(response.isSuccess()){
+            return Response.ok(response.getResult());
+        }else{
+            return Response.fail("获取新闻失败");
+        }
+    }
+
     @ApiOperation("新闻详情")
     @GetMapping("/getNewsDetail")
     public Response<NewsDetailDTO> getNewsDetail(Long newsId){
