@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-<html xmlns:th="http://www.thymeleleaf.org">
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -16,11 +15,11 @@
 	<link rel="stylesheet" href="../static/css/main.css">
 
 	<!-- Favicons -->
-	<link rel="icon" type="image/png" href="icon/favicon-32x32.png" sizes="32x32">
-	<link rel="apple-touch-icon" href="icon/favicon-32x32.png">
-	<link rel="apple-touch-icon" sizes="72x72" href="icon/apple-touch-icon-72x72.png">
-	<link rel="apple-touch-icon" sizes="114x114" href="icon/apple-touch-icon-114x114.png">
-	<link rel="apple-touch-icon" sizes="144x144" href="icon/apple-touch-icon-144x144.png">
+	<link rel="icon" type="image/png" href="../static/icon/favicon-32x32.png" sizes="32x32">
+	<link rel="apple-touch-icon" href="../static/icon/favicon-32x32.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="../static/icon/apple-touch-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="../static/icon/apple-touch-icon-114x114.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="../static/icon/apple-touch-icon-144x144.png">
 
 	<meta name="description" content="">
 	<meta name="keywords" content="">
@@ -29,9 +28,10 @@
 </head>
 
 <body>
+	<input type="hidden" value="1" id = "pageNumber"/>
 	<!-- header -->
 	<header class="header">
-		<input type="hidden" th:value="${newsId}" id="newsNo"/>
+
 		<div class="container">
 			<div class="row">
 				<div class="col-7 col-md-9 col-lg-8 col-xl-9">
@@ -61,12 +61,16 @@
 							<!-- dropdown -->
 							<li class="header__nav-item">
 								<a class="dropdown-toggle header__nav-link" href="../newsPage" >热点新闻</a>
+
+						
 							</li>
 							<!-- end dropdown -->
 
 							<!-- dropdown -->
 							<li class="header__nav-item">
 								<a class="dropdown-toggle header__nav-link" href="../newsRecommendPage">推荐新闻</a>
+
+						
 							</li>
 							<!-- end dropdown -->
 
@@ -76,7 +80,6 @@
 							</li>
 							<!-- end dropdown -->
 
-							<!-- end dropdown -->
 
 							<!-- dropdown -->
 							<li class="header__nav-item">
@@ -105,11 +108,9 @@
 
 				<div class="col-5 col-md-3 col-lg-4 col-xl-3">
 					<div class="header__content header__content--end">
-						<a href="messages.html" class="header__messages header__messages--active">
-							<i class="icon ion-ios-mail"></i>
-						</a>
+						
 
-
+				
 						<div class="header__profile">
 							<a class="dropdown-toggle header__profile-btn" href="#" role="button" id="dropdownMenuProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 								<img src="../static/images/user5.jpg" alt="">
@@ -138,8 +139,7 @@
 				<div class="row">
 					<div class="col-12">
 						<ul class="breadcrumb__wrap">
-							<li class="breadcrumb__item"><a href="newsPage">热点列表</a></li>
-							<li class="breadcrumb__item breadcrumb__item--active">文章详情</li>
+							<li class="breadcrumb__item breadcrumb__item--active">标签</li>
 						</ul>
 					</div>
 				</div>
@@ -149,32 +149,83 @@
 
 		<div class="container">
 			<div class="row">
-				<div class="col-12 col-md-7 col-lg-8 col-xl-12" id="newsDiv">
 
-				</div>
-				<div class="post col-12 col-md-7 col-lg-8 col-xl-12">
-					<div class="collapse show post__collapse" id="collapse3">
-						<form action="#" class="post__form">
-							<input type="text" placeholder="Type your comment..." id="replymsg">
-							<button type="button" id="reply"><i class="icon ion-ios-paper-plane"></i></button>
-						</form>
-
-						<div id = "comments">
-							<div class="post__comment">
-								<a href="#" class="post__comment-img">
-									<img src="img/user9.jpg" alt="">
-								</a>
-								<div class="post__comment-title">
-									<h5><a href="#">Alan Patrick</a></h5>
-									<p>20 min ago</p>
+				<div class="col-12 col-md-7 col-lg-8 col-xl-12">
+					<div class="row" id="labelDiv">
+						<!-- company -->
+						<div class="col-12 col-sm-6 col-md-12 col-lg-3">
+							<div class="company">
+								<div class="company__logo">
+									<img src="../static/images/company.svg" alt="">
+								</div>
+								
+								<div class="company__wrap">
+									<h2 class="company__title"><a href="#">Envato</a></h2>
+									
+									<p class="company__text">Digital services</p>
 								</div>
 
-								<p class="post__comment-text">Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy.</p>
+								<div class="company__actions">
+									<div class="post__location">
+										<i class="icon ion-ios-navigate"></i>
+										<span>Australia</span>
+									</div>
+
+									<div class="post__actions">
+										<a class="post__actions-btn post__actions-btn--green" href="#">
+											<i class="icon ion-ios-bookmark"></i>
+										</a>
+										<a class="post__actions-btn post__actions-btn--red" href="#">
+											<i class="icon ion-ios-mail"></i>
+										</a>
+									</div>
+								</div>
 							</div>
 						</div>
+						<!-- end company -->
+
+						<!-- company -->
+						<div class="col-12 col-sm-6 col-md-12 col-lg-3">
+							<div class="company">
+								<div class="company__logo">
+									<img src="../static/images/company.svg" alt="">
+								</div>
+								
+								<div class="company__wrap">
+									<h2 class="company__title"><a href="#">Themeforest</a></h2>
+									
+									<p class="company__text">Digital services</p>
+								</div>
+
+								<div class="company__actions">
+									<div class="post__location">
+										<i class="icon ion-ios-navigate"></i>
+										<span>Vietnam</span>
+									</div>
+
+									<div class="post__actions">
+										<a class="post__actions-btn post__actions-btn--green" href="#">
+											<i class="icon ion-ios-bookmark"></i>
+										</a>
+										<a class="post__actions-btn post__actions-btn--red" href="#">
+											<i class="icon ion-ios-mail"></i>
+										</a>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- end company -->
+
+						
+
+						<!-- view more -->
+
+						<!-- end view more -->
+					</div>
+					<div class="col-12">
+						<button class="main__btn main__btn--margin" type="button" id="loadMoreButton"><span>加载更多</span></button>
 					</div>
 				</div>
-
 			</div>
 		</div>
 	</main>
@@ -218,6 +269,6 @@
 	<script src="../static/js/frameabout/jquery.mousewheel.min.js"></script>
 	<script src="../static/js/frameabout/jquery.mCustomScrollbar.min.js"></script>
 	<script src="../static/js/frameabout/main.js"></script>
-	<script src="../static/js/function/newsDetail.js"></script>
+	<script src="../static/js/function/labelPage.js"></script>
 </body>
 </html>

@@ -4,11 +4,16 @@
 
 $(document).ready(function (){
 
+    var newDiv = "<ul class=\"breadcrumb__wrap\">\n" +
+        "\t\t\t\t\t<li class=\"breadcrumb__item\"><a href=\"#\">个人主页</a></li>\n" +
+        "\t\t\t\t\t<li class=\"breadcrumb__item breadcrumb__item--active\">收藏资讯</li>\n" +
+        "\t\t\t\t</ul>";
     var userId = $("#userId").val();
+    var hotNews = "";
 
     //获取用户信息
     $.get({
-        url : "api/anfaoc/news/getHotNews",
+        url : "/api/anfaoc/user/ordinary/getUserDetail",
         dataType : "text",
         async : true,
         data : {
@@ -18,8 +23,11 @@ $(document).ready(function (){
         success : function(result){
             var response = $.parseJSON(result);
             success = response.success;
+            var user = response.result;
             if(success == true){
-                finalDiv(response.result);
+                $("#username").html(user.userName);
+                $("#phonenumber").html(user.phoneNumber);
+                $("#createTime").html(user.createTime);
             }else{
 
             }
@@ -46,13 +54,46 @@ $(document).ready(function (){
         }
     })
 
+    //获取热点新闻榜
+    $.get({
+        url : "api/anfaoc/news/getHotNews",
+        dataType : "text",
+        async : true,
+        data : {
+            pageNo : 1
 
+        },
+        success : function(result){
+            var response = $.parseJSON(result);
+            success = response.success;
+            if(success == true){
+                fillHotNewsDiv(response.result);
+            }else{
+
+            }
+        }
+    })
+
+    function fillHotNewsDiv(result) {
+        for(var i = 0;i<result.length; i++){
+            var jumpUrl = "getNewsDetail/"+result[i].id;
+            hotNewsFill(jumpUrl,result[i].newTitle);
+        }
+        $("#hotNews").html(hotNews);
+    }
+
+
+    function hotNewsFill(jumpUrl,title) {
+        hotNews = hotNews + "<div class=\"sidebox__job\">\n" +
+            "\t\t\t\t\t\t\t<div class=\"sidebox__job-title\">\n" +
+            "\t\t\t\t\t\t\t\t<a href=\" " + jumpUrl + "\">"+title +"</a>\n" +
+            "\t\t\t\t\t</div>";
+    }
     function finalDiv(result){
         for(var i = 0 ;i<result.length ; i++){
             var ajumpurl = "getNewsDetail/"+result[i].id;
-            singleDiv(ajumpurl,result[i].newLabels,result[i].newTitle,result[i].preViewPara,result[i].pageViews,i,result[i].id);
+            singleDiv(ajumpurl,result[i].newLabels,result[i].newTitle,result[i].userPreView,result[i].pageViews,i,result[i].id);
         }
-        connRow("<button class=\"main__btn\" type=\"button\" id=\"loadMore\"><span>load more</span></button>")
         $("#newsDiv").html(newDiv);
     }
 

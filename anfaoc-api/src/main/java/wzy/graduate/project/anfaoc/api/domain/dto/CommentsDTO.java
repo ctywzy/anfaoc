@@ -22,7 +22,10 @@ public class CommentsDTO implements Serializable {
     private Long id;
 
     @ApiModelProperty("新闻id")
-    private String newId;
+    private String newsId;
+
+    @ApiModelProperty("用户名")
+    private String username;
 
     @ApiModelProperty("评论内容")
     private String content;

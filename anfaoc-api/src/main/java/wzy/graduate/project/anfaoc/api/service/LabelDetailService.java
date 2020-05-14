@@ -4,6 +4,7 @@ import wzy.graduate.project.anfaoc.api.domain.entity.LabelDetail;
 import wzy.graduate.project.anfaoc.common.model.dto.NewsDetailDTO;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author wangzy
@@ -30,4 +31,9 @@ public interface LabelDetailService {
      **/
     Boolean updateLabelNumber(List<String> labels);
 
+    /**
+     * @Description 获取标签
+     * @Date  2020/5/13
+     **/
+    List<LabelDetail> getAllLabel(Map<String, Object> criteria);
 }

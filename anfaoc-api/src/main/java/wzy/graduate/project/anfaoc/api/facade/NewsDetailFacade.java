@@ -29,7 +29,7 @@ public interface NewsDetailFacade {
      * @Description 展示该用户被推荐的新闻到前端，pageSize 默认20
      * @Date  2020/3/30
      **/
-    Response<List<NewsDetailDTO>> newsPageRecommend(Integer pageNo);
+    Response<List<NewsDetailDTO>> newsPageRecommend(NewsPagingRequest request);
 
     /**
      * @Description 展示该用户自己喜欢的新闻，pageSize 默认20

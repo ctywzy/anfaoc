@@ -63,7 +63,7 @@
 
     <update id="addPageViews">
         UPDATE
-        <include refid="columns_all"/>
+        <include refid="table_name"/>
         SET `page_views` = `page_views` + 1
         <include refid="criteria"/>
     </update>
@@ -94,6 +94,13 @@
     </select>
 
     <select id="getNewsDetail" parameterType="map" resultType="wzy.graduate.project.anfaoc.api.domain.entity.NewsDetail">
+        SELECT
+        <include refid="columns_all"/>
+        FROM
+        <include refid="table_name"/>
+        <include refid="criteria"/>
+    </select>
+    <select id="getColNews" resultType="wzy.graduate.project.anfaoc.api.domain.entity.NewsDetail">
         SELECT
         <include refid="columns_all"/>
         FROM

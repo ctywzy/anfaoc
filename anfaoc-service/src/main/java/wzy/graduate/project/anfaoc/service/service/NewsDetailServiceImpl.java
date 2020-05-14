@@ -10,6 +10,7 @@ import wzy.graduate.project.anfaoc.common.exception.ServiceException;
 import wzy.graduate.project.anfaoc.common.model.dto.NewsDetailDTO;
 import wzy.graduate.project.anfaoc.service.dao.NewsDetailDao;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -85,6 +86,17 @@ public class NewsDetailServiceImpl implements NewsDetailService {
         }catch (Exception e){
             log.info("更新查看次数失败:{}",criteria);
         }
+    }
+
+    @Override
+    public List<NewsDetail> colNews(Map<String, Object> criteria) {
+        List<NewsDetail> list = new ArrayList<>();
+        try{
+            list = newsDetailDao.getColNews(criteria);
+        }catch (Exception e){
+            log.info("更新查看次数失败:{}",criteria);
+        }
+        return list;
     }
 
 }

@@ -13,7 +13,7 @@
         <where>
             <if test = "id != null"> AND `id` = #{id}</if>
             <if test = "userId != null"> AND `user_id` = #{userId}</if>
-            <if test = "newsId != null"> AND `label_Id` = #{labelId}</if>
+            <if test = "labelId != null"> AND `label_Id` = #{labelId}</if>
             <if test = "createTime != null"> AND `create_time` = #{createTime}</if>
         </where>
     </sql>
@@ -44,6 +44,17 @@
         (<include refid="value_exclude_id"/>)
     </insert>
 
+    <delete id="delete">
+        DELETE FROM
+        <include refid="tabel_name"/>
+        <include refid="criteria"/>
+    </delete>
+
+    <select id="find" resultType="wzy.graduate.project.anfaoc.api.domain.entity.UserLabel">
+        SELECT * FROM
+        <include refid="tabel_name"/>
+        <include refid="criteria"/>
+    </select>
 
 
 </mapper>

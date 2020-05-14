@@ -50,4 +50,10 @@ public interface NewsDetailDao {
      * @Date  2020/5/13
      **/
     void addPageViews(Map<String, Object> criteria);
+
+    /**
+     * @Description 收藏的新闻
+     * @Date  2020/5/13
+     **/
+    List<NewsDetail> getColNews(Map<String, Object> criteria);
 }

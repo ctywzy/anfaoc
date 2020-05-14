@@ -9,6 +9,7 @@ $(document).ready(function () {
     var newDiv = "";
     var newsId = $("#newsNo").val();
     var collectUrl = "../collectNews/"+newsId;
+    var commentDiv = "";
 
     loadNews();
 
@@ -19,23 +20,24 @@ $(document).ready(function () {
             contentType: "application/json;charset=UTF-8",
             async : true,
             data : JSON.stringify({
-                newId : newsId,
-                content : $("#reply").val()
+                newsId : newsId,
+                content : $("#replymsg").val()
             }),
             success : function (response) {
 
                 var success = response.success;
+                var msg = response.error;
                 if(success == true){
                     loadNews();
                 }else{
-                    alert("回复失败");
+                    alert(msg);
                 }
             }
         })
     })
 
     function fillDiv(result) {
-
+        newDiv = "";
         connRow("<div class=\"post\">\n" +
             "\t\t\t\t\t\t<div class=\"post__head\">\n" +
             "\t\t\t\t\t\t\t<div class=\"post__head-title\">\n" +
@@ -77,8 +79,7 @@ $(document).ready(function () {
 
         connRow("\t\t\t\t\t\t<div class=\"post__stats\">\n" +
             "\t\t\t\t\t\t\t<div>\n" +
-            "\t\t\t\t\t\t\t\t<a class=\"post__likes\" href=\"#\"><i class=\"icon ion-ios-heart\"></i> <span>15</span></a>\n" +
-            "\t\t\t\t\t\t\t\t<a class=\"post__comments\" data-toggle=\"collapse\" href=\"#collapse3\" role=\"button\" aria-expanded=\"false\" aria-controls=\"collapse3\"><i class=\"icon ion-ios-text\"></i> <span>0</span></a>\n" +
+            "\t\t\t\t\t\t\t\t<a class=\"post__comments\" data-toggle=\"collapse\" href=\"#collapse3\" role=\"button\" aria-expanded=\"false\" aria-controls=\"collapse3\"><i class=\"icon ion-ios-text\"></i> <span>"+ result.commentsNum +"</span></a>\n" +
             "\t\t\t\t\t\t\t</div>\n" +
             "\n" +
             "\t\t\t\t\t\t\t<div class=\"post__views\">\n" +
@@ -86,12 +87,6 @@ $(document).ready(function () {
             "\t\t\t\t\t\t\t</div>\n" +
             "\t\t\t\t\t\t</div>\n" +
             "\n" +
-            "\t\t\t\t\t\t<div class=\"collapse post__collapse\" id=\"collapse3\">\n" +
-            "\t\t\t\t\t\t\t<form class=\"post__form\">\n" +
-            "\t\t\t\t\t\t\t\t<input type=\"text\" placeholder=\"Type your comment...\">\n" +
-            "\t\t\t\t\t\t\t\t<button id= \"reply\" type=\"button\"><i class=\"icon ion-ios-paper-plane\"></i></button>\n" +
-            "\t\t\t\t\t\t\t</form>\n" +
-            "\t\t\t\t\t\t</div>\n" +
             "\t\t\t\t\t</div>");
 
 
@@ -118,7 +113,7 @@ $(document).ready(function () {
             url : "../api/anfaoc/news/getNewsDetail",
             dataType : "json",
             contentType: "application/json;charset=UTF-8",
-            async : true,
+            async : false,
             data : {
                 newsId : newsId
             },
@@ -126,11 +121,29 @@ $(document).ready(function () {
                 var success = response.success;
                 if(success == true){
                     fillDiv(response.result);
+                    fillReply(response.result);
                 }else{
                     alert("查询失败");
                 }
             }
         });
+    }
+
+    function fillReply(result){
+        commentDiv = "";
+        var replyNum = result.commentsNum;
+        for(var i = 0; i< replyNum;i++){
+            commentDiv += "<div id = \"comments\">\n" +
+                "\t\t\t\t\t\t\t<div class=\"post__comment\">\n" +
+                "\t\t\t\t\t\t\t\t<div class=\"post__comment-title\">\n" +
+                "\t\t\t\t\t\t\t\t\t<h5><a href=\"#\">"+ result.commentsName[i] +"</a></h5>\n" +
+                "\t\t\t\t\t\t\t\t</div>\n" +
+                "\n" +
+                "\t\t\t\t\t\t\t\t<p class=\"post__comment-text\">"+ result.comments[i] +"</p>\n" +
+                "\t\t\t\t\t\t\t</div>\n" +
+                "\t\t\t\t\t\t</div>";
+        }
+        $("#comments").html(commentDiv);
     }
 
 })

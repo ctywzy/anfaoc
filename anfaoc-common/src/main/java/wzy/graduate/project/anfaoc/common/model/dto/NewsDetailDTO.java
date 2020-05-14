@@ -56,6 +56,15 @@ public class NewsDetailDTO implements Serializable {
     @ApiModelProperty("预览内容")
     private String preViewPara;
 
+    @ApiModelProperty("用户页面预览")
+    private  String userPreView;
+
     @ApiModelProperty("评论列表")
     private List<String> comments;
+
+    @ApiModelProperty("评论人姓名")
+    private List<String> commentsName;
+
+    @ApiModelProperty("评论数")
+    private String commentsNum;
 }

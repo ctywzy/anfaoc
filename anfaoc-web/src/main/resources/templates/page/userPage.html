@@ -54,62 +54,39 @@
 					<ul class="header__nav">
 						<!-- dropdown -->
 						<li class="header__nav-item">
-							<a href="index.html" class="header__nav-link">个人主页</a>
+							<a href="homePage" class="header__nav-link">个人主页</a>
 						</li>
 						<!-- end dropdown -->
 
 						<!-- dropdown -->
 						<li class="header__nav-item">
-							<a class="dropdown-toggle header__nav-link" href="projects.html">热点新闻</a>
+							<a class="dropdown-toggle header__nav-link" href="newsPage">热点新闻</a>
 							
 						</li>
 						<!-- end dropdown -->
 
 						<!-- dropdown -->
 						<li class="header__nav-item">
-							<a class="dropdown-toggle header__nav-link" href="jobs.html">推荐新闻</a>
+							<a class="dropdown-toggle header__nav-link" href="newsRecommendPage">推荐新闻</a>
 
-							<ul class="dropdown-menu header__dropdown-menu" aria-labelledby="dropdownMenuJobs">
-								<li><a href="jobs.html">Jobs</a></li>
-								<li><a href="job.html">Single job</a></li>
-								<li><a href="add-job.html">Post a job</a></li>
-							</ul>
 						</li>
 						<!-- end dropdown -->
 
 						<!-- dropdown -->
 						<li class="header__nav-item">
-							<a class="dropdown-toggle header__nav-link" href="companies.html">标签选择</a>
-
-							<ul class="dropdown-menu header__dropdown-menu" aria-labelledby="dropdownMenuCompanies">
-								<li><a href="companies.html">Companies</a></li>
-								<li><a href="company.html">Company profile</a></li>
-							</ul>
+							<a class="dropdown-toggle header__nav-link" href="labelPage">标签选择</a>
 						</li>
 						<!-- end dropdown -->
 
-						<!-- dropdown -->
-						<!-- <li class="header__nav-item">
-                            <a class="dropdown-toggle header__nav-link" href="#" role="button" id="dropdownMenuProfiles" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Profiles</a>
 
-                            <ul class="dropdown-menu header__dropdown-menu" aria-labelledby="dropdownMenuProfiles">
-                                <li><a href="profiles.html">Profiles</a></li>
-                                <li><a href="profile.html">Profile</a></li>
-                            </ul>
-                        </li> -->
-						<!-- end dropdown -->
 
 						<!-- dropdown -->
 						<li class="header__nav-item">
 							<a class="dropdown-toggle header__nav-link" href="#" role="button" id="dropdownMenuPages" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">其他功能</a>
 
 							<ul class="dropdown-menu header__dropdown-menu" aria-labelledby="dropdownMenuPages">
-								<li><a href="messages.html">消息</a></li>
-								<!-- <li><a href="faq.html">Help Center</a></li> -->
-								<li><a href="contacts.html">私信</a></li>
-								<!-- <li><a href="privacy.html">Privacy Policy</a></li> -->
-								<li><a href="signin.html">登陆</a></li>
-								<li><a href="signup.html">注册</a></li>
+								<li><a href="login">登陆</a></li>
+								<li><a href="register">注册</a></li>
 								<li><a href="forgot.html">修改密码</a></li>
 							</ul>
 						</li>
@@ -133,52 +110,6 @@
 					<a href="messages.html" class="header__messages header__messages--active">
 						<i class="icon ion-ios-mail"></i>
 					</a>
-
-					<div class="header__notifications">
-						<a class="dropdown-toggle header__notifications-btn header__notifications-btn--active" href="#" role="button" id="dropdownMenuNotifications" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							<i class="icon ion-ios-notifications"></i>
-						</a>
-
-						<div class="dropdown-menu dropdown-menu-right header__dropdown-menu header__dropdown-menu--right header__dropdown-menu--ntf" aria-labelledby="dropdownMenuNotifications">
-							<div class="header__ntf">
-								<a href="#" class="header__ntf-img">
-									<img src="static/images/user3.jpg" alt="">
-								</a>
-								<h6 class="header__ntf-title">
-									<span>Marsha Baldwin</span> Comment on your project.
-								</h6>
-							</div>
-
-							<div class="header__ntf">
-								<a href="#" class="header__ntf-img">
-									<img src="static/images/user7.jpg" alt="">
-								</a>
-								<h6 class="header__ntf-title">
-									<span>Andy Ramos</span> Comment on your project.
-								</h6>
-							</div>
-
-							<div class="header__ntf">
-								<a href="#" class="header__ntf-img">
-									<img src="static/images/user4.jpg" alt="">
-								</a>
-								<h6 class="header__ntf-title">
-									<span>Sophia Mendoza</span> Comment on your project.
-								</h6>
-							</div>
-
-							<div class="header__ntf">
-								<a href="#" class="header__ntf-img">
-									<img src="static/images/user1.jpg" alt="">
-								</a>
-								<h6 class="header__ntf-title">
-									<span>Tony Young</span> Comment on your project.
-								</h6>
-							</div>
-
-							<a href="#" class="header__ntf-more">View more</a>
-						</div>
-					</div>
 
 					<div class="header__profile">
 						<a class="dropdown-toggle header__profile-btn" href="#" role="button" id="dropdownMenuProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -216,11 +147,11 @@
 						</div>
 					</div>
 					<div class="user__title">
-						<h2>用户名</h2>
-						<p>手机号</p>
+						<h2 id="username"></h2>
+						<p id="phonenumber"></p>
 					</div>
 					<ul class="user__list">
-						<li><span>注册时间:</span> <span>注册时间</span></li>
+						<li><span>注册时间:</span> <span id="createTime">注册时间</span></li>
 						<li><span>Age:</span> <span>21</span></li>
 						<li><span>Experenice:</span> <span>5 Year</span></li>
 						<li><span>Job Done:</span> <span>113</span></li>
@@ -239,291 +170,15 @@
 				<!-- end user -->
 			</div>
 
-			<div class="col-12 col-md-7 col-lg-8 col-xl-6">
-				<!-- post -->
-				<ul class="breadcrumb__wrap">
-					<li class="breadcrumb__item"><a href="#">个人主页</a></li>
-					<li class="breadcrumb__item breadcrumb__item--active">收藏资讯</li>
-				</ul>
-				<div class="post">
-					<div class="post__head">
-						<a href="#" class="post__head-img">
-							<img src="static/images/user8.jpg" alt="">
-						</a>
-						<div class="post__head-title">
-							<h5><a href="#">Sebastian Lee</a></h5>
-							<p>11 min ago</p>
-						</div>
+			<div class="col-12 col-md-7 col-lg-8 col-xl-6" id="newsDiv">
 
-						<div class="post__dropdown">
-							<a class="dropdown-toggle post__dropdown-btn" href="#" role="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-								<i class="icon ion-md-more"></i>
-							</a>
-
-							<ul class="dropdown-menu dropdown-menu-right post__dropdown-menu" aria-labelledby="dropdownMenu1">
-								<li><a href="#">Edit</a></li>
-								<li><a href="#">Delete</a></li>
-								<li><a href="#">Hide</a></li>
-							</ul>
-						</div>
-					</div>
-
-					<div class="post__wrap">
-						<div class="post__company">
-							<i class="icon ion-ios-briefcase"></i>
-							<span>Envato</span>
-						</div>
-
-						<div class="post__location">
-							<i class="icon ion-ios-navigate"></i>
-							<span>Australia</span>
-						</div>
-
-						<div class="post__actions">
-							<a class="post__actions-btn post__actions-btn--green" href="#">
-								<i class="icon ion-ios-bookmark"></i>
-							</a>
-
-							<a class="post__actions-btn post__actions-btn--red" href="#">
-								<i class="icon ion-ios-mail"></i>
-							</a>
-						</div>
-					</div>
-
-					<h2 class="post__title">Senior Wordpress Developer</h2>
-
-					<div class="post__options">
-						<span>Full time</span>
-						<p>$36/hr</p>
-					</div>
-
-					<div class="post__description">
-						<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.</p>
-						<a href="#">view more</a>
-					</div>
-
-					<div class="post__tags">
-						<a href="#">HTML</a>
-						<a href="#">CSS</a>
-						<a href="#">PHP</a>
-					</div>
-
-					<div class="post__stats">
-						<div>
-							<a class="post__likes" href="#"><i class="icon ion-ios-heart"></i> <span>15</span></a>
-							<a class="post__comments" data-toggle="collapse" href="#collapse1" role="button" aria-expanded="false" aria-controls="collapse1"><i class="icon ion-ios-text"></i> <span>0</span></a>
-						</div>
-
-						<div class="post__views">
-							<i class="icon ion-ios-eye"></i> <span>214</span>
-						</div>
-					</div>
-
-					<div class="collapse post__collapse" id="collapse1">
-						<form action="#" class="post__form">
-							<input type="text" placeholder="Type your comment...">
-							<button type="button"><i class="icon ion-ios-paper-plane"></i></button>
-						</form>
-					</div>
-				</div>
-				<!-- end post -->
-
-				<!-- post -->
-				<div class="post">
-					<div class="post__head">
-						<a href="#" class="post__head-img">
-							<img src="static/images/user5.jpg" alt="">
-						</a>
-						<div class="post__head-title">
-							<h5><a href="#">John Doe</a></h5>
-							<p>24 min ago</p>
-						</div>
-
-						<div class="post__dropdown">
-							<a class="dropdown-toggle post__dropdown-btn" href="#" role="button" id="dropdownMenu3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-								<i class="icon ion-md-more"></i>
-							</a>
-
-							<ul class="dropdown-menu dropdown-menu-right post__dropdown-menu" aria-labelledby="dropdownMenu3">
-								<li><a href="#">Edit</a></li>
-								<li><a href="#">Delete</a></li>
-								<li><a href="#">Hide</a></li>
-							</ul>
-						</div>
-					</div>
-
-					<div class="post__wrap">
-						<div class="post__company">
-							<i class="icon ion-ios-briefcase"></i>
-							<span>Front-end Developer</span>
-						</div>
-
-						<div class="post__actions">
-							<a class="post__actions-btn post__actions-btn--green" href="#">
-								<i class="icon ion-ios-bookmark"></i>
-							</a>
-							<a class="post__actions-btn post__actions-btn--red" href="#">
-								<i class="icon ion-ios-mail"></i>
-							</a>
-							<a href="#" class="post__actions-btn post__actions-btn--blue"><span>Bid now</span></a>
-						</div>
-					</div>
-
-					<h2 class="post__title">PSD to HTML</h2>
-
-					<div class="post__options">
-						<p>$300 - $350</p>
-					</div>
-
-					<div class="post__description">
-						<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.</p>
-						<a href="#">view more</a>
-					</div>
-
-					<div class="post__tags">
-						<a href="#">HTML</a>
-						<a href="#">CSS</a>
-						<a href="#">JS</a>
-						<a href="#">PSD</a>
-					</div>
-
-					<div class="post__stats">
-						<div>
-							<a class="post__likes" href="#"><i class="icon ion-ios-heart"></i> <span>15</span></a>
-							<a class="post__comments" data-toggle="collapse" href="#collapse3" role="button" aria-expanded="false" aria-controls="collapse1"><i class="icon ion-ios-text"></i> <span>0</span></a>
-						</div>
-
-						<div class="post__views">
-							<i class="icon ion-ios-eye"></i> <span>214</span>
-						</div>
-					</div>
-
-					<div class="collapse post__collapse" id="collapse3">
-						<form action="#" class="post__form">
-							<input type="text" placeholder="Type your comment...">
-							<button type="button"><i class="icon ion-ios-paper-plane"></i></button>
-						</form>
-					</div>
-				</div>
-				<!-- end post -->
-
-				<!-- post -->
-				<div class="post">
-					<div class="post__head">
-						<a href="#" class="post__head-img">
-							<img src="static/images/user8.jpg" alt="">
-						</a>
-						<div class="post__head-title">
-							<h5><a href="#">Sebastian Lee</a></h5>
-							<p>45 min ago</p>
-						</div>
-
-						<div class="post__dropdown">
-							<a class="dropdown-toggle post__dropdown-btn" href="#" role="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-								<i class="icon ion-md-more"></i>
-							</a>
-
-							<ul class="dropdown-menu dropdown-menu-right post__dropdown-menu" aria-labelledby="dropdownMenu2">
-								<li><a href="#">Edit</a></li>
-								<li><a href="#">Delete</a></li>
-								<li><a href="#">Hide</a></li>
-							</ul>
-						</div>
-					</div>
-
-					<div class="post__wrap">
-						<div class="post__company">
-							<i class="icon ion-ios-briefcase"></i>
-							<span>Envato</span>
-						</div>
-
-						<div class="post__location">
-							<i class="icon ion-ios-navigate"></i>
-							<span>Australia</span>
-						</div>
-
-						<div class="post__actions">
-							<a class="post__actions-btn post__actions-btn--green" href="#">
-								<i class="icon ion-ios-bookmark"></i>
-							</a>
-							<a class="post__actions-btn post__actions-btn--red" href="#">
-								<i class="icon ion-ios-mail"></i>
-							</a>
-						</div>
-					</div>
-
-					<h2 class="post__title">Senior Wordpress Developer</h2>
-
-					<div class="post__options">
-						<span>Full time</span>
-						<p>$36/hr</p>
-					</div>
-
-					<div class="post__description">
-						<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.</p>
-						<a href="#">view more</a>
-					</div>
-
-					<div class="post__tags">
-						<a href="#">HTML</a>
-						<a href="#">CSS</a>
-						<a href="#">PHP</a>
-					</div>
-
-					<div class="post__stats">
-						<div>
-							<a class="post__likes" href="#"><i class="icon ion-ios-heart"></i> <span>15</span></a>
-							<a class="post__comments" data-toggle="collapse" href="#collapse2" role="button" aria-expanded="true" aria-controls="collapse2"><i class="icon ion-ios-text"></i> <span>2</span></a>
-						</div>
-
-						<div class="post__views">
-							<i class="icon ion-ios-eye"></i> <span>214</span>
-						</div>
-					</div>
-
-					<div class="collapse show post__collapse" id="collapse2">
-						<form action="#" class="post__form">
-							<input type="text" placeholder="Type your comment...">
-							<button type="button"><i class="icon ion-ios-paper-plane"></i></button>
-						</form>
-
-						<div class="post__comment">
-							<a href="#" class="post__comment-img">
-								<img src="static/images/user9.jpg" alt="">
-							</a>
-							<div class="post__comment-title">
-								<h5><a href="#">Alan Patrick</a></h5>
-								<p>20 min ago</p>
-							</div>
-
-							<p class="post__comment-text">Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy.</p>
-						</div>
-
-						<div class="post__comment">
-							<a href="#" class="post__comment-img">
-								<img src="static/images/user2.jpg" alt="">
-							</a>
-							<div class="post__comment-title">
-								<h5><a href="#">Diego Costa</a></h5>
-								<p>22 min ago</p>
-							</div>
-
-							<p class="post__comment-text">Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy.</p>
-						</div>
-					</div>
-				</div>
-				<!-- end post -->
-
-				<!-- view more -->
-				<button class="main__btn" type="button"><span>load more</span></button>
-				<!-- end view more -->
 			</div>
 
 			<div class="col-12 col-md-5 col-lg-4 col-xl-3">
 				<!-- sidebox -->
 				<div class="sidebox sidebox--desk">
 					<h4 class="sidebox__title">热点新闻榜</h4>
-					<div class="sidebox__content">
+					<div class="sidebox__content" id = "hotNews">
 						<div class="sidebox__job">
 							<div class="sidebox__job-title">
 								<a href="#">Front-end Developer</a>
@@ -533,43 +188,7 @@
 							</p>
 						</div>
 
-						<div class="sidebox__job">
-							<div class="sidebox__job-title">
-								<a href="#">UI/UX Designer</a>
-								<span>$20/hr</span>
-							</div>
-							<p class="sidebox__job-description">The generated Lorem Ipsum is therefore always free from repetition.
-							</p>
-						</div>
-
-						<div class="sidebox__job">
-							<div class="sidebox__job-title">
-								<a href="#">Back-end Developer</a>
-								<span>$27/hr</span>
-							</div>
-							<p class="sidebox__job-description">The generated Lorem Ipsum is therefore always free from repetition.
-							</p>
-						</div>
-
-						<div class="sidebox__job">
-							<div class="sidebox__job-title">
-								<a href="#">Team Leader</a>
-								<span>$38/hr</span>
-							</div>
-							<p class="sidebox__job-description">The generated Lorem Ipsum is therefore always free from repetition.
-							</p>
-						</div>
-
-						<div class="sidebox__job">
-							<div class="sidebox__job-title">
-								<a href="#">Senior Java Developer</a>
-								<span>$35/hr</span>
-							</div>
-							<p class="sidebox__job-description">The generated Lorem Ipsum is therefore always free from repetition.
-							</p>
-						</div>
 					</div>
-					<a href="#" class="sidebox__more">View more</a>
 				</div>
 				<!-- end sidebox -->
 			</div>
@@ -616,5 +235,6 @@
 <script src="static/js/frameabout/jquery.mousewheel.min.js"></script>
 <script src="static/js/frameabout/jquery.mCustomScrollbar.min.js"></script>
 <script src="static/js/frameabout/main.js"></script>
+<script src="static/js/function/userPage.js"></script>
 </body>
 </html>

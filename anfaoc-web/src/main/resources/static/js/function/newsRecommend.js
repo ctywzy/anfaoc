@@ -10,7 +10,7 @@ $(document).ready(function () {
     var pageNumber = $("#pageNumber").val();
     var success;
     $.get({
-        url : "api/anfaoc/news/getHotNews",
+        url : "api/anfaoc/news/getRecommentNews",
         dataType : "text",
         async : true,
         data : {
@@ -33,7 +33,7 @@ $(document).ready(function () {
         pageNumber = Number(pageNumber) + Number(1);
         $("#pageNumber").val(pageNumber);
         $.get({
-            url : "api/anfaoc/news/getHotNews",
+            url : "api/anfaoc/news/getRecommentNews",
             dataType : "text",
             async : true,
             data : {
@@ -113,26 +113,26 @@ $(document).ready(function () {
 
 
         //标签添加
-           connLabel(labelList);
-            //剩余部分
-           connRow("\t\t\t\t\t\t<div class=\"post__stats\">\n" +
-           "\t\t\t\t\t\t\t<div>\n" +
-           "\t\t\t\t\t\t\t\t<a class=\"post__likes\" href=\"#\"><i class=\"icon ion-ios-heart\"></i> <span>15</span></a>\n" +
-           "\t\t\t\t\t\t\t\t<a class=\"post__comments\" data-toggle=\"collapse\" href=\"#collapse"+ newsNo +"\" role=\"button\" aria-expanded=\"false\" aria-controls=\"collapse1\"><i class=\"icon ion-ios-text\"></i> <span>0</span></a>\n" +
-           "\t\t\t\t\t\t\t</div>\n" +
-           "\n" +
-           "\t\t\t\t\t\t\t<div class=\"post__views\">\n" +
-           "\t\t\t\t\t\t\t\t<i class=\"icon ion-ios-eye\"></i> <span>"+ pageViews +"</span>\n" +
-           "\t\t\t\t\t\t\t</div>\n" +
-           "\t\t\t\t\t\t</div>\n" +
-           "\n" +
-           "\t\t\t\t\t\t<div class=\"collapse post__collapse\" id=\"collapse"+ newsNo +"\">\n" +
-           "\t\t\t\t\t\t\t<form action=\"#\" class=\"post__form\">\n" +
-           "\t\t\t\t\t\t\t\t<input type=\"text\" placeholder=\"Type your comment...\">\n" +  /** 评论的话 **/
-           "\t\t\t\t\t\t\t\t<button type=\"button\"><i class=\"icon ion-ios-paper-plane\"></i></button>\n" +  /** 评论按钮 **/
-           "\t\t\t\t\t\t\t</form>\n" +
-           "\t\t\t\t\t\t</div>\n" +
-           "\t\t\t\t\t</div>")
+        connLabel(labelList);
+        //剩余部分
+        connRow("\t\t\t\t\t\t<div class=\"post__stats\">\n" +
+            "\t\t\t\t\t\t\t<div>\n" +
+            "\t\t\t\t\t\t\t\t<a class=\"post__likes\" href=\"#\"><i class=\"icon ion-ios-heart\"></i> <span>15</span></a>\n" +
+            "\t\t\t\t\t\t\t\t<a class=\"post__comments\" data-toggle=\"collapse\" href=\"#collapse"+ newsNo +"\" role=\"button\" aria-expanded=\"false\" aria-controls=\"collapse1\"><i class=\"icon ion-ios-text\"></i> <span>0</span></a>\n" +
+            "\t\t\t\t\t\t\t</div>\n" +
+            "\n" +
+            "\t\t\t\t\t\t\t<div class=\"post__views\">\n" +
+            "\t\t\t\t\t\t\t\t<i class=\"icon ion-ios-eye\"></i> <span>"+ pageViews +"</span>\n" +
+            "\t\t\t\t\t\t\t</div>\n" +
+            "\t\t\t\t\t\t</div>\n" +
+            "\n" +
+            "\t\t\t\t\t\t<div class=\"collapse post__collapse\" id=\"collapse"+ newsNo +"\">\n" +
+            "\t\t\t\t\t\t\t<form action=\"#\" class=\"post__form\">\n" +
+            "\t\t\t\t\t\t\t\t<input type=\"text\" placeholder=\"Type your comment...\">\n" +  /** 评论的话 **/
+            "\t\t\t\t\t\t\t\t<button type=\"button\"><i class=\"icon ion-ios-paper-plane\"></i></button>\n" +  /** 评论按钮 **/
+            "\t\t\t\t\t\t\t</form>\n" +
+            "\t\t\t\t\t\t</div>\n" +
+            "\t\t\t\t\t</div>")
     }
 
     //html拼接

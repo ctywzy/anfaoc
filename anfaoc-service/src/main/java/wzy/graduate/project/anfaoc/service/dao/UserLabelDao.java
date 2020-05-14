@@ -4,6 +4,8 @@ import org.apache.ibatis.annotations.Mapper;
 import wzy.graduate.project.anfaoc.api.domain.entity.NewsCollectionDetail;
 import wzy.graduate.project.anfaoc.api.domain.entity.UserLabel;
 
+import java.util.List;
+
 /**
  * @author wangzy
  */
@@ -12,4 +14,8 @@ import wzy.graduate.project.anfaoc.api.domain.entity.UserLabel;
 public interface UserLabelDao {
 
     void insert(UserLabel detail);
+
+    void delete(UserLabel userLabel);
+
+    List<UserLabel> find(UserLabel userLabel);
 }

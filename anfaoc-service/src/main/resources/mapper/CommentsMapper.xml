@@ -6,13 +6,15 @@
         <id property="id" column="id"/>
         <result property="content" column="content"/>
         <result property="newsId" column="news_id"/>
+        <result property="username" column="user_name"/>
         <result property="createTime" column="create_time"/>
     </resultMap>
 
     <sql id="criteria">
         <where>
             <if test = "id != null"> AND `id` = #{id}</if>
-            <if test = "userId != null"> AND `content` = #{content}</if>
+            <if test = "content != null"> AND `content` = #{content}</if>
+            <if test = "username != null"> AND `user_name` = #{username}</if>
             <if test = "newsId != null"> AND `news_id` = #{newsId}</if>
             <if test = "createTime != null"> AND `create_time` = #{createTime}</if>
         </where>
@@ -28,11 +30,11 @@
     </sql>
 
     <sql id = "columns_exclude_id">
-        `content`, `news_id`, `create_time`
+        `content`, `news_id`, `create_time`, `user_name`
     </sql>
 
     <sql id = "value_exclude_id">
-        #{content}, #{newsId}, #{createTime}
+        #{content}, #{newsId}, #{createTime},#{username}
     </sql>
 
 

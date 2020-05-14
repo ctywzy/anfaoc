@@ -39,11 +39,11 @@ public class CommentsFacadeImpl implements CommentsFacade {
             log.info("评论添加失败:{}",commentsDTO);
             return Response.fail("评论添加失败");
         }
-        return Response.ok(commentsDTO.getNewId());
+        return Response.ok(commentsDTO.getNewsId());
     }
 
     @Override
-    public List<String> getAllCommnets(Long newId) {
+    public List<Comments> getAllCommnets(Long newId) {
         List<Comments> comments = new ArrayList<>();
         try{
             comments =  commentsService.getAllCommnets(newId);
@@ -51,8 +51,6 @@ public class CommentsFacadeImpl implements CommentsFacade {
             log.info("获取评论失败:{}",newId);
             throw new ServiceException("获取评论失败");
         }
-        return comments.stream()
-                       .map(Comments::getContent)
-                       .collect(Collectors.toList());
+        return comments;
     }
 }

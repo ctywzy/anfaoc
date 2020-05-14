@@ -10,7 +10,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import wzy.graduate.project.anfaoc.api.domain.dto.CommentsDTO;
 import wzy.graduate.project.anfaoc.api.domain.dto.NewsCollectionDTO;
+import wzy.graduate.project.anfaoc.api.domain.dto.UserLabelDTO;
+import wzy.graduate.project.anfaoc.api.domain.entity.UserLabel;
 import wzy.graduate.project.anfaoc.api.facade.NewsCollectionFacade;
+import wzy.graduate.project.anfaoc.api.facade.UserLabelFacade;
 import wzy.graduate.project.anfaoc.api.redis.RedisHelper;
 import wzy.graduate.project.anfaoc.common.model.Response;
 import wzy.graduate.project.anfaoc.common.model.dto.NewsDetailDTO;
@@ -35,6 +38,9 @@ public class PageController {
 
     @Reference
     private NewsCollectionFacade newsCollectionFacade;
+
+    @Reference
+    private UserLabelFacade userLabelFacade;
 
     @ApiOperation("主页显示")
     @GetMapping("loginCheck")
@@ -77,6 +83,21 @@ public class PageController {
     @GetMapping("newsPage")
     public String newsPage(){
         return "page/newsPage";
+    }
+
+    @ApiOperation("用户标签页面")
+    @GetMapping("userLabelPage")
+    public String userLabelPage(HttpServletRequest request){
+        HttpSession session = request.getSession();
+        String sessionId = session.getId();
+        String loginKey = RedisKeyConstant.getUserLoginFlag(sessionId);
+        Object loginFlag =  redis.getValue(loginKey);
+
+        if(Objects.isNull(loginFlag)){
+            return "usercontrol/login";
+        }else{
+            return "page/userLabelPage";
+        }
     }
 
     @ApiOperation("新闻详情")
@@ -127,7 +148,60 @@ public class PageController {
 
     @ApiOperation("推荐新闻")
     @GetMapping(value = "newsRecommendPage")
-    public String newsRecommendPage(){
+    public String newsRecommendPage(HttpServletRequest request){
+        HttpSession session = request.getSession();
+        String sessionId = session.getId();
+        String loginKey = RedisKeyConstant.getUserLoginFlag(sessionId);
+        Integer userId = (Integer) redis.getValue(loginKey);
+
+        if(Objects.isNull(userId)){
+            return "usercontrol/login";
+        }
         return "page/newsRecommendPage";
     }
+
+    @ApiOperation("标签页面")
+    @GetMapping(value = "labelPage")
+    public String labelPage(String pageNo){
+        return "page/labelPage";
+    }
+
+    @ApiOperation("添加标签关系")
+    @GetMapping("/addLabel/{id}")
+    public String addLabel(@PathVariable("id") String LabelId,HttpServletRequest request){
+        //先判断用户登陆没有
+        HttpSession session = request.getSession();
+        String sessionId = session.getId();
+        String loginKey = RedisKeyConstant.getUserLoginFlag(sessionId);
+        Integer userId = (Integer) redis.getValue(loginKey);
+
+        if(Objects.isNull(userId)){
+            return "usercontrol/login";
+        }
+        UserLabelDTO userLabelDTO = new UserLabelDTO();
+        userLabelDTO.setUserId(String.valueOf(userId));
+        userLabelDTO.setLabelId(LabelId);
+        userLabelFacade.create(userLabelDTO);
+        return "page/labelPage";
+    }
+
+    @ApiOperation("删除标签关系")
+    @GetMapping("/deleteLabel/{id}")
+    public String deleteLabel(@PathVariable("id") String LabelId,HttpServletRequest request){
+        //先判断用户登陆没有
+        HttpSession session = request.getSession();
+        String sessionId = session.getId();
+        String loginKey = RedisKeyConstant.getUserLoginFlag(sessionId);
+        Integer userId = (Integer) redis.getValue(loginKey);
+
+        if(Objects.isNull(userId)){
+            return "usercontrol/login";
+        }
+        UserLabelDTO userLabelDTO = new UserLabelDTO();
+        userLabelDTO.setUserId(String.valueOf(userId));
+        userLabelDTO.setLabelId(LabelId);
+        userLabelFacade.deleteLabel(userLabelDTO);
+        return "page/userlabelPage";
+    }
+
 }

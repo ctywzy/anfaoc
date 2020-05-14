@@ -23,7 +23,7 @@ public class UserLabelDTO implements Serializable {
     private String userId;
 
     @ApiModelProperty("标签id")
-    private String lableId;
+    private String labelId;
 
     @ApiModelProperty("关注时间")
     private String createTime;

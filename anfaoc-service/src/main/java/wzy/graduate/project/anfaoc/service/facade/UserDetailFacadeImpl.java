@@ -45,7 +45,7 @@ public class UserDetailFacadeImpl implements UserDetailFacade {
             UserDetail userDetail = UserDetailConvert.modelConvert(userDetailDTO);
             //判断电话号码是否存在
             UserDetail userJudge = userDetailService.findUserByPhoneNumber(userDetail.getPhoneNumber());
-            if(Objects.isNull(userJudge)){
+            if(Objects.nonNull(userJudge)){
                 return Response.fail("电话号码已经被注册");
             }
             userDetailService.register(userDetail);

@@ -110,6 +110,37 @@ public class NewsUtil {
     }
 
     /**
+     * @Description 用户收藏
+     * @Date  2020/5/13
+     **/
+    public static String doUserPictureInt(String para) {
+
+        para =  "<div>" +
+                "<img style=\"position: relative;left: 115%;top: 50%;width:150px;height: 200px\" src = \" " + para + "\"/>" +
+                "</div>";
+        return para;
+    }
+
+    /**
+     * @Description 用户收藏
+     * @Date  2020/5/13
+     **/
+    public static String doUserDes(String para) {
+        if(para.contains("<img")){
+            StringBuilder sb = new StringBuilder(para);
+            sb.insert(5, "style=\"position: relative;left: 115%;top: 50%;width:150px;height: 200px\" ");
+            sb.insert(0,"<div> ");
+            sb.append("</div>");
+            para = sb.toString();
+        }
+        else{
+            para = "<p>" +"&nbsp;&nbsp;&nbsp;&nbsp;"+para + "</p>";
+        }
+
+        return para;
+    }
+
+    /**
      * @Description 将id列表转换成字符串
      * @Date  2020/1/22
      **/

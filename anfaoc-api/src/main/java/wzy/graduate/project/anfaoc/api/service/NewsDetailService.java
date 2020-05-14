@@ -36,5 +36,9 @@ public interface NewsDetailService {
      **/
     void addPageViews(Map<String, Object> criteria);
 
+    /**
+     * @Description 收藏新闻获取
+     * @Date  2020/5/13
+     **/
     List<NewsDetail> colNews(Map<String, Object> criteria);
 }

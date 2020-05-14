@@ -34,4 +34,9 @@ public class Comments implements Serializable {
      * 日期
      **/
     private String createTime;
+
+    /**
+     * 用户名
+     **/
+    private String username;
 }

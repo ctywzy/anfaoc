@@ -38,6 +38,7 @@ CREATE TABLE `comments` (
     `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '自增id',
     `content` varchar(255) NOT NULL COMMENT '用户id',
     `news_id` varchar(20) NOT NULL COMMENT '新闻id',
+    `user_name` varchar(20) NOT NULL COMMENT '新闻id',
     `create_time` varchar(31) NOT NULL COMMENT '标签创建时间',
     PRIMARY KEY (`id`) USING BTREE
 )ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;

@@ -38,4 +38,10 @@ public interface LabelDetailDao {
      * @Date  2020/3/23
      **/
     Long addLabelDetail(LabelDetail labelDetail);
+
+    /**
+     * @Description 获取所有标签
+     * @Date  2020/5/13
+     **/
+    List<LabelDetail> getAllLabel(Map<String, Object> criteria);
 }

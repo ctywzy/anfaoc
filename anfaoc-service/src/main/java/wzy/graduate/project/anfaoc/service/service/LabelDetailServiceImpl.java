@@ -12,6 +12,7 @@ import wzy.graduate.project.anfaoc.common.model.dto.NewsDetailDTO;
 import wzy.graduate.project.anfaoc.common.util.NewsUtil;
 import wzy.graduate.project.anfaoc.service.dao.LabelDetailDao;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -82,5 +83,17 @@ public class LabelDetailServiceImpl implements LabelDetailService{
             throw new ServiceException(e.getMessage());
         }
         return Boolean.TRUE;
+    }
+
+    @Override
+    public List<LabelDetail> getAllLabel(Map<String, Object> criteria) {
+        List<LabelDetail> list = new ArrayList<>();
+        try{
+           list = labelDetailDao.getAllLabel(criteria);
+        }catch (Exception e){
+            log.info("getAllLabel fail :{}",e.getMessage());
+            throw new ServiceException(e.getMessage());
+        }
+        return list;
     }
 }
