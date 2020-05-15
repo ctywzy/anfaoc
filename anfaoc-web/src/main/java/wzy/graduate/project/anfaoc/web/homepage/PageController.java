@@ -132,7 +132,7 @@ public class PageController {
     }
 
     @ApiOperation("用户登出")
-    @PostMapping(value = "/logout")
+    @GetMapping(value = "/logout")
     public String userLoginOut(HttpServletRequest request){
         String sessionId = request.getRequestedSessionId();
         String loginFlag = RedisKeyConstant.getUserLoginFlag(sessionId);
@@ -204,4 +204,17 @@ public class PageController {
         return "page/userlabelPage";
     }
 
+    @ApiOperation("用户标签列表")
+    @GetMapping("colLabelPage")
+    String colLabelPage(HttpServletRequest request){
+        HttpSession session = request.getSession();
+        String sessionId = session.getId();
+        String loginKey = RedisKeyConstant.getUserLoginFlag(sessionId);
+        Integer userId = (Integer) redis.getValue(loginKey);
+
+        if(Objects.isNull(userId)){
+            return "usercontrol/login";
+        }
+        return "page/userLabelPage";
+    }
 }

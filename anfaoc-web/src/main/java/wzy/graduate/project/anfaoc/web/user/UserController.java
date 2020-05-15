@@ -17,6 +17,7 @@ import wzy.graduate.project.anfaoc.common.util.RedisUtil;
 import wzy.graduate.project.anfaoc.web.cache.RedisKeyConstant;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.Objects;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
@@ -44,6 +45,21 @@ public class UserController {
         Response<UserDetail> response = userDetailFacade.findUserByUserId(userId);
 
         return response;
+    }
+
+    @ApiOperation("获取当前用户信息")
+    @GetMapping("/getNowUserDetail")
+    public Response<UserDetail> getNowUserDetail(HttpServletRequest request){
+        HttpSession session = request.getSession();
+        String sessionId = session.getId();
+        String loginKey = RedisKeyConstant.getUserLoginFlag(sessionId);
+        Integer userId = (Integer) redis.getValue(loginKey);
+        if(Objects.isNull(userId)){
+            return Response.fail("未登陆");
+        }else{
+            return userDetailFacade.findUserByUserId(String.valueOf(userId));
+        }
+
     }
 
     @ApiOperation("用户注册")

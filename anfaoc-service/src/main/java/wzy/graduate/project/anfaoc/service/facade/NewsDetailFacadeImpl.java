@@ -87,6 +87,23 @@ public class NewsDetailFacadeImpl implements NewsDetailFacade {
         return Response.ok(newsDetailDTOS);
     }
 
+
+    @Override
+    public Response<List<NewsDetailDTO>> searchNews(NewsPagingRequest request) {
+        List<NewsDetailDTO> newsDetailDTOS;
+        try{
+
+            Map<String,Object> criteria = mapUtil.toSearchMap(request);
+            List<NewsDetail> newsDetails = newsDetailService.paging(criteria);
+
+            newsDetailDTOS = this.convertToFront(newsDetails);
+        }catch (Exception e){
+            log.info("获取资讯失败");
+            return Response.fail("获取资讯失败");
+        }
+        return Response.ok(newsDetailDTOS);
+
+    }
     @Override
     public Response<List<NewsDetailDTO>> newsPageRecommend(NewsPagingRequest request) {
         List<NewsDetailDTO> newsDetailDTOS;
@@ -220,6 +237,8 @@ public class NewsDetailFacadeImpl implements NewsDetailFacade {
         newsDetailDTO.setPreViewPara(convertPrePara(newsDetailDTO.getNewParas()));
         newsDetailDTO.setPageViews(newsDetail.getPageViews() + 1L);
 
+        List<Comments> comments = commentsFacade.getAllCommnets(newsDetail.getId());
+        newsDetailDTO.setCommentsNum(String.valueOf(comments.size()));
         newsDetailDTO.setUserPreView(convertUserPre(newsDetailDTO.getNewParas()));
         return newsDetailDTO;
     }
@@ -238,10 +257,10 @@ public class NewsDetailFacadeImpl implements NewsDetailFacade {
                     finalParas.append(NewsUtil.doUserPictureInt(para));
                     break;
                 case PARAGRAPH:
-                    finalParas.append(NewsUtil.doParaInt(para));
+                    finalParas.append(NewsUtil.doUserParaInt(para));
                     break;
                 case DESCRIPTION:
-                    finalParas.append(NewsUtil.doUserDes(para));
+                    finalParas.append(NewsUtil.doDes(para));
                     break;
             }
         }

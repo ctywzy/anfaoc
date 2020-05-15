@@ -67,11 +67,31 @@ public class newsDetailController {
         }
     }
 
+    @ApiOperation("热点新闻查询")
+    @GetMapping("/hotNews/search")
+    public Response<List<NewsDetailDTO>> hotNewsSearch(String viewBegin,String viewEnd,String newTitle){
+        NewsPagingRequest request = new NewsPagingRequest();
+        request.setNewTitle(newTitle);
+        request.setViewBegin(viewBegin);
+        request.setViewEnd(viewEnd);
+        Response<List<NewsDetailDTO>> response = newsDetailFacade.searchNews(request);
+        if(response.isSuccess()){
+            return Response.ok(response.getResult());
+        }else{
+            return Response.fail("获取新闻失败");
+        }
+    }
+
     @ApiOperation("推荐新闻获取")
     @GetMapping("getRecommentNews")
-    public Response<List<NewsDetailDTO>> getRecNews(Integer pageNo){
+    public Response<List<NewsDetailDTO>> getRecNews(Integer pageNo,HttpServletRequest servletRequest){
         NewsPagingRequest request = new NewsPagingRequest();
         request.setPagingNo(pageNo);
+        HttpSession session = servletRequest.getSession();
+        String sessionId = session.getId();
+        String loginKey = RedisKeyConstant.getUserLoginFlag(sessionId);
+        Integer userId = (Integer) redis.getValue(loginKey);
+        request.setUserId(String.valueOf(userId));
         Response<List<NewsDetailDTO>> response = newsDetailFacade.newsPageRecommend(request);
         if(response.isSuccess()){
             return Response.ok(response.getResult());
@@ -144,7 +164,7 @@ public class newsDetailController {
         String loginKey = RedisKeyConstant.getUserLoginFlag(sessionId);
         Integer userId = (Integer) redis.getValue(loginKey);
         request.setUserId(String.valueOf(userId));
-        Response<List<LabelDetail>> response = labelDetailFacade.getAllLabel(request);
+        Response<List<LabelDetail>> response = labelDetailFacade.getAllUserLabel(request);
         return response;
     }
 

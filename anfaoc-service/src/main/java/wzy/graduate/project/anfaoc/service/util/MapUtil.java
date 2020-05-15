@@ -39,4 +39,13 @@ public class MapUtil {
         criteria.put("limit", REC_PAGE_NUMBER);
         return criteria;
     }
+
+    public Map<String, Object> toSearchMap(NewsPagingRequest request) {
+        Map<String,Object> criteria = Maps.newHashMap();
+        criteria.put("viewBegin",request.getViewBegin());
+        criteria.put("viewEnd",request.getViewEnd());
+        criteria.put("newTitle",request.getNewTitle());
+        return criteria;
+
+    }
 }

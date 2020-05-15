@@ -28,8 +28,34 @@ $(document).ready(function () {
         }
     })
 
+    $("#searchButton").click(function () {
+        var  newTitle = $("#newsTitleSearch")
+        var begin = $("#filter__range-start")
+        var end = $("#filter__range-end")
+        $.get({
+        url : "api/anfaoc/news",
+            dataType : "text",
+            async : true,
+            data :{
+                newTitle : newTitle,
+                viewBegin : begin,
+                viewEnd : end
+            },
+            success : function(result){
+                var response = $.parseJSON(result);
+                success = response.success;
+                if(success == true){
+                    newDiv = ""
+                    finalDiv(response.result);
+                }else{
+
+                }
+            }
+        })
+    })
+
+
     $("#loadMoreButton").click(function () {
-        labelDiv = "";
         pageNumber = Number(pageNumber) + Number(1);
         $("#pageNumber").val(pageNumber);
         $.get({
@@ -56,7 +82,7 @@ $(document).ready(function () {
     function finalDiv(result){
         for(var i = 0 ;i<result.length ; i++){
             var ajumpurl = "getNewsDetail/"+result[i].id;
-            singleDiv(ajumpurl,result[i].newLabels,result[i].newTitle,result[i].preViewPara,result[i].pageViews,i,result[i].id);
+            singleDiv(ajumpurl,result[i].newLabels,result[i].newTitle,result[i].preViewPara,result[i].pageViews,i,result[i].id,result[i].commentsNum);
         }
         $("#newsDiv").html(newDiv);
     }
@@ -72,7 +98,7 @@ $(document).ready(function () {
      * @Param newsNo 新闻编号
      * @Param collectUrl 收藏的url
      */
-    function singleDiv(aurl,labelList,title,introduction,pageViews,newsNo,collectUrl){
+    function singleDiv(aurl,labelList,title,introduction,pageViews,newsNo,collectUrl,commentsNum){
         connRow("<div class=\"post\">\n" +
             "\t\t\t\t\t\t<div class=\"post__head\">\n" +
             "\t\t\t\t\t\t\t<div class=\"post__head-title\">\n" +
@@ -117,8 +143,7 @@ $(document).ready(function () {
             //剩余部分
            connRow("\t\t\t\t\t\t<div class=\"post__stats\">\n" +
            "\t\t\t\t\t\t\t<div>\n" +
-           "\t\t\t\t\t\t\t\t<a class=\"post__likes\" href=\"#\"><i class=\"icon ion-ios-heart\"></i> <span>15</span></a>\n" +
-           "\t\t\t\t\t\t\t\t<a class=\"post__comments\" data-toggle=\"collapse\" href=\"#collapse"+ newsNo +"\" role=\"button\" aria-expanded=\"false\" aria-controls=\"collapse1\"><i class=\"icon ion-ios-text\"></i> <span>0</span></a>\n" +
+           "\t\t\t\t\t\t\t\t<a class=\"post__comments\" data-toggle=\"collapse\" href=\"#collapse"+ newsNo +"\" role=\"button\" aria-expanded=\"false\" aria-controls=\"collapse1\"><i class=\"icon ion-ios-text\"></i> <span>"+commentsNum+"</span></a>\n" +
            "\t\t\t\t\t\t\t</div>\n" +
            "\n" +
            "\t\t\t\t\t\t\t<div class=\"post__views\">\n" +
@@ -126,12 +151,6 @@ $(document).ready(function () {
            "\t\t\t\t\t\t\t</div>\n" +
            "\t\t\t\t\t\t</div>\n" +
            "\n" +
-           "\t\t\t\t\t\t<div class=\"collapse post__collapse\" id=\"collapse"+ newsNo +"\">\n" +
-           "\t\t\t\t\t\t\t<form action=\"#\" class=\"post__form\">\n" +
-           "\t\t\t\t\t\t\t\t<input type=\"text\" placeholder=\"Type your comment...\">\n" +  /** 评论的话 **/
-           "\t\t\t\t\t\t\t\t<button type=\"button\"><i class=\"icon ion-ios-paper-plane\"></i></button>\n" +  /** 评论按钮 **/
-           "\t\t\t\t\t\t\t</form>\n" +
-           "\t\t\t\t\t\t</div>\n" +
            "\t\t\t\t\t</div>")
     }
 

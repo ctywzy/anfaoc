@@ -48,4 +48,10 @@ public interface NewsDetailFacade {
      * @Date  2020/5/13
      **/
     Response<List<NewsDetailDTO>> newsColPage(String userId);
+
+    /**
+     * @Description 查找新闻
+     * @Date  2020/5/15
+     **/
+    Response<List<NewsDetailDTO>> searchNews(NewsPagingRequest request);
 }

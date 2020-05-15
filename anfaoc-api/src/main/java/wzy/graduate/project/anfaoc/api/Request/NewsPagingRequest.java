@@ -24,6 +24,15 @@ public class NewsPagingRequest implements Serializable {
     @ApiModelProperty("用户id")
     private String userId;
 
+    @ApiModelProperty("标题")
+    private String newTitle;
+
+    @ApiModelProperty("浏览量开始")
+    private String viewBegin;
+
+    @ApiModelProperty("浏览量结束")
+    private String viewEnd;
+
     @ApiModelProperty("类型")
     private PagingType pagingType;
 }

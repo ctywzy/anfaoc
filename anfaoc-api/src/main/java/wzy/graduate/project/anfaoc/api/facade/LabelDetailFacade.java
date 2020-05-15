@@ -25,4 +25,6 @@ public interface LabelDetailFacade {
      * @Date  2020/5/13
      **/
     Response<List<LabelDetail>> getAllLabel(NewsPagingRequest request);
+
+    Response<List<LabelDetail>> getAllUserLabel(NewsPagingRequest request);
 }

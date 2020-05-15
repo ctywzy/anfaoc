@@ -24,7 +24,7 @@
     <meta name="description" content="">
     <meta name="keywords" content="">
     <meta name="author" content="Dmitry Volkov">
-    <title>新闻主页</title>
+    <title>热点新闻主页</title>
 </head>
 
 <body>
@@ -98,22 +98,18 @@
 
             <div class="col-5 col-md-3 col-lg-4 col-xl-3">
                 <div class="header__content header__content--end">
-                    <a href="messages.html" class="header__messages header__messages--active">
-                        <i class="icon ion-ios-mail"></i>
-                    </a>
 
 
                     <div class="header__profile">
                         <a class="dropdown-toggle header__profile-btn" href="#" role="button" id="dropdownMenuProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <img src="/static/images/user5.jpg" alt="">
-                            <span>John Doe</span>
+                            <span id="pageUserName">John Doe</span>
                         </a>
 
                         <ul class="dropdown-menu dropdown-menu-right header__dropdown-menu header__dropdown-menu--right" aria-labelledby="dropdownMenuProfile">
-                            <li><a href="profile.html"><i class="icon ion-ios-settings"></i> Settings</a></li>
-                            <li><a href="privacy.html"><i class="icon ion-ios-lock"></i> Privacy</a></li>
-                            <li><a href="faq.html"><i class="icon ion-ios-help-buoy"></i> FAQ</a></li>
-                            <li><a href="#"><i class="icon ion-ios-exit"></i> Logout</a></li>
+                            <li><a href="../homePage"><i class="icon ion-ios-settings"></i>主页</a></li>
+                            <li><a href="../colLabelPage"><i class="icon ion-ios-lock"></i>收藏的标签</a></li>
+                            <li><a href="../logout"><i class="icon ion-ios-exit"></i>登出</a></li>
                         </ul>
                     </div>
                 </div>
@@ -149,12 +145,12 @@
                     <div class="filter">
                         <div class="filter__group">
                             <label class="filter__label">标题:</label>
-                            <input type="text" class="filter__input" placeholder="标题">
+                            <input id="newsTitleSearch" type="text" class="filter__input" placeholder="标题">
                         </div>
 
 
                         <div class="filter__group">
-                            <label class="filter__label">收藏次数</label>
+                            <label class="filter__label">浏览次数</label>
 
                             <div class="filter__range">
                                 <div id="filter__range-start"></div>
@@ -166,7 +162,7 @@
 
 
                         <div class="filter__group">
-                            <button class="filter__btn" type="button"><span>Search</span></button>
+                            <button class="filter__btn" type="button" id="searchButton"><span>Search</span></button>
                         </div>
                     </div>
                 </div>
@@ -226,5 +222,6 @@
 <script src="/static/js/frameabout/main.js"></script>
 <script src="/static/js/function/login.js"></script>
 <script src="/static/js/function/hotNewsPage.js"></script>
+<script src="/static/js/function/userDetail.js"></script>
 </body>
 </html>

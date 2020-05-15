@@ -56,7 +56,7 @@ $(document).ready(function () {
             labelDiv += "<div class=\"col-12 col-sm-6 col-md-12 col-lg-3\">\n" +
                 "\t\t\t\t\t\t\t<div class=\"company\">\n" +
                 "\t\t\t\t\t\t\t\t<div class=\"company__logo\">\n" +
-                "\t\t\t\t\t\t\t\t\t<img src=\"img/company.svg\" alt=\"\">\n" +
+                "\t\t\t\t\t\t\t\t\t<img src=\"static/images/company.svg\" alt=\"\">\n" +
                 "\t\t\t\t\t\t\t\t</div>\n" +
                 "\t\t\t\t\t\t\t\t\n" +
                 "\t\t\t\t\t\t\t\t<div class=\"company__wrap\">\n" +
@@ -67,12 +67,8 @@ $(document).ready(function () {
                 "\t\t\t\t\t\t\t\t\t\n" +
                 "\n" +
                 "\t\t\t\t\t\t\t\t\t<div class=\"post__actions col-lg-12\">\n" +
-                "\t\t\t\t\t\t\t\t\t\t<a class=\"post__actions-btn post__actions-btn--green col-lg-6\" href=\""+ addAction+"\">\n" +
+                "\t\t\t\t\t\t\t\t\t\t<a class=\"post__actions-btn post__actions-btn--green col-lg-12\" href=\""+ addAction+"\">\n" +
                 "\t\t\t\t\t\t\t\t\t\t\t<i class=\"icon\">添加</i>\n" +
-                "\t\t\t\t\t\t\t\t\t\t</a>\n" +
-                "\t\t\t\t\t\t\t\t\t\t\n" +
-                "\t\t\t\t\t\t\t\t\t\t<a class=\"post__actions-btn post__actions-btn--red col-lg-6\" href=\""+deleteAction+"\">\n" +
-                "\t\t\t\t\t\t\t\t\t\t\t<i class=\"icon\">删除</i>\n" +
                 "\t\t\t\t\t\t\t\t\t\t</a>\n" +
                 "\t\t\t\t\t\t\t\t\t</div>\n" +
                 "\t\t\t\t\t\t\t\t</div>\n" +

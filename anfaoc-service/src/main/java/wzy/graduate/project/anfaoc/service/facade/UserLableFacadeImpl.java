@@ -39,7 +39,6 @@ public class UserLableFacadeImpl implements UserLabelFacade {
         try{
             UserLabel userLabel = new UserLabel();
             BeanUtils.copyProperties(userLabelDTO,userLabel);
-            userLabel.setCreateTime(NewsUtil.getNowTime());
             userLabelService.delete(userLabel);
         }catch (Exception e){
             log.info("删除标签失败:{}",e.getMessage());

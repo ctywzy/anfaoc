@@ -5,7 +5,7 @@ $(document).ready(function () {
     var pageNo = $("#pageNumber").val();
 
     $.get({
-        url : "../api/anfaoc/news/getAllLabel",
+        url : "../api/anfaoc/news/getAllUserLabel",
         dataType : "text",
         async : true,
         data : {
@@ -24,11 +24,10 @@ $(document).ready(function () {
     })
 
     $("#loadMoreButton").click(function () {
-        labelDiv = "";
         pageNo = Number(pageNo) + Number(1);
         $("#pageNumber").val(pageNo);
         $.get({
-            url : "../api/anfaoc/news/getAllLabel",
+            url : "../api/anfaoc/news/getAllUserLabel",
             dataType : "text",
             async : true,
             data : {
@@ -67,11 +66,7 @@ $(document).ready(function () {
                 "\t\t\t\t\t\t\t\t\t\n" +
                 "\n" +
                 "\t\t\t\t\t\t\t\t\t<div class=\"post__actions col-lg-12\">\n" +
-                "\t\t\t\t\t\t\t\t\t\t<a class=\"post__actions-btn post__actions-btn--green col-lg-6\" href=\""+ addAction+"\">\n" +
-                "\t\t\t\t\t\t\t\t\t\t\t<i class=\"icon\">添加</i>\n" +
-                "\t\t\t\t\t\t\t\t\t\t</a>\n" +
-                "\t\t\t\t\t\t\t\t\t\t\n" +
-                "\t\t\t\t\t\t\t\t\t\t<a class=\"post__actions-btn post__actions-btn--red col-lg-6\" href=\""+deleteAction+"\">\n" +
+                "\t\t\t\t\t\t\t\t\t\t<a class=\"post__actions-btn post__actions-btn--red col-lg-12\" href=\""+deleteAction+"\">\n" +
                 "\t\t\t\t\t\t\t\t\t\t\t<i class=\"icon\">删除</i>\n" +
                 "\t\t\t\t\t\t\t\t\t\t</a>\n" +
                 "\t\t\t\t\t\t\t\t\t</div>\n" +

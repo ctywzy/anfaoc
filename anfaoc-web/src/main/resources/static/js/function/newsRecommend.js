@@ -29,7 +29,6 @@ $(document).ready(function () {
     })
 
     $("#loadMoreButton").click(function () {
-        labelDiv = "";
         pageNumber = Number(pageNumber) + Number(1);
         $("#pageNumber").val(pageNumber);
         $.get({

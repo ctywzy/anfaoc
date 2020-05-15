@@ -125,7 +125,7 @@ public class NewsUtil {
      * @Description 用户收藏
      * @Date  2020/5/13
      **/
-    public static String doUserDes(String para) {
+    public static String doUserParaInt(String para) {
         if(para.contains("<img")){
             StringBuilder sb = new StringBuilder(para);
             sb.insert(5, "style=\"position: relative;left: 115%;top: 50%;width:150px;height: 200px\" ");
@@ -161,7 +161,7 @@ public class NewsUtil {
     public static List<String> getLabelIds(String labelIdStr){
         List<String> labelIds = null;
         try{
-            labelIds = objectMapper.readValue(labelIdStr, List.class);
+            labelIds = objectMapper.readValue(labelIdStr, new TypeReference<ArrayList<String>>(){});
         }catch (IOException e){
             log.info("标签反序列化出错");
         }

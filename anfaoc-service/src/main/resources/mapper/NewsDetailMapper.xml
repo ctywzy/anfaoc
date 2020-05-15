@@ -42,14 +42,16 @@
                     #{id}
                 </foreach>
             </if>
-            <if test = "newUrl != null"> AND `id` = #{newUrl}</if>
-            <if test = "newTitle != null"> AND `id` = #{newTitle}</if>
-            <if test = "newLabels != null"> AND `id` = #{newLabels}</if>
-            <if test = "newParas != null"> AND `id` = #{newParas}</if>
-            <if test = "createTime != null"> AND `id` = #{createTime}</if>
-            <if test = "commentsId != null"> AND `id` = #{commentsId}</if>
-            <if test = "heatNumber != null"> AND `id` = #{heatNumber}</if>
-            <if test = "pageViews != null"> AND `id` = #{pageViews}</if>
+            <if test = "newUrl != null"> AND `new_url` = #{newUrl}</if>
+            <if test = "newTitle != null"> AND `new_title` = #{newTitle}</if>
+            <if test = "newLabels != null"> AND `new_labels` = #{newLabels}</if>
+            <if test = "newParas != null"> AND `new_paras` = #{newParas}</if>
+            <if test = "createTime != null"> AND `create_time` = #{createTime}</if>
+            <if test = "commentsId != null"> AND `comments_id` = #{commentsId}</if>
+            <if test = "heatNumber != null"> AND `heat_number` = #{heatNumber}</if>
+            <if test = "pageViews != null"> AND `page_views` = #{pageViews}</if>
+            <if test = "viewBegin != null"> AND <![CDATA[ `page_views` >= #{viewBegin}]]></if>
+            <if test = "viewEnd != null"> AND <![CDATA[ `page_views` <= #{viewEnd}]]></if>
         </where>
     </sql>
 
@@ -91,6 +93,7 @@
         <include refid="table_name"/>
         <include refid="criteria"/>
         limit #{offset},#{limit}
+        ORDER BY `heat_number` desc
     </select>
 
     <select id="getNewsDetail" parameterType="map" resultType="wzy.graduate.project.anfaoc.api.domain.entity.NewsDetail">
