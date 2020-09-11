@@ -6,6 +6,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+import wzy.graduate.project.anfaoc.api.Request.NewsPagingRequest;
 import wzy.graduate.project.anfaoc.api.facade.LabelDetailFacade;
 import wzy.graduate.project.anfaoc.api.facade.NewsDetailFacade;
 import wzy.graduate.project.anfaoc.common.model.dto.NewsDetailDTO;
@@ -23,6 +24,13 @@ public class NewsTest {
 
     @Autowired
     private NewsDetailFacade newsDetailFacade;
+
+    @Test
+    public void getNewsPage(){
+        NewsPagingRequest request = new NewsPagingRequest();
+        request.setPagingNo(1);
+        newsDetailFacade.newsPage(request);
+    }
 
     /**
      * @Description 测试从新闻主页抓取的数据

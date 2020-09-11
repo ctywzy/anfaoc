@@ -1,5 +1,6 @@
 package wzy.graduate.project.anfaoc.service.service;
 
+import com.google.common.collect.Lists;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,7 +10,9 @@ import wzy.graduate.project.anfaoc.common.exception.ServiceException;
 import wzy.graduate.project.anfaoc.common.model.dto.NewsDetailDTO;
 import wzy.graduate.project.anfaoc.service.dao.NewsDetailDao;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 /**
@@ -36,6 +39,7 @@ public class NewsDetailServiceImpl implements NewsDetailService {
                 newsDetail -> {
                     index[0] +=1;
                     try{
+                        //新闻去重
                         NewsDetail judge = newsDetailDao.judgeNewPresence(newsDetail);
                         if(Objects.nonNull(judge)){
                             newsDetailDao.updateNewNum(newsDetail);
@@ -44,13 +48,55 @@ public class NewsDetailServiceImpl implements NewsDetailService {
                         }
 
                     }catch (Exception e){
-                        log.info("新闻插入失败:{}",e.getMessage());
                         log.info("错误的新闻段落：{},{}",newsDetail.getNewParas(),newsDetail.getNewUrl());
+                        throw new ServiceException("新闻插入失败");
                     }
 
                 }
         );
         log.info("执行了多少条:{}",index[0]);
+    }
+
+    @Override
+    public List<NewsDetail> paging(Map<String, Object> criteria) {
+        List<NewsDetail> newsDetails = Lists.newArrayList();
+        try{
+            newsDetails = newsDetailDao.paging(criteria);
+        }catch (Exception e){
+            throw new ServiceException("查询新闻失败");
+        }
+        return newsDetails;
+    }
+
+    @Override
+    public NewsDetail getNewsDetail(Map<String, Object> criteria) {
+        NewsDetail newsDetail;
+        try{
+            newsDetail = newsDetailDao.getNewsDetail(criteria);
+        }catch (Exception e){
+            throw new ServiceException("查询失败");
+        }
+        return newsDetail;
+    }
+
+    @Override
+    public void addPageViews(Map<String, Object> criteria) {
+        try{
+            newsDetailDao.addPageViews(criteria);
+        }catch (Exception e){
+            log.info("更新查看次数失败:{}",criteria);
+        }
+    }
+
+    @Override
+    public List<NewsDetail> colNews(Map<String, Object> criteria) {
+        List<NewsDetail> list = new ArrayList<>();
+        try{
+            list = newsDetailDao.getColNews(criteria);
+        }catch (Exception e){
+            log.info("更新查看次数失败:{}",criteria);
+        }
+        return list;
     }
 
 }

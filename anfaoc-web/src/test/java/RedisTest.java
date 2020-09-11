@@ -12,9 +12,10 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.web.bind.annotation.GetMapping;
 import wzy.graduate.project.anfaoc.api.redis.RedisHelper;
+import wzy.graduate.project.anfaoc.web.AnfaocWebStarterApp;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = RunConfig.class)
+@SpringBootTest(classes = AnfaocWebStarterApp.class)
 public class RedisTest {
     @Autowired
     private StringRedisTemplate stringRedisTemplate;
@@ -22,7 +23,7 @@ public class RedisTest {
     @Autowired
     private RedisTemplate redisTemplate;
 
-    @MockBean
+    @Autowired
     private RedisHelper redisHelper;
 
     @Test

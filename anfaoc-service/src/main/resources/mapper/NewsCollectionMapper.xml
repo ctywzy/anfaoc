@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="wzy.graduate.project.anfaoc.service.dao.NewsCollectionDao">
+
+    <resultMap id="labelDetailMap" type="wzy.graduate.project.anfaoc.api.domain.entity.NewsCollectionDetail">
+        <id property="id" column="id"/>
+        <result property="userId" column="user_id"/>
+        <result property="newsId" column="news_id"/>
+        <result property="createTime" column="create_time"/>
+    </resultMap>
+
+    <sql id="criteria">
+        <where>
+            <if test = "id != null"> AND `id` = #{id}</if>
+            <if test = "userId != null"> AND `user_id` = #{userId}</if>
+            <if test = "newsId != null"> AND `news_id` = #{newsId}</if>
+            <if test = "createTime != null"> AND `create_time` = #{createTime}</if>
+        </where>
+    </sql>
+
+    <sql id="tabel_name">
+        news_collection
+    </sql>
+
+    <sql id = "columns_all">
+        `id`,
+        <include refid="columns_exclude_id"/>
+    </sql>
+
+    <sql id = "columns_exclude_id">
+        `user_id`, `news_id`, `create_time`
+    </sql>
+
+    <sql id = "value_exclude_id">
+        #{userId}, #{newsId}, #{createTime}
+    </sql>
+
+
+    <insert id="insert" parameterType="wzy.graduate.project.anfaoc.api.domain.entity.NewsCollectionDetail" useGeneratedKeys="true">
+        INSERT INTO
+        <include refid="tabel_name"/>
+        (<include refid="columns_exclude_id"/>)
+        VALUES
+        (<include refid="value_exclude_id"/>)
+    </insert>
+
+    <select id="oneJudge" resultType="wzy.graduate.project.anfaoc.api.domain.entity.NewsCollectionDetail">
+        SELECT * FROM
+        <include refid="tabel_name"/>
+        WHERE
+        `user_id` = #{userId} AND `news_id` = #{newsId}
+    </select>
+
+    <select id="getAllColNews" resultType="wzy.graduate.project.anfaoc.api.domain.entity.NewsCollectionDetail">
+        SELECT * FROM
+        <include refid="tabel_name"/>
+        WHERE
+        `user_id` = #{userId}
+    </select>
+
+
+</mapper>

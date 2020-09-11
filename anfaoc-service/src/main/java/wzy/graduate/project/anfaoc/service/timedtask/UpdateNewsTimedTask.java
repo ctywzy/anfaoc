@@ -35,12 +35,12 @@ public class UpdateNewsTimedTask {
     @Scheduled(fixedRate = 28800000)
     public void updateNewsTask(){
         // 爬新闻
-        List<NewsDetailDTO> newsListDTOs = JsoupUtil.updateNewsLibrary();
+       // List<NewsDetailDTO> newsListDTOs = JsoupUtil.updateNewsLibrary();
         //存储或更新标签，规则是出现一次就+2，第一次出现为0
-        labelDetailFacade.updateLabelDetail(newsListDTOs);
+        //labelDetailFacade.updateLabelDetail(newsListDTOs);
 
         //存储新闻
-        newsDetailFacade.updateNews(newsListDTOs);
+        //newsDetailFacade.updateNews(newsListDTOs);
 
         //TODO 新闻量过大的时候删除部分 考虑 2000～4000中的某个数为阀值
 

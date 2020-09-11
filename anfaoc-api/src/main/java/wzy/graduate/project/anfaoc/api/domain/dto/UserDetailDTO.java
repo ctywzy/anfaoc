@@ -28,6 +28,9 @@ public class UserDetailDTO implements Serializable {
     @ApiModelProperty("密码")
     private String userPassword;
 
+    @ApiModelProperty("确认密码")
+    private String checkPasswrod;
+
     @ApiModelProperty("年龄")
     private Integer userAge;
 
@@ -35,5 +38,9 @@ public class UserDetailDTO implements Serializable {
     private AuthorityType userAuthority;
 
     @ApiModelProperty("手机号")
-    private Long phoneNumber;
+    private String phoneNumber;
+
+    @ApiModelProperty("注册时间")
+    private String createTime;
+
 }

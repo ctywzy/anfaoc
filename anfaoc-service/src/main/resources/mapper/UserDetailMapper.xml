@@ -6,14 +6,37 @@
         <id property="id" column="id"/>
         <result property="userName" column="user_name"/>
         <result property="userPassword" column="user_password"/>
-        <result property="userAge" column="user_age"/>
         <result property="userAuthority" column="user_authority"/>
         <result property="phoneNumber" column="phone_number"/>
+        <result property="createTime" column="create_time"/>
     </resultMap>
 
     <sql id="table_name">
         user_detail
     </sql>
+
+    <sql id = "columns_exclude_id">
+        `user_name`, `user_password`, `user_authority`, `phone_number`,
+        `create_time`
+    </sql>
+
+    <sql id= "columns_all">
+        `id`,
+        <include refid="columns_exclude_id"/>
+    </sql>
+
+    <sql id = "values_exclude_id">
+        #{userName}, #{userPassword}, #{userAuthority}, #{phoneNumber},
+        #{createTime}
+    </sql>
+
+    <insert id="create" parameterType="wzy.graduate.project.anfaoc.api.domain.entity.UserDetail" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO
+        <include refid="table_name"/>
+        (<include refid="columns_exclude_id"/>)
+        VALUES
+        (<include refid="values_exclude_id"/>)
+    </insert>
 
     <select id="findAllUser" resultMap="userDetailMap">
         SELECT *
@@ -25,6 +48,12 @@
         SELECT *
         FROM <include refid="table_name"/>
         WHERE `phone_number` = #{phoneNumber}
+    </select>
+
+    <select id="findUserByUserId" resultType="wzy.graduate.project.anfaoc.api.domain.entity.UserDetail">
+        SELECT *
+        FROM <include refid="table_name"/>
+        WHERE `id` = #{userId}
     </select>
 
 </mapper>

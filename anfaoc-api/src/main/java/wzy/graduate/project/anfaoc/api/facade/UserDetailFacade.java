@@ -1,5 +1,6 @@
 package wzy.graduate.project.anfaoc.api.facade;
 
+import wzy.graduate.project.anfaoc.api.domain.dto.UserDetailDTO;
 import wzy.graduate.project.anfaoc.api.domain.entity.UserDetail;
 import wzy.graduate.project.anfaoc.common.model.Response;
 
@@ -27,7 +28,7 @@ public interface UserDetailFacade {
      * @Param
      * @return
      **/
-    Response<Boolean> register(UserDetail userDetail);
+    Response<Boolean> register(UserDetailDTO userDetailDTO);
 
     /**
      * @Description 根据电话号码查询用户是否存在
@@ -35,7 +36,7 @@ public interface UserDetailFacade {
      * @Param
      * @return
      **/
-    Response<Boolean> findUserByPhoneNumber(String phoneNumber);
+    Response<UserDetail> findUserByPhoneNumber(String phoneNumber);
 
     /**
      * @Description 根据电话好号码和密码判断登陆是否成功
@@ -43,5 +44,11 @@ public interface UserDetailFacade {
      * @Param
      * @return
      **/
-    Response<Boolean> loginByPhoneNumber(String phoneNumber, String password);
+    Response<UserDetail> loginByPhoneNumber(String phoneNumber, String password);
+
+    /**
+     * @Description 根据用户id获取用户信息
+     * @Date  2020/5/13
+     **/
+    Response<UserDetail> findUserByUserId(String userId);
 }

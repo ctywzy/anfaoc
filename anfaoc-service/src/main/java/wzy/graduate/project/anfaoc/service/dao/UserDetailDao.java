@@ -29,4 +29,16 @@ public interface UserDetailDao {
      * @return
      **/
     UserDetail findUserByPhoneNumber(String phoneNumber);
+
+    /**
+     * @Description 注册新用户
+     * @Date  2020/3/25
+     **/
+    void create(UserDetail userDetail);
+
+    /**
+     * @Description 根据userId查询用户
+     * @Date  2020/5/13
+     **/
+    UserDetail findUserByUserId(String userId);
 }

@@ -1,7 +1,6 @@
 package wzy.graduate.project.anfaoc.api.domain.entity;
 
-import lombok.Data;
-import lombok.ToString;
+import lombok.*;
 import wzy.graduate.project.anfaoc.common.enums.AuthorityType;
 
 import java.io.Serializable;
@@ -13,6 +12,9 @@ import java.io.Serializable;
  **/
 
 @Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @ToString
 public class UserDetail implements Serializable {
 
@@ -34,6 +36,10 @@ public class UserDetail implements Serializable {
     private AuthorityType userAuthority;
 
     /** 手机号 **/
-    private Long phoneNumber;
+    private String phoneNumber;
+
+    /** 注册时间 **/
+    private String createTime;
+
 
 }

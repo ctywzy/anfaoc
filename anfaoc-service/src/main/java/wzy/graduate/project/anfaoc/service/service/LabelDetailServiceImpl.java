@@ -12,9 +12,11 @@ import wzy.graduate.project.anfaoc.common.model.dto.NewsDetailDTO;
 import wzy.graduate.project.anfaoc.common.util.NewsUtil;
 import wzy.graduate.project.anfaoc.service.dao.LabelDetailDao;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 /**
  * @author wangzy
@@ -42,6 +44,23 @@ public class LabelDetailServiceImpl implements LabelDetailService{
     }
 
     @Override
+    public List<String> getLabelNameById(List<String> ids) {
+        List<LabelDetail> labelDetails = null;
+        Map<String,Object> map = Maps.newHashMap();
+        map.put("ids",ids);
+        try{
+            labelDetails = labelDetailDao.findByNames(map);
+        }catch (Exception e){
+            log.info("getLabelNameById fail:{}",e.getMessage());
+            throw new ServiceException(e.getMessage());
+        }
+        List<String> labelNames = labelDetails.stream()
+                                              .map(LabelDetail::getLabelName)
+                                              .collect(Collectors.toList());
+        return labelNames;
+    }
+
+    @Override
     public Boolean updateLabelNumber(List<String> labels) {
         try{
             String nowDate = NewsUtil.getNowTime();
@@ -64,5 +83,17 @@ public class LabelDetailServiceImpl implements LabelDetailService{
             throw new ServiceException(e.getMessage());
         }
         return Boolean.TRUE;
+    }
+
+    @Override
+    public List<LabelDetail> getAllLabel(Map<String, Object> criteria) {
+        List<LabelDetail> list = new ArrayList<>();
+        try{
+           list = labelDetailDao.getAllLabel(criteria);
+        }catch (Exception e){
+            log.info("getAllLabel fail :{}",e.getMessage());
+            throw new ServiceException(e.getMessage());
+        }
+        return list;
     }
 }
