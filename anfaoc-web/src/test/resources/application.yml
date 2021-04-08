@@ -4,13 +4,13 @@ dubbo:
   registries:
     timeout: 4000
   registry:
-    address: zookeeper://127.0.0.1:2181
+    address: zookeeper://119.45.206.165:2181
   protocol:
     name: dubbo
     port: 20881
 
 redis:
-  host: 127.0.0.1
+  host: 119.45.206.165
   port: 6379
   jedis:
     pool:
