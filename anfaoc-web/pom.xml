@@ -22,17 +22,6 @@
             <version>5.2.1.RELEASE</version>
             <scope>compile</scope>
         </dependency>
-        <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-swagger2</artifactId>
-            <version>${swagger.version}</version>
-        </dependency>
-        <!-- swagger2 ui -->
-        <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-swagger-ui</artifactId>
-            <version>${swagger.version}</version>
-        </dependency>
 
         <dependency>
             <groupId>wzy.graduate.project.anfaoc</groupId>
